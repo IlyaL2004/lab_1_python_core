@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "submission_id": "sub-001",
+  "student_id": "student-001",
+  "assignment_id": "assignment-01",
+  "submitted_at": "2026-10-19T10:00:00+03:00",
+  "text": "Функция складывает два числа.",
+  "code": "def add(a, b):\n    return a + b\n",
+  "template_id": null,
+  "ai_declaration": {
+    "used": false,
+    "tool": null,
+    "purpose": null,
+    "verified_by_student": false
+  }
+}
