@@ -34,4 +34,58 @@
 | `error.to_dict()` | Данные текущей ошибки | Словарь с ключами code, field, message |
 | `examples/validate_one.py:main()` | Файл `data/submission.json` | Код 0 или 1; JSON результата выводится в терминал |
 
-Коды: `invalid_json` — ошибка формата; `schema_error` — нарушение схемы; `unsupported_version` — неподдерживаемая версия. Подробные docstrings можно посмотреть через `help(parse_submission)` после импорта функции.
+Коды: `invalid_json` — ошибка формата; `schema_error` — нарушение схемы; `unsupported_version` — неподдерживаемая версия; `conflict` — занятой ID с другим содержимым. Подробные docstrings можно посмотреть через `help(parse_submission)` после импорта функции.
+
+## Хеширование
+
+| Функция | Вход | Выход |
+|---|---|---|
+| `canonical_json(value)` | JSON-совместимый объект | Строка JSON с устойчивым порядком ключей |
+| `stable_hash(value)` | JSON-совместимый объект | SHA-256 в виде строки из 64 шестнадцатеричных символов |
+| `submission_hash(value)` | Проверенная `Submission` | SHA-256 всех полей сдачи |
+
+В хеш входят исходные строки времени, текста и кода. Порядок ключей не важен; изменение любого поля модели меняет сериализуемые данные. Встроенный `hash()` не используется для устойчивого отпечатка между процессами.
+
+## Репозиторий и сервис приёма
+
+`SubmissionRepository` — протокол с методами `get` и `add`. Сервис получает репозиторий через конструктор; общего глобального хранилища нет.
+
+| Класс или метод | Вход | Выход |
+|---|---|---|
+| `InMemorySubmissionRepository()` | Без аргументов | Пустое хранилище в памяти |
+| `repository.get(submission_id)` | ID сдачи — строка | Сохранённая `Submission` либо `None` |
+| `repository.add(submission)` | Проверенная `Submission` | `None`; запись сохранена, занятый ID вызывает `conflict` |
+| `len(repository)` | Репозиторий | Количество сохранённых сдач |
+| `SubmissionService(repository)` | Объект с контрактом `SubmissionRepository` | Сервис приёма |
+| `service.accept(raw)` | Объект по схеме сдачи | `Acceptance`: status, submission_id, content_hash |
+| `Acceptance(status, submission_id, content_hash)` | Статус accepted/duplicate, ID и SHA-256 | Неизменяемая квитанция приёма |
+
+Повтор с тем же ID и хешем возвращает `duplicate`, сохраняя прежний объект в репозитории. Другое содержимое с занятым ID вызывает `SubmissionError`; для новой версии требуется новый ID. Неверный вход проверяется до изменения хранилища.
+
+## Файл и командная строка
+
+| Класс или функция | Вход | Выход |
+|---|---|---|
+| `ImportSummary()` | Без аргументов; можно передать списки результатов | Отдельные списки accepted, duplicate, errors |
+| `summary.to_dict()` | Данные текущего итога | Новый словарь с тремя списками для JSON |
+| `import_file(path, service)` | `Path` к UTF-8 JSONL и `SubmissionService` | `ImportSummary`; ошибки записей содержат line_no, code, field, message |
+| `cli.main(argv=None)` | Аргументы, например `["import", "data/submissions.jsonl"]` | Код 0/1/2 и JSON в stdout либо stderr |
+
+`import_file` продолжает чтение после ошибочной записи. Файл закрывается через `with`; `OSError` и ошибки кодировки передаются вызывающему коду. CLI преобразует их в `source_unavailable` и возвращает 2. Ошибки отдельных записей дают код 1, успех — 0. Неверные аргументы обрабатывает `argparse` через `SystemExit(2)`.
+
+В одном процессе можно повторно использовать тот же сервис:
+
+```python
+from pathlib import Path
+from school_lab.repositories import InMemorySubmissionRepository
+from school_lab.services import SubmissionService
+from school_lab.sources import import_file
+
+repository = InMemorySubmissionRepository()
+service = SubmissionService(repository)
+path = Path("data/submissions.jsonl")
+
+first = import_file(path, service)   # Две записи accepted.
+second = import_file(path, service)  # Те же две записи duplicate.
+print(len(repository))             # 2
+```

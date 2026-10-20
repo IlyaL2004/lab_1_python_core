@@ -1,6 +1,22 @@
-"""Общие примеры данных для тестов приёма сдачи."""
+"""Общие примеры данных и временные папки для тестов."""
+
+from collections.abc import Iterator
+from pathlib import Path
+from tempfile import TemporaryDirectory
 
 import pytest
+
+
+@pytest.fixture
+def temp_dir() -> Iterator[Path]:
+    """Создать отдельную временную папку для одного теста.
+
+    Вход: нет.
+    Выход: Path новой папки; после теста папка и её файлы удаляются.
+    Случайное имя исключает зависимость от прав на старую папку pytest.
+    """
+    with TemporaryDirectory(prefix="school-lab-test-") as directory:
+        yield Path(directory)
 
 
 @pytest.fixture
