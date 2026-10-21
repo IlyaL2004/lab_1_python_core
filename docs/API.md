@@ -62,16 +62,34 @@
 
 Повтор с тем же ID и хешем возвращает `duplicate`, сохраняя прежний объект в репозитории. Другое содержимое с занятым ID вызывает `SubmissionError`; для новой версии требуется новый ID. Неверный вход проверяется до изменения хранилища.
 
-## Файл и командная строка
+## Источники данных
+
+`SubmissionSource` — протокол источника с методом `open()`. Контекстный менеджер возвращает итератор `SourceRecord`; проверку схемы выполняет сервис приёма, а не источник.
+
+| Класс или метод | Вход | Выход |
+|---|---|---|
+| `SourceRecord(line_no, raw=None, error=None)` | Номер строки с 1; разобранные данные либо `SubmissionError` | Запись источника с данными или ошибкой |
+| `SubmissionSource.open()` | Без аргументов | По контракту: контекстный менеджер итератора `SourceRecord` |
+| `JSONLSource(path)` | `Path` к UTF-8 JSONL | Источник; файл ещё не открыт |
+| `jsonl_source.open()` | Без аргументов | Контекстный менеджер итератора `SourceRecord` из файла |
+| `InMemorySource(values)` | Список словарей сдач | Источник с глубокой копией входных данных |
+| `memory_source.open()` | Без аргументов | Контекстный менеджер итератора копий записей из памяти |
+
+Используйте `with source.open() as records:`. Оба источника при новом открытии начинают с первой записи. `JSONLSource` разбирает строки по мере обхода, сохраняет физические номера строк и помещает ошибки JSON в `record.error`. В том числе пустая строка становится ошибочной записью. `InMemorySource` копирует каждую выдаваемую запись, поэтому изменение вложенного словаря не влияет на следующий обход.
+
+Файл закрывается при выходе из `with`, включая раннее прекращение обхода, отсутствие чтения и исключение. `OSError` и ошибки кодировки передаются вызывающему коду.
+
+## Импорт и командная строка
 
 | Класс или функция | Вход | Выход |
 |---|---|---|
 | `ImportSummary()` | Без аргументов; можно передать списки результатов | Отдельные списки accepted, duplicate, errors |
 | `summary.to_dict()` | Данные текущего итога | Новый словарь с тремя списками для JSON |
+| `import_source(source, service)` | Источник с контрактом `SubmissionSource` и `SubmissionService` | `ImportSummary`; ошибки записей содержат line_no, code, field, message |
 | `import_file(path, service)` | `Path` к UTF-8 JSONL и `SubmissionService` | `ImportSummary`; ошибки записей содержат line_no, code, field, message |
 | `cli.main(argv=None)` | Аргументы, например `["import", "data/submissions.jsonl"]` | Код 0/1/2 и JSON в stdout либо stderr |
 
-`import_file` продолжает чтение после ошибочной записи. Файл закрывается через `with`; `OSError` и ошибки кодировки передаются вызывающему коду. CLI преобразует их в `source_unavailable` и возвращает 2. Ошибки отдельных записей дают код 1, успех — 0. Неверные аргументы обрабатывает `argparse` через `SystemExit(2)`.
+`import_source` собирает `record.error` и `SubmissionError` сервиса по отдельным записям, продолжая обход. `import_file` — совместимая обёртка над `import_source(JSONLSource(path), service)`. Системные ошибки и ошибки кодировки прерывают импорт без отката уже принятых сдач. CLI преобразует их в `source_unavailable` и возвращает 2. Ошибки отдельных записей дают код 1, успех — 0. Неверные аргументы обрабатывает `argparse` через `SystemExit(2)`.
 
 В одном процессе можно повторно использовать тот же сервис:
 
@@ -89,3 +107,16 @@ first = import_file(path, service)   # Две записи accepted.
 second = import_file(path, service)  # Те же две записи duplicate.
 print(len(repository))             # 2
 ```
+
+Для замены источника достаточно изменить его создание:
+
+```python
+from school_lab.sources import InMemorySource, JSONLSource, import_source
+
+source = JSONLSource(Path("data/submissions.jsonl"))
+# Другой вариант: source = InMemorySource([raw_submission])
+summary = import_source(source, service)
+print(summary.to_dict())
+```
+
+Здесь `raw_submission` — словарь по схеме сдачи. Полный пример с отдельными репозиториями для сравнения находится в `examples/compare_sources.py`.
