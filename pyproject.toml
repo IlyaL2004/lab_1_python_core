@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "school-lab"
-version = "0.3.0"
-description = "ЛР 1: приём сдач из взаимозаменяемых источников, Python Core"
+version = "0.4.0"
+description = "ЛР 1: приём сдач и подключаемые анализаторы, Python Core"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = []

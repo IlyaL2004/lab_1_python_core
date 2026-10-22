@@ -1,0 +1,10 @@
+[
+  {
+    "assignment_id": "assignment-01",
+    "allowed_template": "def add(a, b):\n",
+    "requirements": [
+      "Вычислить сумму двух чисел",
+      "Кратко пояснить решение"
+    ]
+  }
+]

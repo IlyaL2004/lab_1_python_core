@@ -1,4 +1,4 @@
-"""Структурированная ошибка разбора и проверки сдачи."""
+"""Ошибки приёма сдачи и выполнения анализа."""
 
 
 class SubmissionError(Exception):
@@ -22,3 +22,11 @@ class SubmissionError(Exception):
         Выход: dict[str, str] с ключами code, field и message.
         """
         return {"code": self.code, "field": self.field, "message": self.message}
+
+
+class AnalysisFailure(Exception):
+    """Ошибка настройки, запуска анализатора или проверки его отчёта.
+
+    Вход: message (str) — описание причины ошибки.
+    Выход: экземпляр исключения AnalysisFailure.
+    """
