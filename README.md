@@ -1,13 +1,14 @@
 # Лабораторная работа 1 — Python Core
 
+
 ## Установка
 
 Нужен Python 3.12 или новее. Команды выполняются из папки проекта:
 
 ```powershell
 python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install ".[dev]"
-.\.venv\Scripts\python.exe -X utf8 -m pytest -q
+.\.venv\Scripts\python.exe -m pip install ".[dev]" ./plugins/declaration
+.\.venv\Scripts\python.exe -X utf8 -m pytest -q -p no:cacheprovider
 .\.venv\Scripts\python.exe -X utf8 examples/validate_one.py
 ```
 
@@ -16,11 +17,13 @@ python -m venv .venv
 После изменений исходников пакет нужно переустановить. Для существующего окружения в Git Bash:
 
 ```bash
-./.venv/Scripts/python.exe -m pip install --upgrade ".[dev]"
+./.venv/Scripts/python.exe -m pip install --upgrade ".[dev]" ./plugins/declaration
 ./.venv/Scripts/python.exe -X utf8 -m pytest -q -p no:cacheprovider
 ```
 
 Опция `-p no:cacheprovider` отключает только кеш pytest: она позволяет запускать проверки при ограниченных правах на `.pytest_cache`.
+
+Для полного набора тестов нужен установленный пакет `school-declaration-plugin` из `plugins/declaration`: интеграционные проверки находят его через метаданные установки. Они не пропускаются при отсутствии пакета и не добавляют его исходники в `sys.path`.
 
 Файловые тесты используют фикстуру `temp_dir` из `tests/conftest.py`. Она создаёт отдельную папку через стандартный `tempfile.TemporaryDirectory` и удаляет её после теста, в том числе при ошибке. Общая папка `pytest-of-...`, которая может оказаться недоступной после запуска под другой учётной записью Windows, не используется.
 
@@ -140,7 +143,32 @@ app.registry.register("custom", CustomAnalyzer)
 report = app.analysis.run(submission_id, "custom", context)
 ```
 
-Здесь `CustomAnalyzer` — класс с `analyzer_id="custom"`, непустой версией и методом `analyze`. Сдача с `submission_id` должна быть принята, а `context` — соответствовать её заданию. Для подключения не нужно изменять `AnalysisService`. Повторная регистрация имени вызывает ошибку. Внешний устанавливаемый пакет будет добавлен на пятом этапе.
+Здесь `CustomAnalyzer` — класс с `analyzer_id="custom"`, непустой версией и методом `analyze`. Сдача с `submission_id` должна быть принята, а `context` — соответствовать её заданию. Для подключения не нужно изменять `AnalysisService`. Повторная регистрация имени вызывает ошибку.
+
+## Внешний анализатор
+
+В `plugins/declaration` находится отдельный пакет `school-declaration-plugin` версии 1.0.0. Его зависимость — `school-lab>=0.5,<2`. В собственном `pyproject.toml` пакет объявляет точку входа:
+
+```toml
+[project.entry-points."school_lab.analyzers"]
+external-declaration = "declaration_plugin:ExternalDeclarationAnalyzer"
+```
+
+После установки из раздела выше анализатор можно запустить в Git Bash:
+
+```bash
+./.venv/Scripts/python.exe -X utf8 -m school_lab.cli analyze data/submissions.jsonl --assignments data/assignments.json --plugins --analyzer external-declaration
+```
+
+Команда создаёт по одному отчёту для каждой принятой сдачи: для примера получится два отчёта. Плагин проверяет заполнение `tool` и `purpose`, когда в декларации указано `used=True`. Parser уже требует эти поля при приёме, поэтому для корректно принятых сдач отчёт документирует полноту декларации. Анализатор демонстрирует расширение отдельным пакетом и не определяет авторство работы.
+
+Флаг `--plugins` разрешает загрузку установленных точек входа группы `school_lab.analyzers`, а `--analyzer` выбирает анализатор для запуска. Если указать только `--plugins`, сохраняется выбор по умолчанию: `length` и `template`. Без `--plugins` внешний анализатор не регистрируется. Команда `import` не загружает плагины. Загрузка импортирует и выполняет код установленного пакета, поэтому подключать следует доверенные плагины.
+
+В Python API загрузка включается через `build_application(plugins=True)`. Функция `load_plugins(registry)` из `school_lab.plugins` обнаруживает точки входа через стандартный `importlib.metadata`, загружает их фабрики и возвращает кортеж зарегистрированных имён в отсортированном порядке. Фабрика создаёт анализатор без аргументов и объявляет `plugin_api_version = 1` — именно `int`, не `bool`. Это версия интерфейса плагина; версия самого анализатора хранится отдельно в `analyzer_version`.
+
+Загрузчик проверяет совместимость интерфейса, уникальность имени и контракт созданного анализатора. Недоступная фабрика, неподдерживаемая версия, совпадение имени со встроенным или другим плагином и неверный контракт вызывают `AnalysisFailure`. В CLI ошибка загрузки даёт `configuration_error` в stderr и код завершения 2. Загрузка не откатывает уже выполненные регистрации: после ошибки нужно создать новый реестр, а не продолжать использовать частично заполненный.
+
+
 
 ## Что проверяется
 
@@ -169,6 +197,7 @@ src/school_lab/
     reports.py            контекст, контракт анализатора, создание и проверка отчёта
     analyzers.py          длина, шаблон, декларация и отсутствие пояснения
     application.py        сборка репозитория, сервисов и реестра
+    plugins.py            загрузка и проверка установленных entry points
     cli.py                команды import и analyze, загрузка заданий
 tests/
     conftest.py           отдельный пример данных для каждого теста
@@ -178,6 +207,11 @@ tests/
     test_sources.py       взаимозаменяемость источников и управление ресурсами
     test_analysis.py      анализаторы, отчёты, реестр и сервис анализа
     test_analysis_cli.py  запуск анализа, конфигурация и частичные ошибки
+    test_plugins.py       загрузка плагинов, совместимость и ошибки
+    test_declaration_plugin.py  установленный внешний анализатор и CLI
+plugins/declaration/
+    pyproject.toml        отдельный пакет и точка входа external-declaration
+    src/declaration_plugin/  реализация внешнего анализатора
 data/submission.json      искусственная запись для демонстрации
 data/submissions.jsonl    две корректные сдачи
 data/invalid_submissions.jsonl  повторы и ошибки между корректными записями
@@ -192,4 +226,4 @@ docs/API.md               краткое описание входов и вых
 
 ## Материалы
 
-Контракт и подход к реализации соответствуют `Лекция.ipynb` и заданию `ЛР_1_Приём_и_расширяемость.pdf`. Основной код использует стандартную библиотеку: `dataclasses`, `json`, `datetime`, `hashlib`, `pathlib`, `typing`, `collections.abc`, `contextlib`, `copy`, `argparse`, `sys`, `uuid`, `math`; тесты — `pytest`, как в лекции. Новые сторонние зависимости для анализа не нужны. Сведения об использовании ИИ находятся в `AI_USAGE.md`.
+Контракт и подход к реализации соответствуют `Лекция.ipynb` и заданию `ЛР_1_Приём_и_расширяемость.pdf`. Основной код использует стандартную библиотеку: `dataclasses`, `json`, `datetime`, `hashlib`, `pathlib`, `typing`, `collections.abc`, `contextlib`, `copy`, `argparse`, `sys`, `uuid`, `math`, `importlib.metadata`; тесты — `pytest`, как в лекции. Внешний анализатор поставляется собственным учебным пакетом; дополнительных сторонних библиотек для его работы нет. Сведения об использовании ИИ находятся в `AI_USAGE.md`.

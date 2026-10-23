@@ -49,6 +49,7 @@ def create_parser() -> argparse.ArgumentParser:
     """
     parser = argparse.ArgumentParser(prog="school-lab", description="Приём сдач и анализ")
     commands = parser.add_subparsers(dest="command", required=True)
+    parser.set_defaults(plugins=False)
     importer = commands.add_parser("import", help="Импорт файла сдач")
     importer.add_argument("path", type=Path)
     analyze = commands.add_parser("analyze", help="Импорт и анализ в одном процессе")
@@ -56,6 +57,7 @@ def create_parser() -> argparse.ArgumentParser:
     analyze.add_argument("--assignments", type=Path, required=True)
     analyze.add_argument("--analyzer", action="append", dest="analyzers")
     analyze.add_argument("--config-version", default="1")
+    analyze.add_argument("--plugins", action="store_true", help="Подключить установленные плагины")
     return parser
 
 
@@ -112,7 +114,7 @@ def main(argv: list[str] | None = None) -> int:
     """
     args = create_parser().parse_args(argv)
     try:
-        app = build_application()
+        app = build_application(plugins=args.plugins)
         assignments = {}
         if args.command == "analyze":
             require_string(args.config_version, "config_version")

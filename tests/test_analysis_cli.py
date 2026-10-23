@@ -115,7 +115,7 @@ def test_cli_isolates_analyzer_and_assignment_errors(input_files, raw_submission
 
     app = build_application()
     app.registry.register("broken", BrokenAnalyzer)
-    monkeypatch.setattr(cli, "build_application", lambda: app)
+    monkeypatch.setattr(cli, "build_application", lambda **kwargs: app)
     submissions, assignments = input_files
     second = deepcopy(raw_submission)
     second.update(submission_id="submission-2", assignment_id="missing-assignment")

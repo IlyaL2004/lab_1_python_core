@@ -165,11 +165,32 @@ print(summary.to_dict())
 | `AnalysisService(repository, registry)` | `SubmissionRepository` и `AnalyzerRegistry` | Сервис анализа принятых сдач |
 | `analysis.run(submission_id, analyzer_name, context)` | ID принятой сдачи, имя анализатора и подходящий `AnalysisContext` | Проверенный `AnalysisReport` |
 | `Application(repository, submissions, analysis, registry)` | Репозиторий, сервис приёма, сервис анализа и реестр | Объект со связанными компонентами приложения |
-| `build_application()` | Без аргументов | Новое `Application` с пустым репозиторием и четырьмя встроенными анализаторами |
+| `build_application(*, plugins=False)` | Необязательный именованный флаг загрузки установленных плагинов | Новое `Application` с пустым репозиторием, четырьмя встроенными анализаторами и, при `plugins=True`, внешними анализаторами |
 
 Занятое или пустое имя, невызываемая фабрика, неизвестный анализатор и нарушение его контракта вызывают `AnalysisFailure`. Имя регистрации должно совпадать с `analyzer_id`, версия — быть непустой строкой. `run` отклоняет неизвестную сдачу, контекст другого задания и отчёт другого анализатора; исключения анализатора преобразуются в `AnalysisFailure`.
 
-Новый анализатор подключается через `app.registry.register("custom", CustomAnalyzer)`. Класс должен создавать экземпляры без аргументов и соблюдать контракт `Analyzer`; менять `AnalysisService` не требуется. Загрузка внешних пакетов через entry points относится к следующему этапу.
+Новый анализатор подключается через `app.registry.register("custom", CustomAnalyzer)`. Класс должен создавать экземпляры без аргументов и соблюдать контракт `Analyzer`; менять `AnalysisService` не требуется. Установленные пакеты подключаются через `build_application(plugins=True)`.
+
+## Установленные плагины
+
+Модуль `school_lab.plugins` использует `importlib.metadata`. Константа `PLUGIN_GROUP` равна `"school_lab.analyzers"`, `PLUGIN_API_VERSION` — целому числу `1`.
+
+| Класс или функция | Вход | Выход |
+|---|---|---|
+| `load_plugins(registry)` | `AnalyzerRegistry`, куда нужно добавить установленные плагины | Кортеж зарегистрированных имён, отсортированный по имени; `()` при отсутствии точек входа |
+| `ExternalDeclarationAnalyzer()` | Без аргументов; класс из отдельного пакета `declaration_plugin` | Анализатор `external-declaration` версии `1.0` с `plugin_api_version=1` |
+| `ExternalDeclarationAnalyzer.analyze(submission, context)` | `Submission` и подходящий `AnalysisContext` | `AnalysisReport` о полноте декларации с `score=None`; необходимость проверки отмечена при недостающих `tool`/`purpose` и `used=True` |
+
+Точка входа должна указывать на вызываемую фабрику без аргументов с атрибутом `plugin_api_version`, равным `1` типа `int`; `True` не подходит. Фабрика возвращает объект с непустыми `analyzer_id`, `analyzer_version` и вызываемым методом `analyze`. `analyzer_id` должен совпадать с именем точки входа. Внешний пакет объявляет её в `pyproject.toml`:
+
+```toml
+[project.entry-points."school_lab.analyzers"]
+external-declaration = "declaration_plugin:ExternalDeclarationAnalyzer"
+```
+
+`load_plugins` вызывает `.load()` точки входа, регистрирует фабрику и создаёт экземпляр для проверки контракта. Ошибки обнаружения, импорта, версии API, создания объекта и регистрации преобразуются в `AnalysisFailure`. Занятые имена не перезаписываются. После ошибки загрузки нельзя продолжать работу с тем же частично заполненным реестром: нужно создать новый. Загрузка выполняет код пакета; плагины должны быть доверенными.
+
+`ExternalDeclarationAnalyzer` проверяет непустые `tool` и `purpose`, если `used=True`. Он не меняет сдачу и не определяет авторство. Для данных, принятых через parser, полнота декларации уже проверена; отчёт дополнительно фиксирует её состояние и демонстрирует расширение анализа отдельным пакетом. Пакет `school-declaration-plugin` версии `1.0.0` устанавливается из `plugins/declaration` и требует `school-lab>=0.5,<2`.
 
 ## CLI анализа и загрузка заданий
 
@@ -185,4 +206,6 @@ print(summary.to_dict())
 
 `analyze_accepted` обрабатывает только `summary.accepted`. Каждый анализатор даёт отдельный отчёт; дубликаты не анализируются повторно. При отсутствии задания ошибка содержит `submission_id`, `code`, `message`; при ошибке анализатора — также `analyzer_id`. Ошибка одной проверки не прерывает следующие. `cli.main` объединяет результат с accepted, duplicate, errors.
 
-Обязательны путь JSONL и `--assignments`. Без `--analyzer` запускаются length и template; повторяемый параметр задаёт собственный список. `--config-version` по умолчанию равен `1` и не может быть пустым. Успех даёт 0, ошибки отдельных строк или анализа — 1. Ошибка чтения даёт `source_unavailable`, ошибка схемы заданий или конфигурации — `configuration_error`, в обоих случаях код завершения 2. Неверные аргументы обрабатывает `argparse` через `SystemExit(2)`.
+Обязательны путь JSONL и `--assignments`. Без `--analyzer` запускаются length и template; повторяемый параметр задаёт собственный список. `--plugins` разрешает загрузку внешних анализаторов, но не меняет выбор по умолчанию. Для внешнего анализатора нужно передать оба параметра: `--plugins --analyzer external-declaration`. У команды `import` флага `--plugins` нет; её запуск не загружает плагины.
+
+`--config-version` по умолчанию равен `1` и не может быть пустым. Успех даёт 0, ошибки отдельных строк или анализа — 1. Ошибка чтения даёт `source_unavailable`, ошибка схемы заданий, конфигурации или загрузки плагина — `configuration_error`, в обоих случаях код завершения 2. Неверные аргументы обрабатывает `argparse` через `SystemExit(2)`.

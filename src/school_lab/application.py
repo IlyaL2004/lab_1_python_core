@@ -1,4 +1,4 @@
-"""Создание хранилища, сервисов и реестра встроенных анализаторов."""
+"""Создание сервисов с реестром встроенных и внешних анализаторов."""
 from dataclasses import dataclass
 
 from .analyzers import (
@@ -7,6 +7,7 @@ from .analyzers import (
     MissingExplanationAnalyzer,
     TemplateAnalyzer,
 )
+from .plugins import load_plugins
 from .repositories import InMemorySubmissionRepository
 from .services import AnalysisService, AnalyzerRegistry, SubmissionService
 
@@ -26,11 +27,12 @@ class Application:
     registry: AnalyzerRegistry
 
 
-def build_application() -> Application:
-    """Создать отдельное приложение с четырьмя встроенными анализаторами.
+def build_application(*, plugins: bool = False) -> Application:
+    """Создать приложение и при необходимости подключить установленные плагины.
 
-    Вход: без аргументов.
-    Выход: Application с пустым хранилищем и готовыми сервисами.
+    Вход: plugins — загружать ли внешние анализаторы; по умолчанию False.
+    Выход: Application с пустым хранилищем, сервисами и реестром анализаторов.
+    Четыре встроенных анализатора доступны всегда; ошибки плагинов передаются выше.
     """
     repository = InMemorySubmissionRepository()
     registry = AnalyzerRegistry()
@@ -39,6 +41,8 @@ def build_application() -> Application:
     )
     for analyzer in analyzer_classes:
         registry.register(analyzer.analyzer_id, analyzer)
+    if plugins:
+        load_plugins(registry)
     submissions = SubmissionService(repository)
     analysis = AnalysisService(repository, registry)
     return Application(repository, submissions, analysis, registry)
