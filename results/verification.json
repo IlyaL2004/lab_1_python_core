@@ -1,0 +1,113 @@
+{
+  "python": "3.13.9",
+  "system": "Windows",
+  "package_version": "1.0.0",
+  "plugin_version": "1.0.0",
+  "data_sha256": {
+    "submissions.jsonl": "1c6c8cc1b1a52f460fec715d92577406cabcc72a843266cee7712a265ea48952",
+    "invalid_submissions.jsonl": "1f0700ef2c20983691769ce81bb73312554fe765edf7354da2eee763662970c3",
+    "assignments.json": "1bf416a53fda6a7852c9721dcdd85ba2660ea615251a3f6d471e0d55d5d2f62d"
+  },
+  "submission_hashes": {
+    "sub-001": "4c57eb3ac2e0879f1cab549069e282550eb12697ca7ed23d2d9973abb41022ac",
+    "sub-002": "e4fc36514b5dd0bad086e14a9700dd5451b0dced84feee69b6b0f370af93e081"
+  },
+  "first_import": {
+    "accepted": [
+      "sub-001",
+      "sub-002"
+    ],
+    "duplicate": [],
+    "errors": []
+  },
+  "repeated_import": {
+    "accepted": [],
+    "duplicate": [
+      "sub-001",
+      "sub-002"
+    ],
+    "errors": []
+  },
+  "mixed_import": {
+    "accepted": [
+      "sub-001",
+      "sub-002"
+    ],
+    "duplicate": [
+      "sub-001"
+    ],
+    "errors": [
+      {
+        "line_no": 2,
+        "code": "invalid_json",
+        "field": "json",
+        "message": "Ошибка JSON около столбца 2"
+      },
+      {
+        "line_no": 4,
+        "code": "conflict",
+        "field": "submission_id",
+        "message": "Для новой версии требуется новый ID"
+      },
+      {
+        "line_no": 5,
+        "code": "schema_error",
+        "field": "student_id",
+        "message": "Ожидается непустая строка"
+      }
+    ]
+  },
+  "analyzers": [
+    "length",
+    "template",
+    "declaration",
+    "missing-explanation",
+    "external-declaration"
+  ],
+  "reports": 10,
+  "analysis_errors": [],
+  "measurements": [
+    {
+      "function": "AnalysisService.run",
+      "duration_ms": 0.40369853377342224
+    },
+    {
+      "function": "AnalysisService.run",
+      "duration_ms": 0.12459978461265564
+    },
+    {
+      "function": "AnalysisService.run",
+      "duration_ms": 0.09430013597011566
+    },
+    {
+      "function": "AnalysisService.run",
+      "duration_ms": 0.09820051491260529
+    },
+    {
+      "function": "AnalysisService.run",
+      "duration_ms": 0.09130127727985382
+    },
+    {
+      "function": "AnalysisService.run",
+      "duration_ms": 0.09859912097454071
+    },
+    {
+      "function": "AnalysisService.run",
+      "duration_ms": 0.07330067455768585
+    },
+    {
+      "function": "AnalysisService.run",
+      "duration_ms": 0.06769970059394836
+    },
+    {
+      "function": "AnalysisService.run",
+      "duration_ms": 0.06650015711784363
+    },
+    {
+      "function": "AnalysisService.run",
+      "duration_ms": 0.06869994103908539
+    }
+  ],
+  "analysis_total_ms": 1.1868998408317566,
+  "analysis_average_ms": 0.11868998408317566
+}

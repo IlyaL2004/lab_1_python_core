@@ -1,10 +1,10 @@
-"""Источники сдач из JSONL и памяти с общим порядком импорта."""
+"""Источники сдач из файла, памяти и переданного текстового потока."""
 from collections.abc import Iterator
 from contextlib import AbstractContextManager, contextmanager
 from copy import deepcopy
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
-from typing import Protocol
+from typing import Protocol, TextIO
 
 from .errors import SubmissionError
 from .parsing import decode_json
@@ -94,6 +94,43 @@ class JSONLSource:
                         yield SourceRecord(number, raw=raw)
 
             yield records()
+
+
+class StreamSource:
+    """Читать переданный поток с текущей позиции, сохраняя владение у вызывающего кода.
+
+    Вход: stream — открытый текстовый поток, например io.StringIO.
+    Выход: источник записей; сам поток не закрывается и не перематывается.
+    """
+
+    def __init__(self, stream: TextIO) -> None:
+        """Вход: открытый текстовый поток. Выход: None; ссылка на поток сохранена."""
+        self.stream = stream
+
+    @contextmanager
+    def open(self) -> Iterator[Iterator[SourceRecord]]:
+        """Прочитать оставшиеся строки, не забирая владение потоком.
+
+        Вход: без аргументов; используется текущая позиция сохранённого потока.
+        Выход: контекстный менеджер итератора SourceRecord с номерами от 1.
+        При выходе закрывается итератор. Поток закрывает вызывающий код;
+        для полного повторного чтения он должен вызвать stream.seek(0).
+        """
+        def records() -> Iterator[SourceRecord]:
+            """Вход: оставшиеся строки потока. Выход: данные или ошибка каждой строки."""
+            for number, line in enumerate(self.stream, start=1):
+                try:
+                    raw = decode_json(line)
+                except SubmissionError as error:
+                    yield SourceRecord(number, error=error)
+                else:
+                    yield SourceRecord(number, raw=raw)
+
+        iterator = records()
+        try:
+            yield iterator
+        finally:
+            iterator.close()
 
 
 @dataclass

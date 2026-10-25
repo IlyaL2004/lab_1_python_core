@@ -1,0 +1,221 @@
+[
+  {
+    "report_id": "03364c55-215d-447a-b45a-f04ec0200541",
+    "submission_id": "sub-001",
+    "submission_hash": "4c57eb3ac2e0879f1cab549069e282550eb12697ca7ed23d2d9973abb41022ac",
+    "analyzer_id": "length",
+    "analyzer_version": "1.0",
+    "config_hash": "5ba783491fe24e2565706b7abc9fa7b98ddc5568a8eea8593d2d1f32e4c1c182",
+    "findings": [
+      {
+        "kind": "rubric_feedback",
+        "score": null,
+        "evidence": [
+          {
+            "submission_id": "sub-001",
+            "field": "text",
+            "start_line": 1,
+            "end_line": 1
+          },
+          {
+            "submission_id": "sub-001",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          },
+          {
+            "submission_id": "sub-001",
+            "field": "code",
+            "start_line": 2,
+            "end_line": 2
+          }
+        ],
+        "explanation": "Непустые строки: text=1, code=2. Длина не оценивает корректность решения."
+      }
+    ],
+    "created_at": "2026-10-25T12:53:36.418531+00:00",
+    "review_required": false
+  },
+  {
+    "report_id": "2823b027-50e6-4b15-989f-3ecb60ee82cb",
+    "submission_id": "sub-001",
+    "submission_hash": "4c57eb3ac2e0879f1cab549069e282550eb12697ca7ed23d2d9973abb41022ac",
+    "analyzer_id": "template",
+    "analyzer_version": "1.0",
+    "config_hash": "5ba783491fe24e2565706b7abc9fa7b98ddc5568a8eea8593d2d1f32e4c1c182",
+    "findings": [
+      {
+        "kind": "similarity",
+        "score": null,
+        "evidence": [
+          {
+            "submission_id": "sub-001",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "explanation": "Найдены разрешённые блоки шаблона: 1. Это допустимое совпадение, а не основание санкции."
+      }
+    ],
+    "created_at": "2026-10-25T12:53:36.418910+00:00",
+    "review_required": false
+  },
+  {
+    "report_id": "a6ccda96-609c-4e72-9af1-0760f2170225",
+    "submission_id": "sub-001",
+    "submission_hash": "4c57eb3ac2e0879f1cab549069e282550eb12697ca7ed23d2d9973abb41022ac",
+    "analyzer_id": "declaration",
+    "analyzer_version": "1.0",
+    "config_hash": "5ba783491fe24e2565706b7abc9fa7b98ddc5568a8eea8593d2d1f32e4c1c182",
+    "findings": [
+      {
+        "kind": "rubric_feedback",
+        "score": null,
+        "evidence": [],
+        "explanation": "Использование ИИ не заявлено. Авторство текста автоматически не определялось."
+      }
+    ],
+    "created_at": "2026-10-25T12:53:36.419023+00:00",
+    "review_required": false
+  },
+  {
+    "report_id": "90f0350f-3130-4e37-87db-9a65eb21dc21",
+    "submission_id": "sub-001",
+    "submission_hash": "4c57eb3ac2e0879f1cab549069e282550eb12697ca7ed23d2d9973abb41022ac",
+    "analyzer_id": "missing-explanation",
+    "analyzer_version": "1.0",
+    "config_hash": "5ba783491fe24e2565706b7abc9fa7b98ddc5568a8eea8593d2d1f32e4c1c182",
+    "findings": [
+      {
+        "kind": "rubric_feedback",
+        "score": null,
+        "evidence": [],
+        "explanation": "Отсутствие пояснения при непустом коде не обнаружено."
+      }
+    ],
+    "created_at": "2026-10-25T12:53:36.419123+00:00",
+    "review_required": false
+  },
+  {
+    "report_id": "574c9229-bbec-4df1-adf1-a8e5e7357e92",
+    "submission_id": "sub-001",
+    "submission_hash": "4c57eb3ac2e0879f1cab549069e282550eb12697ca7ed23d2d9973abb41022ac",
+    "analyzer_id": "external-declaration",
+    "analyzer_version": "1.0",
+    "config_hash": "5ba783491fe24e2565706b7abc9fa7b98ddc5568a8eea8593d2d1f32e4c1c182",
+    "findings": [
+      {
+        "kind": "rubric_feedback",
+        "score": null,
+        "evidence": [],
+        "explanation": "Использование ИИ не заявлено. Это не доказывает происхождение работы."
+      }
+    ],
+    "created_at": "2026-10-25T12:53:36.419227+00:00",
+    "review_required": false
+  },
+  {
+    "report_id": "fba08d6c-b64c-4885-93d5-00e5f67cd95d",
+    "submission_id": "sub-002",
+    "submission_hash": "e4fc36514b5dd0bad086e14a9700dd5451b0dced84feee69b6b0f370af93e081",
+    "analyzer_id": "length",
+    "analyzer_version": "1.0",
+    "config_hash": "5ba783491fe24e2565706b7abc9fa7b98ddc5568a8eea8593d2d1f32e4c1c182",
+    "findings": [
+      {
+        "kind": "rubric_feedback",
+        "score": null,
+        "evidence": [
+          {
+            "submission_id": "sub-002",
+            "field": "text",
+            "start_line": 1,
+            "end_line": 1
+          },
+          {
+            "submission_id": "sub-002",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "explanation": "Непустые строки: text=1, code=1. Длина не оценивает корректность решения."
+      }
+    ],
+    "created_at": "2026-10-25T12:53:36.419336+00:00",
+    "review_required": false
+  },
+  {
+    "report_id": "ebb9fe74-c5bb-4dc5-9f12-640e0aa69b0b",
+    "submission_id": "sub-002",
+    "submission_hash": "e4fc36514b5dd0bad086e14a9700dd5451b0dced84feee69b6b0f370af93e081",
+    "analyzer_id": "template",
+    "analyzer_version": "1.0",
+    "config_hash": "5ba783491fe24e2565706b7abc9fa7b98ddc5568a8eea8593d2d1f32e4c1c182",
+    "findings": [
+      {
+        "kind": "similarity",
+        "score": null,
+        "evidence": [],
+        "explanation": "Точное совпадение с разрешённым шаблоном не найдено. Нечёткое сходство не проверялось."
+      }
+    ],
+    "created_at": "2026-10-25T12:53:36.419434+00:00",
+    "review_required": false
+  },
+  {
+    "report_id": "0f29639e-5769-442d-a32a-10d73e9b3998",
+    "submission_id": "sub-002",
+    "submission_hash": "e4fc36514b5dd0bad086e14a9700dd5451b0dced84feee69b6b0f370af93e081",
+    "analyzer_id": "declaration",
+    "analyzer_version": "1.0",
+    "config_hash": "5ba783491fe24e2565706b7abc9fa7b98ddc5568a8eea8593d2d1f32e4c1c182",
+    "findings": [
+      {
+        "kind": "rubric_feedback",
+        "score": null,
+        "evidence": [],
+        "explanation": "Использование ИИ не заявлено. Авторство текста автоматически не определялось."
+      }
+    ],
+    "created_at": "2026-10-25T12:53:36.419510+00:00",
+    "review_required": false
+  },
+  {
+    "report_id": "a0436a26-299a-439b-8496-779200531a55",
+    "submission_id": "sub-002",
+    "submission_hash": "e4fc36514b5dd0bad086e14a9700dd5451b0dced84feee69b6b0f370af93e081",
+    "analyzer_id": "missing-explanation",
+    "analyzer_version": "1.0",
+    "config_hash": "5ba783491fe24e2565706b7abc9fa7b98ddc5568a8eea8593d2d1f32e4c1c182",
+    "findings": [
+      {
+        "kind": "rubric_feedback",
+        "score": null,
+        "evidence": [],
+        "explanation": "Отсутствие пояснения при непустом коде не обнаружено."
+      }
+    ],
+    "created_at": "2026-10-25T12:53:36.419582+00:00",
+    "review_required": false
+  },
+  {
+    "report_id": "c7989afc-1e64-4107-abb1-e7a429fde21a",
+    "submission_id": "sub-002",
+    "submission_hash": "e4fc36514b5dd0bad086e14a9700dd5451b0dced84feee69b6b0f370af93e081",
+    "analyzer_id": "external-declaration",
+    "analyzer_version": "1.0",
+    "config_hash": "5ba783491fe24e2565706b7abc9fa7b98ddc5568a8eea8593d2d1f32e4c1c182",
+    "findings": [
+      {
+        "kind": "rubric_feedback",
+        "score": null,
+        "evidence": [],
+        "explanation": "Использование ИИ не заявлено. Это не доказывает происхождение работы."
+      }
+    ],
+    "created_at": "2026-10-25T12:53:36.419656+00:00",
+    "review_required": false
+  }
+]

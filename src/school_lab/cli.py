@@ -11,6 +11,7 @@ from .models import Assignment
 from .parsing import decode_json, require_fields, require_object, require_string
 from .reports import AnalysisContext
 from .sources import ImportSummary, import_file
+from .timing import Measurement, timed
 
 
 def load_assignments(path: Path) -> dict[str, Assignment]:
@@ -72,9 +73,12 @@ def analyze_accepted(
 
     Вход: app — приложение; summary — итоги импорта; assignments — задания по ID;
     analyzer_names — имена анализаторов; config_version — версия настроек.
-    Выход: словарь со списками reports и analysis_errors для вывода в JSON.
+    Выход: словарь со списками reports, analysis_errors и measurements для JSON.
     Ошибка одного анализатора не мешает остальным; дубликаты повторно не анализируются.
+    Измеряется каждый вызов сервиса анализа, в том числе завершившийся ошибкой.
     """
+    measurements: list[Measurement] = []
+    run = timed(measurements)(app.analysis.run)
     reports = []
     errors = []
     for submission_id in summary.accepted:
@@ -92,7 +96,7 @@ def analyze_accepted(
         context = AnalysisContext(assignment, config_version=config_version)
         for name in analyzer_names:
             try:
-                report = app.analysis.run(submission_id, name, context)
+                report = run(submission_id, name, context)
                 reports.append(asdict(report))
             except AnalysisFailure as error:
                 errors.append({
@@ -101,7 +105,11 @@ def analyze_accepted(
                     "code": "analysis_error",
                     "message": str(error),
                 })
-    return {"reports": reports, "analysis_errors": errors}
+    return {
+        "reports": reports,
+        "analysis_errors": errors,
+        "measurements": [asdict(item) for item in measurements],
+    }
 
 
 def main(argv: list[str] | None = None) -> int:

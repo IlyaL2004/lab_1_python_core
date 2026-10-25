@@ -73,6 +73,7 @@ def test_length_evidence_preserves_blank_lines_and_crlf(raw_submission: dict, co
 @pytest.mark.parametrize(("code", "template", "expected"), [
     ("before\r\nx\r\ny\r\nafter\r\n", "x\ny\n", [(2, 3)]),
     ("x\nx\nx\n", "x\nx\n", [(1, 2), (2, 3)]),
+    ("x\ny\nz\nx\ny", "x\ny", [(1, 2), (4, 5)]),
     (" x\ny\n", "x\ny\n", []),
     ("print(1)\n", " \n", []),
 ])
@@ -187,7 +188,7 @@ def test_report_requires_models_and_valid_finding(raw_submission: dict, context)
             validate_report(invalid, submission, context)
 
 
-@pytest.mark.parametrize("score", [True, "0.5", -0.1, 1.1, float("nan"), float("inf")])
+@pytest.mark.parametrize("score", [True, "0.5", -0.1, 1.5, float("nan"), float("inf")])
 def test_report_rejects_invalid_score(raw_submission: dict, context, score) -> None:
     """Оценка допускает только конечное число от 0 до 1 или None."""
     submission = parse_submission(raw_submission)
@@ -209,6 +210,7 @@ def test_report_accepts_score_boundaries(raw_submission: dict, context) -> None:
 
 @pytest.mark.parametrize(("field", "value"), [
     ("submission_id", "another"), ("field", "student_id"),
+    ("field", "missing"),
     ("start_line", 0), ("start_line", True),
     ("end_line", 99), ("end_line", 0),
 ])

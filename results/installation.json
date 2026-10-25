@@ -1,0 +1,32 @@
+{
+  "fresh_venv": true,
+  "install_source": "local wheels, --no-index",
+  "working_directory_outside_project": true,
+  "pythonpath_removed": true,
+  "metadata": {
+    "python": "3.13.9",
+    "system": "Windows",
+    "school-lab": "1.0.0",
+    "school-declaration-plugin": "1.0.0",
+    "entry_points": {
+      "external-declaration": "declaration_plugin:ExternalDeclarationAnalyzer"
+    },
+    "installed_modules_inside_venv": true
+  },
+  "wheels_sha256": {
+    "school_declaration_plugin-1.0.0-py3-none-any.whl": "62f2d7041c9b76a2d0fd2f6e804be35c66da9691965882a61594c0005ef96891",
+    "school_lab-1.0.0-py3-none-any.whl": "26f74984c753a6f497de7bd63db359f65a0093e1d239e888806a8b8cdbf0af2b"
+  },
+  "import": {
+    "exit_code": 0,
+    "accepted": 2,
+    "errors": 0
+  },
+  "plugin_analyze_console_entry_point": {
+    "exit_code": 0,
+    "reports": 2,
+    "measurements": 2,
+    "analysis_errors": 0
+  },
+  "pip_check": "No broken requirements found."
+}
