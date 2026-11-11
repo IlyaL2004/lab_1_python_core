@@ -7,6 +7,7 @@ from uuid import uuid4
 from .models import Assignment, Submission, Evidence, Finding, AnalysisReport
 from .hashing import stable_hash, submission_hash
 from .errors import AnalysisFailure
+from .source_text import physical_lines
 
 
 @dataclass(frozen=True, slots=True)
@@ -35,6 +36,7 @@ class AnalysisContext:
             "assignment": asdict(self.assignment),
             "mode": self.mode,
             "config_version": self.config_version,
+            "line_policy": "physical-lines-crlf-cr-lf-v2",
         }
 
 
@@ -126,7 +128,7 @@ def validate_report(report: AnalysisReport, value: Submission, ctx: AnalysisCont
                 or evidence.field not in {"text", "code"}
             ):
                 raise AnalysisFailure("Evidence ссылается на неизвестный объект или поле")
-            lines = getattr(value, evidence.field).splitlines()
+            lines = physical_lines(getattr(value, evidence.field))
             if type(evidence.start_line) is not int or type(evidence.end_line) is not int:
                 raise AnalysisFailure("Номер строки должен быть int")
             if not 1 <= evidence.start_line <= evidence.end_line <= len(lines):

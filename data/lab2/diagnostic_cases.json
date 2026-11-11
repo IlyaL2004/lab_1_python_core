@@ -1,0 +1,77 @@
+[
+  {
+    "name": "rename-fn",
+    "left_id": "diag-rename-base",
+    "right_id": "diag-rename-child",
+    "label": true,
+    "threshold": 0.5,
+    "methods": [
+      "token",
+      "ast"
+    ],
+    "exclude_template": [
+      true
+    ],
+    "explanation": "Известный потомок получен переименованием; токеновый метод чувствителен к NAME. AST проверяется по собственному контракту."
+  },
+  {
+    "name": "template-fp",
+    "left_id": "diag-template-a",
+    "right_id": "diag-template-b",
+    "label": false,
+    "threshold": 0.2,
+    "methods": [
+      "token"
+    ],
+    "exclude_template": [
+      false,
+      true
+    ],
+    "explanation": "Независимые короткие фрагменты имеют общий разрешённый import. Сравниваются две разные конфигурации."
+  },
+  {
+    "name": "independent-standard-fp",
+    "left_id": "diag-standard-a",
+    "right_id": "diag-standard-b",
+    "label": false,
+    "threshold": 0.9,
+    "methods": [
+      "token",
+      "ast"
+    ],
+    "exclude_template": [
+      true
+    ],
+    "explanation": "По сценарию авторы независимо выбрали стандартное одношаговое решение. Равное представление не доказывает происхождение."
+  },
+  {
+    "name": "empty-abstention",
+    "left_id": "diag-empty-a",
+    "right_id": "diag-empty-b",
+    "label": false,
+    "threshold": 0.5,
+    "methods": [
+      "token",
+      "ast"
+    ],
+    "exclude_template": [
+      true
+    ],
+    "explanation": "В обоих входах нет значимых признаков; отказ отражается отдельно от отрицательной оценки."
+  },
+  {
+    "name": "syntax-abstention",
+    "left_id": "diag-invalid",
+    "right_id": "diag-standard-a",
+    "label": false,
+    "threshold": 0.5,
+    "methods": [
+      "token",
+      "ast"
+    ],
+    "exclude_template": [
+      true
+    ],
+    "explanation": "Некорректный синтаксис не позволяет надёжно сравнить представления; требуется явный отказ."
+  }
+]

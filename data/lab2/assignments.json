@@ -1,0 +1,44 @@
+[
+  {
+    "assignment_id": "squares",
+    "allowed_template": "from typing import Iterable",
+    "requirements": [
+      "Сумма квадратов неотрицательных элементов."
+    ]
+  },
+  {
+    "assignment_id": "count_positive",
+    "allowed_template": "from typing import Iterable",
+    "requirements": [
+      "Количество строго положительных элементов."
+    ]
+  },
+  {
+    "assignment_id": "maximum",
+    "allowed_template": "from typing import Iterable",
+    "requirements": [
+      "Максимум непустой последовательности."
+    ]
+  },
+  {
+    "assignment_id": "reverse",
+    "allowed_template": "from typing import Iterable",
+    "requirements": [
+      "Новая последовательность в обратном порядке."
+    ]
+  },
+  {
+    "assignment_id": "template",
+    "allowed_template": "from typing import Iterable",
+    "requirements": [
+      "Диагностические короткие фрагменты с общим разрешённым import."
+    ]
+  },
+  {
+    "assignment_id": "standard",
+    "allowed_template": "from typing import Iterable",
+    "requirements": [
+      "Проверка положительности числа одним сравнением."
+    ]
+  }
+]

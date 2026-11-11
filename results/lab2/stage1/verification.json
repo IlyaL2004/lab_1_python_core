@@ -1,0 +1,91 @@
+{
+  "checked_at": "2026-11-11T22:00:32.930725+00:00",
+  "stage": "lab2-stage1",
+  "python": "3.13.9",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "packages": {
+    "school-lab": "1.0.0",
+    "school-declaration-plugin": "1.0.0",
+    "pytest": "9.1.1"
+  },
+  "source_commit_before_stage": "b349d5c16ced2e139beeccd220bf45fad8b64a4e",
+  "tests": {
+    "command": "python -B -X utf8 -m pytest -q -p no:cacheprovider",
+    "passed": 272,
+    "duration_seconds": 5.39,
+    "output": "tests.txt"
+  },
+  "corpus": {
+    "submissions": 56,
+    "families": 24,
+    "pairs": 132,
+    "template_only": 12,
+    "split": {
+      "validation": {
+        "submissions": 28,
+        "families": 12,
+        "pairs": 66,
+        "template_only": 6
+      },
+      "test": {
+        "submissions": 28,
+        "families": 12,
+        "pairs": 66,
+        "template_only": 6
+      }
+    },
+    "input_sha256": {
+      "assignments.json": "441c9653cad7044d721888d10ec70cb7d70a69beedfe37c1766deb6d6ee78302",
+      "submissions.jsonl": "dfe15edfcf2d155a1a3a660821f647dd077e0b4cc40b21f1dfd2b608c36e5c0a",
+      "provenance.json": "b386afebfeb9cbde3667d0a6ee830c657ed5388e2119f9d5fc4fc599d220c0cd",
+      "split.json": "017c888fbd8e8e16feb12233d360b580bd26e5b4383dc72f316b5753d359af38",
+      "pairs.jsonl": "b88f4cdc7bb734c09f91ed6206a300ede42a4b4e087ac7cceba85e5a587aff2b"
+    }
+  },
+  "smoke_checks": {
+    "legacy_import_accepted": 2,
+    "legacy_analysis_reports": 10,
+    "legacy_measurements": 10,
+    "analyzers": [
+      "length",
+      "template",
+      "missing-explanation",
+      "declaration",
+      "external-declaration"
+    ],
+    "cli_commands": [
+      "import",
+      "analyze"
+    ],
+    "corpus_invalid_parent_exit_code": 2,
+    "corpus_missing_directory_exit_code": 2,
+    "pip_check": "No broken requirements found."
+  },
+  "preserved": {
+    "lab1_test_files": 11,
+    "lab1_previous_results": true,
+    "both_ai_usage_files": true,
+    "reference_lab2_files": 93,
+    "git_head_unchanged": true,
+    "git_index_empty": true
+  },
+  "source_sha256": {
+    "src/school_lab/__init__.py": "1572d18263c294ae0bbc50753c9443ff60742271e0288c08bf40ac2bb5b6fc75",
+    "src/school_lab/analyzers.py": "e18939d88d1d099edd348e8e47a7d4819128ee3e09e6a70f55d85c279e8e78d6",
+    "src/school_lab/application.py": "3a9717a244f36512f1dd2cc6db63c45e860d6fcd8ca0971f858f8750fc1fc980",
+    "src/school_lab/cli.py": "e50bf79ae4e886e977062ebed91d0d9f7cc7baaebebb5cb16e6d80114cbef3c6",
+    "src/school_lab/errors.py": "2ca57f323b9f3baaa2ade08c1f25351319425d31515f66f8ed7c211f9f0ad80c",
+    "src/school_lab/evaluation.py": "7764d6a4020b526e0bfe6f966c65e43f7cbc4991b6df4ced0436f1b0f63a4c0d",
+    "src/school_lab/hashing.py": "00f557e4055a0c5dfa825e4e53a9942c8d41351d3fad883eb9078a378f972658",
+    "src/school_lab/models.py": "9074b3dc65d31ac3929698ecc7d0b3da8c15df24d240134c2a5af9641620473f",
+    "src/school_lab/parsing.py": "c6eab3ad44004e92f912533d5748d7fb58016ba55395b0bcc14613d50df0f4f0",
+    "src/school_lab/pipeline.py": "bc2b87989d3dbfdc098ed20d44f89f5829e566cddaf3843f7e51cf867e7aab13",
+    "src/school_lab/plugins.py": "50802336288b77569cd4fac24dff9cf2fcbd74cc5ee466a009865ac0ebf67b7a",
+    "src/school_lab/reports.py": "601588d6ccb372191d7225e1fd0d7ef3f34c453796455605935c77eba63abeb2",
+    "src/school_lab/repositories.py": "1482e2437003723a26d04afce6a18c8e8802dddb8e1430a13d5b7355069894c7",
+    "src/school_lab/services.py": "50c91e1d1310e28abaa63f4505e66970a6ee1e349c46bf64337d34501952288d",
+    "src/school_lab/source_text.py": "bed95217cef19e41f46eb93c02f5110442782b3d698721914a31fa604aeaa8e4",
+    "src/school_lab/sources.py": "34dfa945e7857711abb3ef400fe71b11ad4b8bb05481f404de0c76b1a6282f48",
+    "src/school_lab/timing.py": "ac2bc494fc3973c70aadae7cb83be0eb9ae8da901eb2d28d2a5acf210b43d2fc"
+  }
+}

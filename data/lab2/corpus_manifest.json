@@ -1,0 +1,17 @@
+{
+  "submissions": 56,
+  "families": 24,
+  "pairs": 132,
+  "template_only": 12,
+  "seed": 42,
+  "construction": "Explicit deterministic roots; seed does not generate independent families.",
+  "label_source": "Known synthetic construction history, never similarity scores.",
+  "split_fixed_before_scoring": true,
+  "synthetic_authors": true,
+  "limitations": [
+    "Малый искусственный корпус не представляет реальные студенческие работы.",
+    "Пары зависимы: одна сдача участвует в нескольких сравнениях.",
+    "Семейства одного задания сохраняют общие естественные конструкции.",
+    "AI-декларации — поля синтетических персонажей, не заявление об авторстве проекта."
+  ]
+}

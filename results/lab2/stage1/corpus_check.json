@@ -1,0 +1,28 @@
+{
+  "status": "ok",
+  "submissions": 56,
+  "families": 24,
+  "pairs": 132,
+  "template_only": 12,
+  "split": {
+    "validation": {
+      "submissions": 28,
+      "families": 12,
+      "pairs": 66,
+      "template_only": 6
+    },
+    "test": {
+      "submissions": 28,
+      "families": 12,
+      "pairs": 66,
+      "template_only": 6
+    }
+  },
+  "input_sha256": {
+    "assignments.json": "441c9653cad7044d721888d10ec70cb7d70a69beedfe37c1766deb6d6ee78302",
+    "submissions.jsonl": "dfe15edfcf2d155a1a3a660821f647dd077e0b4cc40b21f1dfd2b608c36e5c0a",
+    "provenance.json": "b386afebfeb9cbde3667d0a6ee830c657ed5388e2119f9d5fc4fc599d220c0cd",
+    "split.json": "017c888fbd8e8e16feb12233d360b580bd26e5b4383dc72f316b5753d359af38",
+    "pairs.jsonl": "b88f4cdc7bb734c09f91ed6206a300ede42a4b4e087ac7cceba85e5a587aff2b"
+  }
+}

@@ -1,0 +1,338 @@
+{
+  "squares-family-0-v0": {
+    "family_id": "squares-family-0",
+    "parent_id": null,
+    "transformation": "original",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "squares-family-0-v1": {
+    "family_id": "squares-family-0",
+    "parent_id": "squares-family-0-v0",
+    "transformation": "comments-and-format",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "squares-family-0-v2": {
+    "family_id": "squares-family-0",
+    "parent_id": "squares-family-0-v0",
+    "transformation": "local-renaming",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "squares-family-1-v0": {
+    "family_id": "squares-family-1",
+    "parent_id": null,
+    "transformation": "original",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "squares-family-1-v1": {
+    "family_id": "squares-family-1",
+    "parent_id": "squares-family-1-v0",
+    "transformation": "comments-and-format",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "squares-family-1-v2": {
+    "family_id": "squares-family-1",
+    "parent_id": "squares-family-1-v0",
+    "transformation": "local-renaming",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "squares-family-2-v0": {
+    "family_id": "squares-family-2",
+    "parent_id": null,
+    "transformation": "original",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "squares-family-2-v1": {
+    "family_id": "squares-family-2",
+    "parent_id": "squares-family-2-v0",
+    "transformation": "comments-and-format",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "squares-family-2-v2": {
+    "family_id": "squares-family-2",
+    "parent_id": "squares-family-2-v0",
+    "transformation": "local-renaming",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "squares-family-3-v0": {
+    "family_id": "squares-family-3",
+    "parent_id": null,
+    "transformation": "original",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "squares-family-3-v1": {
+    "family_id": "squares-family-3",
+    "parent_id": "squares-family-3-v0",
+    "transformation": "comments-and-format",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "squares-family-3-v2": {
+    "family_id": "squares-family-3",
+    "parent_id": "squares-family-3-v0",
+    "transformation": "local-renaming",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "count_positive-family-0-v0": {
+    "family_id": "count_positive-family-0",
+    "parent_id": null,
+    "transformation": "original",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "count_positive-family-0-v1": {
+    "family_id": "count_positive-family-0",
+    "parent_id": "count_positive-family-0-v0",
+    "transformation": "comments-and-format",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "count_positive-family-0-v2": {
+    "family_id": "count_positive-family-0",
+    "parent_id": "count_positive-family-0-v0",
+    "transformation": "local-renaming",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "count_positive-family-1-v0": {
+    "family_id": "count_positive-family-1",
+    "parent_id": null,
+    "transformation": "original",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "count_positive-family-1-v1": {
+    "family_id": "count_positive-family-1",
+    "parent_id": "count_positive-family-1-v0",
+    "transformation": "comments-and-format",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "count_positive-family-1-v2": {
+    "family_id": "count_positive-family-1",
+    "parent_id": "count_positive-family-1-v0",
+    "transformation": "local-renaming",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "count_positive-family-2-v0": {
+    "family_id": "count_positive-family-2",
+    "parent_id": null,
+    "transformation": "original",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "count_positive-family-2-v1": {
+    "family_id": "count_positive-family-2",
+    "parent_id": "count_positive-family-2-v0",
+    "transformation": "comments-and-format",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "count_positive-family-2-v2": {
+    "family_id": "count_positive-family-2",
+    "parent_id": "count_positive-family-2-v0",
+    "transformation": "local-renaming",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "count_positive-family-3-v0": {
+    "family_id": "count_positive-family-3",
+    "parent_id": null,
+    "transformation": "original",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "count_positive-family-3-v1": {
+    "family_id": "count_positive-family-3",
+    "parent_id": "count_positive-family-3-v0",
+    "transformation": "comments-and-format",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "count_positive-family-3-v2": {
+    "family_id": "count_positive-family-3",
+    "parent_id": "count_positive-family-3-v0",
+    "transformation": "local-renaming",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "maximum-family-0-v0": {
+    "family_id": "maximum-family-0",
+    "parent_id": null,
+    "transformation": "original",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "maximum-family-0-v1": {
+    "family_id": "maximum-family-0",
+    "parent_id": "maximum-family-0-v0",
+    "transformation": "comments-and-format",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "maximum-family-0-v2": {
+    "family_id": "maximum-family-0",
+    "parent_id": "maximum-family-0-v0",
+    "transformation": "local-renaming",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "maximum-family-1-v0": {
+    "family_id": "maximum-family-1",
+    "parent_id": null,
+    "transformation": "original",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "maximum-family-1-v1": {
+    "family_id": "maximum-family-1",
+    "parent_id": "maximum-family-1-v0",
+    "transformation": "comments-and-format",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "maximum-family-1-v2": {
+    "family_id": "maximum-family-1",
+    "parent_id": "maximum-family-1-v0",
+    "transformation": "local-renaming",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "maximum-family-2-v0": {
+    "family_id": "maximum-family-2",
+    "parent_id": null,
+    "transformation": "original",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "maximum-family-2-v1": {
+    "family_id": "maximum-family-2",
+    "parent_id": "maximum-family-2-v0",
+    "transformation": "comments-and-format",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "maximum-family-2-v2": {
+    "family_id": "maximum-family-2",
+    "parent_id": "maximum-family-2-v0",
+    "transformation": "local-renaming",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "maximum-family-3-v0": {
+    "family_id": "maximum-family-3",
+    "parent_id": null,
+    "transformation": "original",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "maximum-family-3-v1": {
+    "family_id": "maximum-family-3",
+    "parent_id": "maximum-family-3-v0",
+    "transformation": "comments-and-format",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "maximum-family-3-v2": {
+    "family_id": "maximum-family-3",
+    "parent_id": "maximum-family-3-v0",
+    "transformation": "local-renaming",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "reverse-family-0-v0": {
+    "family_id": "reverse-family-0",
+    "parent_id": null,
+    "transformation": "original",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "reverse-family-0-v1": {
+    "family_id": "reverse-family-0",
+    "parent_id": "reverse-family-0-v0",
+    "transformation": "comments-and-format",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "reverse-family-0-v2": {
+    "family_id": "reverse-family-0",
+    "parent_id": "reverse-family-0-v0",
+    "transformation": "local-renaming",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "reverse-family-1-v0": {
+    "family_id": "reverse-family-1",
+    "parent_id": null,
+    "transformation": "original",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "reverse-family-1-v1": {
+    "family_id": "reverse-family-1",
+    "parent_id": "reverse-family-1-v0",
+    "transformation": "comments-and-format",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "reverse-family-1-v2": {
+    "family_id": "reverse-family-1",
+    "parent_id": "reverse-family-1-v0",
+    "transformation": "local-renaming",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "reverse-family-2-v0": {
+    "family_id": "reverse-family-2",
+    "parent_id": null,
+    "transformation": "original",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "reverse-family-2-v1": {
+    "family_id": "reverse-family-2",
+    "parent_id": "reverse-family-2-v0",
+    "transformation": "comments-and-format",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "reverse-family-2-v2": {
+    "family_id": "reverse-family-2",
+    "parent_id": "reverse-family-2-v0",
+    "transformation": "local-renaming",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "reverse-family-3-v0": {
+    "family_id": "reverse-family-3",
+    "parent_id": null,
+    "transformation": "original",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "reverse-family-3-v1": {
+    "family_id": "reverse-family-3",
+    "parent_id": "reverse-family-3-v0",
+    "transformation": "comments-and-format",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "reverse-family-3-v2": {
+    "family_id": "reverse-family-3",
+    "parent_id": "reverse-family-3-v0",
+    "transformation": "local-renaming",
+    "origin": "Корень явно записан отдельно для другого способа решения; потомки созданы только из него."
+  },
+  "template-independent-0": {
+    "family_id": "template-independent-0",
+    "parent_id": null,
+    "transformation": "independent-fragment",
+    "origin": "По сценарию независимый однооператорный фрагмент; общий исходный текст только разрешённый import."
+  },
+  "template-independent-1": {
+    "family_id": "template-independent-1",
+    "parent_id": null,
+    "transformation": "independent-fragment",
+    "origin": "По сценарию независимый однооператорный фрагмент; общий исходный текст только разрешённый import."
+  },
+  "template-independent-2": {
+    "family_id": "template-independent-2",
+    "parent_id": null,
+    "transformation": "independent-fragment",
+    "origin": "По сценарию независимый однооператорный фрагмент; общий исходный текст только разрешённый import."
+  },
+  "template-independent-3": {
+    "family_id": "template-independent-3",
+    "parent_id": null,
+    "transformation": "independent-fragment",
+    "origin": "По сценарию независимый однооператорный фрагмент; общий исходный текст только разрешённый import."
+  },
+  "template-independent-4": {
+    "family_id": "template-independent-4",
+    "parent_id": null,
+    "transformation": "independent-fragment",
+    "origin": "По сценарию независимый однооператорный фрагмент; общий исходный текст только разрешённый import."
+  },
+  "template-independent-5": {
+    "family_id": "template-independent-5",
+    "parent_id": null,
+    "transformation": "independent-fragment",
+    "origin": "По сценарию независимый однооператорный фрагмент; общий исходный текст только разрешённый import."
+  },
+  "template-independent-6": {
+    "family_id": "template-independent-6",
+    "parent_id": null,
+    "transformation": "independent-fragment",
+    "origin": "По сценарию независимый однооператорный фрагмент; общий исходный текст только разрешённый import."
+  },
+  "template-independent-7": {
+    "family_id": "template-independent-7",
+    "parent_id": null,
+    "transformation": "independent-fragment",
+    "origin": "По сценарию независимый однооператорный фрагмент; общий исходный текст только разрешённый import."
+  }
+}

@@ -1,5 +1,37 @@
 # Входные и выходные данные
 
+API завершённой ЛР1 сохраняется. Ниже добавлены функции ЛР2 по основному Python Core; архив документации ЛР1 находится в [lab1/API.md](lab1/API.md). Версия пакета — 1.0.0, формат `Submission` — версия 1.
+
+## ЛР2 поток, происхождение и разметка
+
+| Функция или модель | Вход | Выход |
+|---|---|---|
+| `pipeline.iter_submissions(path, errors=None)` | Путь к UTF-8 JSONL и необязательный список ошибок | Ленивый итератор проверенных `Submission`; одинаковые ID/хеши пропускаются |
+| `pipeline.file_sha256(path)` | Путь к файлу | SHA-256 как 64 шестнадцатеричных символа; файл читается блоками по 64 КиБ |
+| `source_text.physical_lines(source)` | Исходная строка | `list[str]` без разделителей CRLF, CR и LF; конечный перевод строки не добавляет пустую строку |
+| `evaluation.validate_split(submissions, provenance, split)` | Сдачи, происхождение по ID, списки ID `validation`/`test` | Словарь ID → часть; несогласованность вызывает `ValueError` |
+| `evaluation.validate_pairs(rows, submissions, provenance, split)` | Явные записи разметки и проверяемый корпус | Список `LabelledPair`; несогласованность вызывает `ValueError` |
+| `evaluation.LabelledPair(...)` | `left_id`, `right_id`, `split`, bool-метки `derivation_relation`/`template_only`, строка `explanation` | Неизменяемая разметка пары |
+| `scripts/check_lab2_corpus.py` | Сохранённый корпус из `data/lab2/` | JSON проверки в stdout; прежние файлы результатов не изменяются |
+| `scripts/build_lab2_corpus.py` | Необязательный `--output`; по умолчанию `data/lab2/` | Файлы фиксированного искусственного корпуса и статистика в stdout; существующие файлы корпуса перезаписываются |
+
+У `iter_submissions` ошибки JSON, схемы и конфликтов при переданном `errors` добавляются в этот список с `line_no`, после чего чтение продолжается. Без списка первая `SubmissionError` передаётся вызывающему коду. Пустая физическая строка JSONL — ошибка формата. Ошибки файла и кодировки не скрываются. Генератор хранит ID и хеши принятых записей, но не весь исходный корпус. При раннем прекращении обхода вызывающий код закрывает генератор:
+
+```python
+from contextlib import closing
+from pathlib import Path
+from school_lab.pipeline import iter_submissions
+
+with closing(iter_submissions(Path("data/lab2/submissions.jsonl"))) as rows:
+    first = next(rows)
+```
+
+`validate_split` требует полное непересекающееся разбиение, непустые семейства, допустимых родителей без циклов и размещение каждого семейства только в одной части. `validate_pairs` дополнительно проверяет разные сдачи и студентов одного задания, отсутствие повторов и межчастных пар, строгие bool-метки и объяснение происхождения. В этом искусственном корпусе положительная `derivation_relation` соответствует общему семейству; `template_only` не может быть положительной производной парой.
+
+`physical_lines` возвращает `[]` для пустого текста. Form feed и Unicode-разделители внутри строки не создают новых исходных строк. Эта политика используется анализаторами и проверкой evidence. Непарные Unicode-суррогаты отклоняются parser как ошибка поля; корректные строки сохраняются без нормализации. JSON CLI выводится с ASCII-экранированием, а `json.loads` восстанавливает исходные Unicode-значения.
+
+На этом этапе CLI содержит прежние `import` и `analyze`. Извлечение признаков, AST, команды `compare`, `evaluate` и `benchmark` пока отсутствуют.
+
 ## Модели
 
 | Класс | Вход конструктора | Выход |
@@ -200,13 +232,13 @@ external-declaration = "declaration_plugin:ExternalDeclarationAnalyzer"
 
 | Функция | Вход | Выход |
 |---|---|---|
-| `load_assignments(path)` | `Path` к UTF-8 JSON со списком заданий | Словарь `dict[str, Assignment]` по assignment_id |
+| `parsing.load_assignments(path)` | `Path` к UTF-8 JSON со списком заданий | Словарь `dict[str, Assignment]` по assignment_id |
 | `create_parser()` | Без аргументов | `ArgumentParser` для import и analyze |
 | `analyze_accepted(app, summary, assignments, analyzer_names, config_version)` | Приложение, итог импорта, задания по ID, список имён анализаторов и версия настроек | Словарь со списками reports, analysis_errors и measurements |
 | `cli.main(argv=None)` | Аргументы, например `["analyze", "data/submissions.jsonl", "--assignments", "data/assignments.json"]` | Код 0/1/2 и JSON результата в stdout либо ошибки запуска в stderr |
 | `examples/analyze_one.py:main()` | Учебные файлы submission.json и assignments.json | `None`; JSON списка двух отчётов length и template выводится в терминал |
 
-`load_assignments` требует точные поля `assignment_id`, `allowed_template`, `requirements`. ID непустой и не повторяется, шаблон — строка, требования — список непустых строк. Допускаются пустой шаблон и пустой список требований. Неверные JSON/схема вызывают `SubmissionError`, ошибки чтения — `OSError` или `UnicodeError`.
+`load_assignments` находится в `parsing.py`; прежний импорт `school_lab.cli.load_assignments` сохранён. Функция требует точные поля `assignment_id`, `allowed_template`, `requirements`. ID непустой и не повторяется, шаблон — строка, требования — список непустых строк. Допускаются пустой шаблон и пустой список требований. Неверные JSON/схема вызывают `SubmissionError`, ошибки чтения — `OSError` или `UnicodeError`.
 
 `analyze_accepted` обрабатывает только `summary.accepted`. Каждый анализатор даёт отдельный отчёт; дубликаты не анализируются повторно. При отсутствии задания ошибка содержит `submission_id`, `code`, `message`; при ошибке анализатора — также `analyzer_id`. Ошибка одной проверки не прерывает следующие. Каждый вызов `AnalysisService.run`, успешный или ошибочный, добавляет в `measurements` словарь с `function` и `duration_ms`. Если задание не найдено, вызова и измерения нет. Список создаётся заново при каждом вызове `analyze_accepted`. `cli.main` объединяет результат с accepted, duplicate, errors. Команда `import` не добавляет measurements.
 

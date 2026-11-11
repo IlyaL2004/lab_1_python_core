@@ -2,6 +2,7 @@
 from .models import Submission, Evidence, Finding, AnalysisReport
 from .reports import AnalysisContext, make_report
 from .errors import AnalysisFailure
+from .source_text import physical_lines
 
 
 class MissingExplanationAnalyzer:
@@ -12,7 +13,7 @@ class MissingExplanationAnalyzer:
     """
 
     analyzer_id = "missing-explanation"
-    analyzer_version = "1.0"
+    analyzer_version = "1.1"
 
     def analyze(self, submission: Submission, context: AnalysisContext) -> AnalysisReport:
         """Вернуть отчёт со ссылкой на код и запросить проверку при отсутствии пояснения.
@@ -23,7 +24,7 @@ class MissingExplanationAnalyzer:
         missing = not submission.text.strip() and bool(submission.code.strip())
         evidence = ()
         if missing:
-            code_line_count = len(submission.code.splitlines())
+            code_line_count = len(physical_lines(submission.code))
             evidence = (Evidence(submission.submission_id, "code", 1, code_line_count),)
             explanation = "Код представлен без пояснения."
         else:
@@ -38,11 +39,11 @@ class MissingExplanationAnalyzer:
 def nonempty_line_numbers(text: str) -> tuple[int, ...]:
     """Вернуть номера непустых строк text, считая с 1 и сохраняя исходные позиции.
 
-    Вход: text (str) — многострочный текст.
+    Вход: text (str) — текст со строками CRLF, CR или LF.
     Выход: tuple[int, ...] с номерами непустых строк; () при их отсутствии.
     """
     numbers = []
-    for number, line in enumerate(text.splitlines(), start=1):
+    for number, line in enumerate(physical_lines(text), start=1):
         if line.strip():
             numbers.append(number)
     return tuple(numbers)
@@ -56,7 +57,7 @@ class LengthAnalyzer:
     """
 
     analyzer_id = "length"
-    analyzer_version = "1.0"
+    analyzer_version = "1.1"
 
     def analyze(self, submission: Submission, context: AnalysisContext) -> AnalysisReport:
         """Вернуть количества строк и ссылки на каждую учтённую строку сдачи.
@@ -94,8 +95,8 @@ def template_ranges(source_code: str, template: str) -> tuple[tuple[int, int], .
     """
     if not template.strip():
         return ()
-    source_lines = source_code.splitlines()
-    template_lines = template.splitlines()
+    source_lines = physical_lines(source_code)
+    template_lines = physical_lines(template)
     width = len(template_lines)
     ranges = []
     for index in range(len(source_lines) - width + 1):
@@ -112,7 +113,7 @@ class TemplateAnalyzer:
     """
 
     analyzer_id = "template"
-    analyzer_version = "1.0"
+    analyzer_version = "1.1"
 
     def analyze(self, submission: Submission, context: AnalysisContext) -> AnalysisReport:
         """Вернуть точные совпадения с шаблоном задания и пояснение результата.

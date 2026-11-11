@@ -1,0 +1,14 @@
+{
+  "seed": 42,
+  "methods": [
+    "token",
+    "ast"
+  ],
+  "n": 3,
+  "exclude_template": true,
+  "max_evidence": 5,
+  "config_version": "1",
+  "threshold_rule": "max-validation-f1-then-larger-threshold",
+  "split_rule": "explicit-families-before-pairs-no-cross-split-pairs",
+  "ast_unsupported": "comprehensions and generator expressions remain explicit abstentions"
+}

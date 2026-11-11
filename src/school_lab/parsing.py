@@ -2,7 +2,8 @@
 from datetime import datetime
 from collections.abc import Mapping
 import json
-from .models import AIDeclaration, Submission
+from pathlib import Path
+from .models import AIDeclaration, Assignment, Submission
 from .errors import SubmissionError
 
 SUBMISSION_FIELDS = frozenset({
@@ -68,6 +69,10 @@ def require_string(value: object, name: str, *, nonempty: bool = True) -> str:
     """
     if not isinstance(value, str):
         raise SubmissionError("schema_error", name, "Ожидается строка без преобразования типа")
+    try:
+        value.encode("utf-8")
+    except UnicodeEncodeError as exc:
+        raise SubmissionError("schema_error", name, "Строка содержит непарный Unicode-суррогат") from exc
     if nonempty and not value.strip():
         raise SubmissionError("schema_error", name, "Ожидается непустая строка")
     return value
@@ -201,3 +206,31 @@ def decode_json(line: str) -> object:
         raise SubmissionError(
             "invalid_json", "json", f"Ошибка JSON около столбца {exc.colno}"
         ) from exc
+
+
+def load_assignments(path: Path) -> dict[str, Assignment]:
+    """Прочитать задания и проверить их поля.
+
+    Вход: path — путь к UTF-8 JSON со списком заданий.
+    Выход: словарь Assignment по ID; ошибки схемы вызывают SubmissionError.
+    Ошибки чтения файла и кодировки передаются вызывающему коду.
+    """
+    raw = decode_json(path.read_text(encoding="utf-8"))
+    if not isinstance(raw, list):
+        raise SubmissionError("schema_error", "assignments", "Ожидается список заданий")
+    result = {}
+    for item in raw:
+        data = require_object(item, "assignment")
+        require_fields(data, frozenset({"assignment_id", "allowed_template", "requirements"}))
+        name = require_string(data["assignment_id"], "assignment_id")
+        template = require_string(data["allowed_template"], "allowed_template", nonempty=False)
+        requirements = data["requirements"]
+        if not isinstance(requirements, list):
+            raise SubmissionError("schema_error", "requirements", "Ожидается список строк")
+        if name in result:
+            raise SubmissionError("conflict", "assignment_id", "Задание повторяется")
+        checked_requirements = []
+        for requirement in requirements:
+            checked_requirements.append(require_string(requirement, "requirements"))
+        result[name] = Assignment(name, template, tuple(checked_requirements))
+    return result

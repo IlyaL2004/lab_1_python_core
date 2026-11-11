@@ -8,38 +8,10 @@ from pathlib import Path
 from .application import Application, build_application
 from .errors import AnalysisFailure, SubmissionError
 from .models import Assignment
-from .parsing import decode_json, require_fields, require_object, require_string
+from .parsing import load_assignments, require_string
 from .reports import AnalysisContext
 from .sources import ImportSummary, import_file
 from .timing import Measurement, timed
-
-
-def load_assignments(path: Path) -> dict[str, Assignment]:
-    """Прочитать задания и проверить их поля.
-
-    Вход: path — путь к UTF-8 JSON со списком заданий.
-    Выход: словарь Assignment по ID; ошибки схемы вызывают SubmissionError.
-    Ошибки чтения файла и кодировки передаются вызывающему коду.
-    """
-    raw = decode_json(path.read_text(encoding="utf-8"))
-    if not isinstance(raw, list):
-        raise SubmissionError("schema_error", "assignments", "Ожидается список заданий")
-    result = {}
-    for item in raw:
-        data = require_object(item, "assignment")
-        require_fields(data, frozenset({"assignment_id", "allowed_template", "requirements"}))
-        name = require_string(data["assignment_id"], "assignment_id")
-        template = require_string(data["allowed_template"], "allowed_template", nonempty=False)
-        requirements = data["requirements"]
-        if not isinstance(requirements, list):
-            raise SubmissionError("schema_error", "requirements", "Ожидается список строк")
-        if name in result:
-            raise SubmissionError("conflict", "assignment_id", "Задание повторяется")
-        checked_requirements = []
-        for requirement in requirements:
-            checked_requirements.append(require_string(requirement, "requirements"))
-        result[name] = Assignment(name, template, tuple(checked_requirements))
-    return result
 
 
 def create_parser() -> argparse.ArgumentParser:
@@ -135,11 +107,11 @@ def main(argv: list[str] | None = None) -> int:
                 args.analyzers or ["length", "template"], args.config_version,
             )
             output.update(analysis)
-        print(json.dumps(output, ensure_ascii=False, allow_nan=False))
+        print(json.dumps(output, ensure_ascii=True, allow_nan=False))
         return 1 if summary.errors or output.get("analysis_errors") else 0
     except (OSError, UnicodeError, SubmissionError, AnalysisFailure) as error:
         code = "source_unavailable" if isinstance(error, (OSError, UnicodeError)) else "configuration_error"
-        print(json.dumps({"code": code, "message": str(error)}, ensure_ascii=False), file=sys.stderr)
+        print(json.dumps({"code": code, "message": str(error)}, ensure_ascii=True), file=sys.stderr)
         return 2
 
 
