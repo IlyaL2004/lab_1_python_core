@@ -6,6 +6,7 @@ from dataclasses import asdict
 from pathlib import Path
 
 from .application import Application, build_application
+from .comparison_cli import add_commands, run_command
 from .errors import AnalysisFailure, SubmissionError
 from .models import Assignment
 from .parsing import load_assignments, require_string
@@ -15,7 +16,7 @@ from .timing import Measurement, timed
 
 
 def create_parser() -> argparse.ArgumentParser:
-    """Описать аргументы команд import и analyze.
+    """Описать аргументы команд import, analyze и token-сравнения compare.
 
     Вход: без аргументов.
     Выход: ArgumentParser; обработка файлов ещё не запускается.
@@ -31,6 +32,7 @@ def create_parser() -> argparse.ArgumentParser:
     analyze.add_argument("--analyzer", action="append", dest="analyzers")
     analyze.add_argument("--config-version", default="1")
     analyze.add_argument("--plugins", action="store_true", help="Подключить установленные плагины")
+    add_commands(commands)
     return parser
 
 
@@ -93,6 +95,8 @@ def main(argv: list[str] | None = None) -> int:
     Неверные аргументы argparse завершают запуск через SystemExit(2).
     """
     args = create_parser().parse_args(argv)
+    if args.command == "compare":
+        return run_command(args)
     try:
         app = build_application(plugins=args.plugins)
         assignments = {}

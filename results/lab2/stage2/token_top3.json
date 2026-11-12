@@ -1,0 +1,268 @@
+{
+  "schema_version": 1,
+  "config": {
+    "method": "token",
+    "n": 3,
+    "exclude_template": true,
+    "max_evidence": 5,
+    "config_version": "1"
+  },
+  "corpus_sha256": "dfe15edfcf2d155a1a3a660821f647dd077e0b4cc40b21f1dfd2b608c36e5c0a",
+  "threshold": 0.5,
+  "query": "squares-family-0-v0",
+  "documents": 56,
+  "comparisons": 11,
+  "pairs": [
+    {
+      "left_id": "squares-family-0-v0",
+      "right_id": "squares-family-0-v1",
+      "left_hash": "2d1e314eb2b0204f75770033c162eba0d9b1eaddff66ec231ece9a66ece4663f",
+      "right_hash": "db4d5772f3f822ff5f12039acb5759978440f372d9df45d59c4129c6322b0d0d",
+      "method": "token",
+      "method_version": "token-ngram-v2",
+      "config_hash": "8aceef471ae3a9ea9f445bd97b94ea7643c5c2e76347d8e94f41ffb4c69473c3",
+      "score": 1.0,
+      "status": "ok",
+      "reason": null,
+      "evidence": [
+        {
+          "feature": "[[\"NAME\",\"def\"],[\"NAME\",\"solve\"],[\"OP\",\"(\"]]",
+          "left": {
+            "submission_id": "squares-family-0-v0",
+            "field": "code",
+            "start_line": 3,
+            "end_line": 3
+          },
+          "right": {
+            "submission_id": "squares-family-0-v1",
+            "field": "code",
+            "start_line": 4,
+            "end_line": 4
+          }
+        },
+        {
+          "feature": "[[\"NAME\",\"for\"],[\"NAME\",\"value\"],[\"NAME\",\"in\"]]",
+          "left": {
+            "submission_id": "squares-family-0-v0",
+            "field": "code",
+            "start_line": 5,
+            "end_line": 5
+          },
+          "right": {
+            "submission_id": "squares-family-0-v1",
+            "field": "code",
+            "start_line": 6,
+            "end_line": 6
+          }
+        },
+        {
+          "feature": "[[\"NAME\",\"if\"],[\"NAME\",\"value\"],[\"OP\",\">=\"]]",
+          "left": {
+            "submission_id": "squares-family-0-v0",
+            "field": "code",
+            "start_line": 6,
+            "end_line": 6
+          },
+          "right": {
+            "submission_id": "squares-family-0-v1",
+            "field": "code",
+            "start_line": 7,
+            "end_line": 7
+          }
+        },
+        {
+          "feature": "[[\"NAME\",\"in\"],[\"NAME\",\"values\"],[\"OP\",\":\"]]",
+          "left": {
+            "submission_id": "squares-family-0-v0",
+            "field": "code",
+            "start_line": 5,
+            "end_line": 5
+          },
+          "right": {
+            "submission_id": "squares-family-0-v1",
+            "field": "code",
+            "start_line": 6,
+            "end_line": 6
+          }
+        },
+        {
+          "feature": "[[\"NAME\",\"solve\"],[\"OP\",\"(\"],[\"NAME\",\"values\"]]",
+          "left": {
+            "submission_id": "squares-family-0-v0",
+            "field": "code",
+            "start_line": 3,
+            "end_line": 3
+          },
+          "right": {
+            "submission_id": "squares-family-0-v1",
+            "field": "code",
+            "start_line": 4,
+            "end_line": 4
+          }
+        }
+      ],
+      "excluded_left": [
+        {
+          "submission_id": "squares-family-0-v0",
+          "field": "code",
+          "start_line": 1,
+          "end_line": 1
+        }
+      ],
+      "excluded_right": [
+        {
+          "submission_id": "squares-family-0-v1",
+          "field": "code",
+          "start_line": 1,
+          "end_line": 1
+        }
+      ],
+      "review_required": true,
+      "threshold": 0.5,
+      "schema_version": 1
+    },
+    {
+      "left_id": "squares-family-0-v0",
+      "right_id": "squares-family-0-v2",
+      "left_hash": "2d1e314eb2b0204f75770033c162eba0d9b1eaddff66ec231ece9a66ece4663f",
+      "right_hash": "ce43c8e779ebaf0bd2a5cf549c21c554b300f10249968a972af59b1d61cc2238",
+      "method": "token",
+      "method_version": "token-ngram-v2",
+      "config_hash": "8aceef471ae3a9ea9f445bd97b94ea7643c5c2e76347d8e94f41ffb4c69473c3",
+      "score": 0.06666666666666667,
+      "status": "ok",
+      "reason": null,
+      "evidence": [
+        {
+          "feature": "[[\"NAME\",\"def\"],[\"NAME\",\"solve\"],[\"OP\",\"(\"]]",
+          "left": {
+            "submission_id": "squares-family-0-v0",
+            "field": "code",
+            "start_line": 3,
+            "end_line": 3
+          },
+          "right": {
+            "submission_id": "squares-family-0-v2",
+            "field": "code",
+            "start_line": 3,
+            "end_line": 3
+          }
+        },
+        {
+          "feature": "[[\"OP\",\"=\"],[\"NUMBER\",\"0\"],[\"NAME\",\"for\"]]",
+          "left": {
+            "submission_id": "squares-family-0-v0",
+            "field": "code",
+            "start_line": 4,
+            "end_line": 5
+          },
+          "right": {
+            "submission_id": "squares-family-0-v2",
+            "field": "code",
+            "start_line": 4,
+            "end_line": 5
+          }
+        },
+        {
+          "feature": "[[\"OP\",\">=\"],[\"NUMBER\",\"0\"],[\"OP\",\":\"]]",
+          "left": {
+            "submission_id": "squares-family-0-v0",
+            "field": "code",
+            "start_line": 6,
+            "end_line": 6
+          },
+          "right": {
+            "submission_id": "squares-family-0-v2",
+            "field": "code",
+            "start_line": 6,
+            "end_line": 6
+          }
+        }
+      ],
+      "excluded_left": [
+        {
+          "submission_id": "squares-family-0-v0",
+          "field": "code",
+          "start_line": 1,
+          "end_line": 1
+        }
+      ],
+      "excluded_right": [
+        {
+          "submission_id": "squares-family-0-v2",
+          "field": "code",
+          "start_line": 1,
+          "end_line": 1
+        }
+      ],
+      "review_required": false,
+      "threshold": 0.5,
+      "schema_version": 1
+    },
+    {
+      "left_id": "squares-family-0-v0",
+      "right_id": "squares-family-3-v0",
+      "left_hash": "2d1e314eb2b0204f75770033c162eba0d9b1eaddff66ec231ece9a66ece4663f",
+      "right_hash": "8b42e1cf7eedb69be95867d75f1189d8213348218b4b380a2455a298ee740389",
+      "method": "token",
+      "method_version": "token-ngram-v2",
+      "config_hash": "8aceef471ae3a9ea9f445bd97b94ea7643c5c2e76347d8e94f41ffb4c69473c3",
+      "score": 0.03773584905660377,
+      "status": "ok",
+      "reason": null,
+      "evidence": [
+        {
+          "feature": "[[\"NAME\",\"def\"],[\"NAME\",\"solve\"],[\"OP\",\"(\"]]",
+          "left": {
+            "submission_id": "squares-family-0-v0",
+            "field": "code",
+            "start_line": 3,
+            "end_line": 3
+          },
+          "right": {
+            "submission_id": "squares-family-3-v0",
+            "field": "code",
+            "start_line": 3,
+            "end_line": 3
+          }
+        },
+        {
+          "feature": "[[\"OP\",\">=\"],[\"NUMBER\",\"0\"],[\"OP\",\":\"]]",
+          "left": {
+            "submission_id": "squares-family-0-v0",
+            "field": "code",
+            "start_line": 6,
+            "end_line": 6
+          },
+          "right": {
+            "submission_id": "squares-family-3-v0",
+            "field": "code",
+            "start_line": 6,
+            "end_line": 6
+          }
+        }
+      ],
+      "excluded_left": [
+        {
+          "submission_id": "squares-family-0-v0",
+          "field": "code",
+          "start_line": 1,
+          "end_line": 1
+        }
+      ],
+      "excluded_right": [
+        {
+          "submission_id": "squares-family-3-v0",
+          "field": "code",
+          "start_line": 1,
+          "end_line": 1
+        }
+      ],
+      "review_required": false,
+      "threshold": 0.5,
+      "schema_version": 1
+    }
+  ],
+  "undefined_pairs": [],
+  "errors": []
+}

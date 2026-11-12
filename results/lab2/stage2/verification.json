@@ -1,0 +1,108 @@
+{
+  "checked_at": "2026-11-12T20:04:46.219159+00:00",
+  "stage": "lab2-stage2-token-baseline",
+  "python": "3.13.9",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "packages": {
+    "school-lab": "1.0.0",
+    "school-declaration-plugin": "1.0.0",
+    "pytest": "9.1.1"
+  },
+  "base_commit": "c95f431b769015e064f634dcc2e560c2125cc192",
+  "tests": {
+    "command": "python -B -X utf8 -m pytest -q -p no:cacheprovider",
+    "passed": 405,
+    "new_cases": 133,
+    "duration_seconds": 3.43,
+    "output": "tests.txt"
+  },
+  "checks": {
+    "full_corpus": {
+      "documents": 56,
+      "comparisons": 292,
+      "errors": 0
+    },
+    "query": {
+      "id": "squares-family-0-v0",
+      "comparisons": 11,
+      "top_k": 3,
+      "output": "token_top3.json"
+    },
+    "diagnostics": {
+      "documents": 9,
+      "comparisons": 12,
+      "statuses": {
+        "ok": 7,
+        "invalid_source": 4,
+        "insufficient_data": 1
+      },
+      "undefined_pairs": 5
+    },
+    "legacy_import_accepted": 2,
+    "legacy_analysis_reports": 10,
+    "legacy_measurements": 10,
+    "corpus_validation": "passed",
+    "pip_check": "No broken requirements found."
+  },
+  "pair_output_signatures": {
+    "submissions.jsonl:exclude_template=True": {
+      "documents": 56,
+      "pairs": 292,
+      "statuses": {
+        "ok": 292
+      },
+      "pairs_sha256": "dfe1b788de69a88d254008178e4d364b9e59998787d69e7cb774cad20a9f6439"
+    },
+    "submissions.jsonl:exclude_template=False": {
+      "documents": 56,
+      "pairs": 292,
+      "statuses": {
+        "ok": 292
+      },
+      "pairs_sha256": "3a0be9e1b23c0a1a79de4d6d12e07fd63021bfa104f74abc372d208611618591"
+    },
+    "diagnostics.jsonl:exclude_template=True": {
+      "documents": 9,
+      "pairs": 12,
+      "statuses": {
+        "ok": 7,
+        "invalid_source": 4,
+        "insufficient_data": 1
+      },
+      "pairs_sha256": "7011b351c6f45aee141636cc15c0105e7d7f346a8173381a8e8bf535d82e197d"
+    },
+    "diagnostics.jsonl:exclude_template=False": {
+      "documents": 9,
+      "pairs": 12,
+      "statuses": {
+        "ok": 7,
+        "invalid_source": 4,
+        "insufficient_data": 1
+      },
+      "pairs_sha256": "61889754abfd8f7cc5d8b0dd2c3f5c7d2fa1477fbcc0e0f7d443efa91236d27b"
+    }
+  },
+  "source_sha256": {
+    "src/school_lab/__init__.py": "1572d18263c294ae0bbc50753c9443ff60742271e0288c08bf40ac2bb5b6fc75",
+    "src/school_lab/analyzers.py": "e18939d88d1d099edd348e8e47a7d4819128ee3e09e6a70f55d85c279e8e78d6",
+    "src/school_lab/application.py": "3a9717a244f36512f1dd2cc6db63c45e860d6fcd8ca0971f858f8750fc1fc980",
+    "src/school_lab/cli.py": "ed3cf63938c9b7db3350be586922718dcbbbe4464127b2a2110e830dfd2797fd",
+    "src/school_lab/comparison_cli.py": "5348a1d34a454bb89e737e4a9f125ed9f0dfa7dfe5ab5f8f360b498adbd89c0d",
+    "src/school_lab/errors.py": "2ca57f323b9f3baaa2ade08c1f25351319425d31515f66f8ed7c211f9f0ad80c",
+    "src/school_lab/evaluation.py": "7764d6a4020b526e0bfe6f966c65e43f7cbc4991b6df4ced0436f1b0f63a4c0d",
+    "src/school_lab/features.py": "cdee8e031bf6ad3abd0d816fe31235b8bf55180f494726cbeb039294cb55e854",
+    "src/school_lab/hashing.py": "00f557e4055a0c5dfa825e4e53a9942c8d41351d3fad883eb9078a378f972658",
+    "src/school_lab/models.py": "9074b3dc65d31ac3929698ecc7d0b3da8c15df24d240134c2a5af9641620473f",
+    "src/school_lab/parsing.py": "c6eab3ad44004e92f912533d5748d7fb58016ba55395b0bcc14613d50df0f4f0",
+    "src/school_lab/pipeline.py": "bc27a8ac9d547880c56e4757574d4691650fd412c7619152123515e58a857077",
+    "src/school_lab/plugins.py": "50802336288b77569cd4fac24dff9cf2fcbd74cc5ee466a009865ac0ebf67b7a",
+    "src/school_lab/reports.py": "601588d6ccb372191d7225e1fd0d7ef3f34c453796455605935c77eba63abeb2",
+    "src/school_lab/repositories.py": "1482e2437003723a26d04afce6a18c8e8802dddb8e1430a13d5b7355069894c7",
+    "src/school_lab/services.py": "50c91e1d1310e28abaa63f4505e66970a6ee1e349c46bf64337d34501952288d",
+    "src/school_lab/similarity.py": "194a5649944adc6b0926ae9a5b715fe2e74b23db3fc08f0e23c61f983d650c94",
+    "src/school_lab/similarity_models.py": "29a495605289666c603d692385847a4030cbac35f48029d39262dfe3bb091270",
+    "src/school_lab/source_text.py": "bed95217cef19e41f46eb93c02f5110442782b3d698721914a31fa604aeaa8e4",
+    "src/school_lab/sources.py": "34dfa945e7857711abb3ef400fe71b11ad4b8bb05481f404de0c76b1a6282f48",
+    "src/school_lab/timing.py": "ac2bc494fc3973c70aadae7cb83be0eb9ae8da901eb2d28d2a5acf210b43d2fc"
+  }
+}

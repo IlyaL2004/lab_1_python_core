@@ -1,0 +1,28 @@
+{
+  "full_corpus": {
+    "documents": 56,
+    "comparisons": 292,
+    "errors": 0
+  },
+  "query": {
+    "id": "squares-family-0-v0",
+    "comparisons": 11,
+    "top_k": 3,
+    "output": "token_top3.json"
+  },
+  "diagnostics": {
+    "documents": 9,
+    "comparisons": 12,
+    "statuses": {
+      "ok": 7,
+      "invalid_source": 4,
+      "insufficient_data": 1
+    },
+    "undefined_pairs": 5
+  },
+  "legacy_import_accepted": 2,
+  "legacy_analysis_reports": 10,
+  "legacy_measurements": 10,
+  "corpus_validation": "passed",
+  "pip_check": "No broken requirements found."
+}

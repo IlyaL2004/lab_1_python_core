@@ -30,7 +30,32 @@ with closing(iter_submissions(Path("data/lab2/submissions.jsonl"))) as rows:
 
 `physical_lines` возвращает `[]` для пустого текста. Form feed и Unicode-разделители внутри строки не создают новых исходных строк. Эта политика используется анализаторами и проверкой evidence. Непарные Unicode-суррогаты отклоняются parser как ошибка поля; корректные строки сохраняются без нормализации. JSON CLI выводится с ASCII-экранированием, а `json.loads` восстанавливает исходные Unicode-значения.
 
-На этом этапе CLI содержит прежние `import` и `analyze`. Извлечение признаков, AST, команды `compare`, `evaluate` и `benchmark` пока отсутствуют.
+## Токеновые признаки и сравнение
+
+| Функция или модель | Вход | Выход |
+|---|---|---|
+| `SimilarityConfig(...)` | `method="token"`, `n=3`, флаг исключения шаблона, предел evidence и версия | Проверенные неизменяемые настройки; неверные значения вызывают `ValueError` |
+| `features.source_tokens(source)` | Python-код | Кортеж значимых токенов с исходными строками; неверный синтаксис вызывает `InvalidSource` |
+| `features.token_occurrences(source, n=3, excluded=())` | Код, размер окна, диапазоны шаблона | Вхождения n-грамм, не пересекающие исключённые строки |
+| `features.prepare_submission(submission, assignment, config)` | Принятая сдача, её задание, настройки | `PreparedSubmission`: хеши, признаки, вхождения, шаблон, статус и причина |
+| `pipeline.iter_features(path, assignments, config, errors=None)` | JSONL, задания по ID, настройки, список ошибок | Ленивый итератор `PreparedSubmission`; неизвестное задание вызывает `SubmissionError` |
+| `similarity.jaccard(left, right)` | Два множества | Число 0–1 либо `None` при пустом объединении |
+| `similarity.eligible(left, right)` | Две сдачи или подготовленные записи | `bool`: разные ID и студенты одного задания |
+| `similarity.compare_submissions(left, right, assignment, config, *, threshold=0.5)` | Две сдачи, задание, настройки, порог | Проверенный `PairResult`; признаки извлекаются при каждом вызове |
+| `similarity.compare_prepared(left, right, *, threshold=0.5)` | Две подготовленные записи одной конфигурации и порог | Проверенный `PairResult` без повторной токенизации |
+| `similarity.top_k(query, candidates, k=5, *, threshold=0.5)` | Подготовленный запрос, кандидаты, положительный k, порог | До k допустимых пар с определённым score, сортировка по score и ID |
+| `similarity.validate_pair_result(result, left, right)` | Парный отчёт и две подготовленные записи | `None` либо `ValueError` при нарушении контракта |
+| `PairResult.to_dict()` | Парный отчёт | Новый JSON-совместимый словарь |
+
+`PreparedSubmission` хранит исходный код, ID студента/работы/задания, хеши, `frozenset` признаков, кортеж `FeatureOccurrence` и исключённые диапазоны. `FeatureOccurrence` содержит значение признака и включительные границы строк с 1. `PairEvidence` связывает один общий признак с двумя прежними объектами `Evidence` ЛР1. `PairResult` включает эти основания, исключения шаблона, score, статус, причину, порог и сигнал ручного разбора.
+
+Статусы сравнения: `ok` — определённая оценка, `insufficient_data` — два пустых множества, `invalid_source` — некорректный Python, `ineligible` — недопустимая пара. При отказе score равен `None`, совпадений evidence нет, `review_required=False`. Порог — конечное число от 0 до 1.000001; значение выше 1 позволяет отключить сигналы. Пока порог задаётся вручную. Другая конфигурация или задание вызывают ошибку контекста. В top-k разные версии чужого студента сохраняются отдельно, а все версии автора запроса исключаются.
+
+`iter_features()` закрывают так же, как `iter_submissions()`: через `contextlib.closing` при раннем выходе. Код в поступившей работе никогда не исполняется. Проверка синтаксиса использует `ast.parse`; сам метод сходства на этом этапе только токеновый.
+
+Команда `compare path --assignments assignments.json` принимает `--method token`, `--query ID`, `--top-k K`, `--threshold X`, `--config-version V`, `--keep-template` и `--output path.json`. JSON содержит `config`, хеш корпуса, число принятых документов и сравнений, `pairs`, `undefined_pairs`, ошибки строк. При query в `pairs` попадает top-k; без query — все допустимые пары. Код завершения: 0 — приём успешен, 1 — ошибки отдельных записей, 2 — ошибка файла или настроек. Неопределённая оценка сама по себе не является ошибкой приёма. stdout/stderr содержат ASCII-экранированный JSON; выходной файл записывается в UTF-8.
+
+CLI также содержит прежние `import` и `analyze`. AST-сравнение и команды `evaluate`, `benchmark` добавляются позднее.
 
 ## Модели
 
