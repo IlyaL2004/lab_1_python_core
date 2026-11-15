@@ -1,0 +1,46 @@
+{
+  "token": {
+    "documents": 56,
+    "comparisons": 292,
+    "statuses": {
+      "ok": 292
+    },
+    "undefined_pairs": 0,
+    "stage2_results_unchanged": true
+  },
+  "ast": {
+    "documents": 56,
+    "comparisons": 292,
+    "statuses": {
+      "ok": 204,
+      "unsupported": 88
+    },
+    "undefined_pairs": 88
+  },
+  "query": {
+    "id": "squares-family-0-v0",
+    "comparisons": 11,
+    "top_k": 3,
+    "undefined_pairs": 3,
+    "output": "ast_top3.json"
+  },
+  "ast_diagnostics": {
+    "documents": 9,
+    "comparisons": 12,
+    "statuses": {
+      "ok": 6,
+      "unsupported": 1,
+      "invalid_source": 4,
+      "insufficient_data": 1
+    },
+    "undefined_pairs": 6
+  },
+  "renamed_function_scores": {
+    "token": 0.06666666666666667,
+    "ast": 1.0
+  },
+  "legacy_import_accepted": 2,
+  "legacy_analysis_reports": 10,
+  "legacy_measurements": 10,
+  "pip_check": "No broken requirements found."
+}

@@ -30,13 +30,16 @@ with closing(iter_submissions(Path("data/lab2/submissions.jsonl"))) as rows:
 
 `physical_lines` возвращает `[]` для пустого текста. Form feed и Unicode-разделители внутри строки не создают новых исходных строк. Эта политика используется анализаторами и проверкой evidence. Непарные Unicode-суррогаты отклоняются parser как ошибка поля; корректные строки сохраняются без нормализации. JSON CLI выводится с ASCII-экранированием, а `json.loads` восстанавливает исходные Unicode-значения.
 
-## Токеновые признаки и сравнение
+## Признаки и сравнение
 
 | Функция или модель | Вход | Выход |
 |---|---|---|
-| `SimilarityConfig(...)` | `method="token"`, `n=3`, флаг исключения шаблона, предел evidence и версия | Проверенные неизменяемые настройки; неверные значения вызывают `ValueError` |
+| `SimilarityConfig(...)` | `method="token"` или `"ast"`, `n=3` для токенов, флаг исключения шаблона, предел evidence и версия | Проверенные неизменяемые настройки; неверные значения вызывают `ValueError` |
 | `features.source_tokens(source)` | Python-код | Кортеж значимых токенов с исходными строками; неверный синтаксис вызывает `InvalidSource` |
 | `features.token_occurrences(source, n=3, excluded=())` | Код, размер окна, диапазоны шаблона | Вхождения n-грамм, не пересекающие исключённые строки |
+| `features.ast_occurrences(source, excluded=())` | Python-код, исходные диапазоны шаблона | Вхождения нормализованных AST-поддеревьев с первоначальными координатами |
+| `features.InvalidSource(message)` | Причина некорректного Python | Исключение извлечения, преобразуемое в `status="invalid_source"` |
+| `features.UnsupportedAST(message)` | Причина неподдерживаемой конструкции или глубины AST | Исключение извлечения, преобразуемое в `status="unsupported"` |
 | `features.prepare_submission(submission, assignment, config)` | Принятая сдача, её задание, настройки | `PreparedSubmission`: хеши, признаки, вхождения, шаблон, статус и причина |
 | `pipeline.iter_features(path, assignments, config, errors=None)` | JSONL, задания по ID, настройки, список ошибок | Ленивый итератор `PreparedSubmission`; неизвестное задание вызывает `SubmissionError` |
 | `similarity.jaccard(left, right)` | Два множества | Число 0–1 либо `None` при пустом объединении |
@@ -49,13 +52,17 @@ with closing(iter_submissions(Path("data/lab2/submissions.jsonl"))) as rows:
 
 `PreparedSubmission` хранит исходный код, ID студента/работы/задания, хеши, `frozenset` признаков, кортеж `FeatureOccurrence` и исключённые диапазоны. `FeatureOccurrence` содержит значение признака и включительные границы строк с 1. `PairEvidence` связывает один общий признак с двумя прежними объектами `Evidence` ЛР1. `PairResult` включает эти основания, исключения шаблона, score, статус, причину, порог и сигнал ручного разбора.
 
-Статусы сравнения: `ok` — определённая оценка, `insufficient_data` — два пустых множества, `invalid_source` — некорректный Python, `ineligible` — недопустимая пара. При отказе score равен `None`, совпадений evidence нет, `review_required=False`. Порог — конечное число от 0 до 1.000001; значение выше 1 позволяет отключить сигналы. Пока порог задаётся вручную. Другая конфигурация или задание вызывают ошибку контекста. В top-k разные версии чужого студента сохраняются отдельно, а все версии автора запроса исключаются.
+Статусы сравнения: `ok` — определённая оценка, `insufficient_data` — два пустых множества, `invalid_source` — некорректный Python, `unsupported` — конструкция или глубина вне возможностей AST-метода, `ineligible` — недопустимая пара. При отказе score равен `None`, совпадений evidence нет, `review_required=False`. Порог — конечное число от 0 до 1.000001; значение выше 1 позволяет отключить сигналы. Пока порог задаётся вручную. Другая конфигурация или задание вызывают ошибку контекста. В top-k разные версии чужого студента сохраняются отдельно, а все версии автора запроса исключаются.
 
-`iter_features()` закрывают так же, как `iter_submissions()`: через `contextlib.closing` при раннем выходе. Код в поступившей работе никогда не исполняется. Проверка синтаксиса использует `ast.parse`; сам метод сходства на этом этапе только токеновый.
+`iter_features()` закрывают так же, как `iter_submissions()`: через `contextlib.closing` при раннем выходе. Код в поступившей работе никогда не исполняется. Оба метода проверяют синтаксис через `ast.parse`; метод `ast` дополнительно сравнивает нормализованные поддеревья.
 
-Команда `compare path --assignments assignments.json` принимает `--method token`, `--query ID`, `--top-k K`, `--threshold X`, `--config-version V`, `--keep-template` и `--output path.json`. JSON содержит `config`, хеш корпуса, число принятых документов и сравнений, `pairs`, `undefined_pairs`, ошибки строк. При query в `pairs` попадает top-k; без query — все допустимые пары. Код завершения: 0 — приём успешен, 1 — ошибки отдельных записей, 2 — ошибка файла или настроек. Неопределённая оценка сама по себе не является ошибкой приёма. stdout/stderr содержат ASCII-экранированный JSON; выходной файл записывается в UTF-8.
+Команда `compare path --assignments assignments.json` принимает `--method token` или `--method ast`, `--query ID`, `--top-k K`, `--threshold X`, `--config-version V`, `--keep-template` и `--output path.json`. JSON содержит `config`, хеш корпуса, число принятых документов и сравнений, `pairs`, `undefined_pairs`, ошибки строк. При query в `pairs` попадает top-k; без query — все допустимые пары. Код завершения: 0 — приём успешен, 1 — ошибки отдельных записей, 2 — ошибка файла или настроек. Неопределённая оценка сама по себе не является ошибкой приёма. stdout/stderr содержат ASCII-экранированный JSON; выходной файл записывается в UTF-8.
 
-CLI также содержит прежние `import` и `analyze`. AST-сравнение и команды `evaluate`, `benchmark` добавляются позднее.
+CLI также содержит прежние `import` и `analyze`. Команды `evaluate` и `benchmark` добавляются позднее.
+
+`ast_occurrences()` поддерживает одну синхронную функцию после удаления шаблонных statements. Пустой код возвращает `()`. Имена параметров и локальных переменных заменяются по порядку исходных координат на `v0`, `v1`, …; функция — на `function`. Внешние имена, литералы, операторы и атрибуты сохраняют различия. Функции со сложными областями видимости, defaults, декораторами, аннотациями и другими перечисленными в README ограничениями вызывают `UnsupportedAST`; некорректный синтаксис — `InvalidSource`. `prepare_submission()` превращает эти исключения в явный статус с причиной и пустыми признаками.
+
+Ссылки evidence используют координаты, сохранённые до нормализации, без печати исходника заново. `configuration_payload()` добавляет версию Python только для AST; токеновые хеши сохраняют прежний формат. Отчёт с отказом AST остаётся отчётом метода `ast`; подмены токеновым score нет.
 
 ## Модели
 
@@ -258,7 +265,7 @@ external-declaration = "declaration_plugin:ExternalDeclarationAnalyzer"
 | Функция | Вход | Выход |
 |---|---|---|
 | `parsing.load_assignments(path)` | `Path` к UTF-8 JSON со списком заданий | Словарь `dict[str, Assignment]` по assignment_id |
-| `create_parser()` | Без аргументов | `ArgumentParser` для import и analyze |
+| `create_parser()` | Без аргументов | `ArgumentParser` для import, analyze и compare с token/AST |
 | `analyze_accepted(app, summary, assignments, analyzer_names, config_version)` | Приложение, итог импорта, задания по ID, список имён анализаторов и версия настроек | Словарь со списками reports, analysis_errors и measurements |
 | `cli.main(argv=None)` | Аргументы, например `["analyze", "data/submissions.jsonl", "--assignments", "data/assignments.json"]` | Код 0/1/2 и JSON результата в stdout либо ошибки запуска в stderr |
 | `examples/analyze_one.py:main()` | Учебные файлы submission.json и assignments.json | `None`; JSON списка двух отчётов length и template выводится в терминал |

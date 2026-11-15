@@ -47,10 +47,11 @@ def _pair_status(left: PreparedSubmission, right: PreparedSubmission) -> tuple[s
     """Вход: две версии. Выход: статус допустимости и извлечения, затем объяснение."""
     if not eligible(left, right):
         return "ineligible", "Нужны разные сдачи разных студентов одного задания"
-    failures = [item for item in (left, right) if item.status == "invalid_source"]
-    if failures:
-        reason = "; ".join(f"{item.submission_id}: {item.reason}" for item in failures)
-        return "invalid_source", reason
+    for status in ("invalid_source", "unsupported"):
+        failures = [item for item in (left, right) if item.status == status]
+        if failures:
+            reason = "; ".join(f"{item.submission_id}: {item.reason}" for item in failures)
+            return status, reason
     if left.status != "ok" or right.status != "ok":
         raise ValueError("Неизвестный статус подготовленной сдачи")
     if not left.features and not right.features:

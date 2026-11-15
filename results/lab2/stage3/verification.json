@@ -1,0 +1,165 @@
+{
+  "checked_at": "2026-11-15T20:43:43.381548+00:00",
+  "stage": "lab2-stage3-ast-comparison",
+  "python": "3.13.9",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "packages": {
+    "school-lab": "1.0.0",
+    "school-declaration-plugin": "1.0.0",
+    "pytest": "9.1.1"
+  },
+  "base_commit": "dd27823da4f38d80ee6670dba99fd84b9c84d8fd",
+  "tests": {
+    "command": "python -B -X utf8 -m pytest -q -p no:cacheprovider",
+    "passed": 470,
+    "duration_seconds": 4.51,
+    "output": "tests.txt"
+  },
+  "checks": {
+    "token": {
+      "documents": 56,
+      "comparisons": 292,
+      "statuses": {
+        "ok": 292
+      },
+      "undefined_pairs": 0,
+      "stage2_results_unchanged": true
+    },
+    "ast": {
+      "documents": 56,
+      "comparisons": 292,
+      "statuses": {
+        "ok": 204,
+        "unsupported": 88
+      },
+      "undefined_pairs": 88
+    },
+    "query": {
+      "id": "squares-family-0-v0",
+      "comparisons": 11,
+      "top_k": 3,
+      "undefined_pairs": 3,
+      "output": "ast_top3.json"
+    },
+    "ast_diagnostics": {
+      "documents": 9,
+      "comparisons": 12,
+      "statuses": {
+        "ok": 6,
+        "unsupported": 1,
+        "invalid_source": 4,
+        "insufficient_data": 1
+      },
+      "undefined_pairs": 6
+    },
+    "renamed_function_scores": {
+      "token": 0.06666666666666667,
+      "ast": 1.0
+    },
+    "legacy_import_accepted": 2,
+    "legacy_analysis_reports": 10,
+    "legacy_measurements": 10,
+    "pip_check": "No broken requirements found."
+  },
+  "stage2_token_outputs_unchanged": true,
+  "pair_output_signatures": {
+    "submissions.jsonl:token:exclude_template=True": {
+      "documents": 56,
+      "pairs": 292,
+      "statuses": {
+        "ok": 292
+      },
+      "pairs_sha256": "dfe1b788de69a88d254008178e4d364b9e59998787d69e7cb774cad20a9f6439"
+    },
+    "submissions.jsonl:token:exclude_template=False": {
+      "documents": 56,
+      "pairs": 292,
+      "statuses": {
+        "ok": 292
+      },
+      "pairs_sha256": "3a0be9e1b23c0a1a79de4d6d12e07fd63021bfa104f74abc372d208611618591"
+    },
+    "submissions.jsonl:ast:exclude_template=True": {
+      "documents": 56,
+      "pairs": 292,
+      "statuses": {
+        "ok": 204,
+        "unsupported": 88
+      },
+      "pairs_sha256": "c2904796facf78f98de478da57063e965184696afe5236f2fe7d51c4d0a27876"
+    },
+    "submissions.jsonl:ast:exclude_template=False": {
+      "documents": 56,
+      "pairs": 292,
+      "statuses": {
+        "unsupported": 292
+      },
+      "pairs_sha256": "ee4f9c18d8772320b73fd7ac66fe5144f56a2bbc1c8aed9fdbacf82c878969b5"
+    },
+    "diagnostics.jsonl:token:exclude_template=True": {
+      "documents": 9,
+      "pairs": 12,
+      "statuses": {
+        "ok": 7,
+        "invalid_source": 4,
+        "insufficient_data": 1
+      },
+      "pairs_sha256": "7011b351c6f45aee141636cc15c0105e7d7f346a8173381a8e8bf535d82e197d"
+    },
+    "diagnostics.jsonl:token:exclude_template=False": {
+      "documents": 9,
+      "pairs": 12,
+      "statuses": {
+        "ok": 7,
+        "invalid_source": 4,
+        "insufficient_data": 1
+      },
+      "pairs_sha256": "61889754abfd8f7cc5d8b0dd2c3f5c7d2fa1477fbcc0e0f7d443efa91236d27b"
+    },
+    "diagnostics.jsonl:ast:exclude_template=True": {
+      "documents": 9,
+      "pairs": 12,
+      "statuses": {
+        "ok": 6,
+        "unsupported": 1,
+        "invalid_source": 4,
+        "insufficient_data": 1
+      },
+      "pairs_sha256": "2728c8e6a520c19743c7529e52480660dc2702ed49e8b66b07e3ef96b3348406"
+    },
+    "diagnostics.jsonl:ast:exclude_template=False": {
+      "documents": 9,
+      "pairs": 12,
+      "statuses": {
+        "unsupported": 2,
+        "ok": 5,
+        "invalid_source": 4,
+        "insufficient_data": 1
+      },
+      "pairs_sha256": "a9040c7d7bb00871640f3f56dfd48a73fb92c4077f27d0de7f58b83de91f8b14"
+    }
+  },
+  "source_sha256": {
+    "src/school_lab/__init__.py": "1572d18263c294ae0bbc50753c9443ff60742271e0288c08bf40ac2bb5b6fc75",
+    "src/school_lab/analyzers.py": "e18939d88d1d099edd348e8e47a7d4819128ee3e09e6a70f55d85c279e8e78d6",
+    "src/school_lab/application.py": "3a9717a244f36512f1dd2cc6db63c45e860d6fcd8ca0971f858f8750fc1fc980",
+    "src/school_lab/cli.py": "e20276f4ba26e578096b47113111147a8deaa92b9d01ad211cc10795a9ce20be",
+    "src/school_lab/comparison_cli.py": "10705c7e14c879ee1c42135b48a51464563e2d8af174fe8ad025420ef829276c",
+    "src/school_lab/errors.py": "2ca57f323b9f3baaa2ade08c1f25351319425d31515f66f8ed7c211f9f0ad80c",
+    "src/school_lab/evaluation.py": "7764d6a4020b526e0bfe6f966c65e43f7cbc4991b6df4ced0436f1b0f63a4c0d",
+    "src/school_lab/features.py": "8a847f60f39449a30735baf4e43fdc56536f0e5e7fecb2e65a13c1e77e315fc4",
+    "src/school_lab/hashing.py": "00f557e4055a0c5dfa825e4e53a9942c8d41351d3fad883eb9078a378f972658",
+    "src/school_lab/models.py": "9074b3dc65d31ac3929698ecc7d0b3da8c15df24d240134c2a5af9641620473f",
+    "src/school_lab/parsing.py": "c6eab3ad44004e92f912533d5748d7fb58016ba55395b0bcc14613d50df0f4f0",
+    "src/school_lab/pipeline.py": "bc27a8ac9d547880c56e4757574d4691650fd412c7619152123515e58a857077",
+    "src/school_lab/plugins.py": "50802336288b77569cd4fac24dff9cf2fcbd74cc5ee466a009865ac0ebf67b7a",
+    "src/school_lab/reports.py": "601588d6ccb372191d7225e1fd0d7ef3f34c453796455605935c77eba63abeb2",
+    "src/school_lab/repositories.py": "1482e2437003723a26d04afce6a18c8e8802dddb8e1430a13d5b7355069894c7",
+    "src/school_lab/services.py": "50c91e1d1310e28abaa63f4505e66970a6ee1e349c46bf64337d34501952288d",
+    "src/school_lab/similarity.py": "5c96046dd393df4d101a0575fdf7806ab3c0f8be30e4b168f1584130df96fa4b",
+    "src/school_lab/similarity_models.py": "e5b3251ecbb4ae4bf2748f509b44af25eb34cb576ec3128c0a8dc7e0bb990408",
+    "src/school_lab/source_text.py": "bed95217cef19e41f46eb93c02f5110442782b3d698721914a31fa604aeaa8e4",
+    "src/school_lab/sources.py": "34dfa945e7857711abb3ef400fe71b11ad4b8bb05481f404de0c76b1a6282f48",
+    "src/school_lab/timing.py": "ac2bc494fc3973c70aadae7cb83be0eb9ae8da901eb2d28d2a5acf210b43d2fc"
+  }
+}

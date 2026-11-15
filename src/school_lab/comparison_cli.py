@@ -1,4 +1,4 @@
-"""Token-сравнение через CLI с повторной подготовкой признаков каждой пары."""
+"""Token/AST-сравнение через CLI с повторной подготовкой признаков каждой пары."""
 
 import argparse
 import json
@@ -17,15 +17,15 @@ from .similarity_models import SimilarityConfig
 
 
 def add_commands(commands: argparse._SubParsersAction) -> None:
-    """Добавить token-команду compare к прежнему интерфейсу school-lab.
+    """Добавить token/AST-команду compare к прежнему интерфейсу school-lab.
 
     Вход: commands — подкоманды ArgumentParser.
     Выход: None; зарегистрировано сравнение всех пар или top-k для запроса.
     """
-    compare = commands.add_parser("compare", help="Сравнить код методом token")
+    compare = commands.add_parser("compare", help="Сравнить код методом token или AST")
     compare.add_argument("path", type=Path)
     compare.add_argument("--assignments", type=Path, required=True)
-    compare.add_argument("--method", choices=("token",), default="token")
+    compare.add_argument("--method", choices=("token", "ast"), default="token")
     compare.add_argument("--query", help="ID запроса; без него сравниваются все допустимые пары")
     compare.add_argument("--top-k", type=int, default=5)
     compare.add_argument("--threshold", type=float, default=0.5)
@@ -98,7 +98,8 @@ def run_command(args: argparse.Namespace) -> int:
     Вход: args — аргументы compare.
     Выход: 0 при успехе, 1 при частичном приёме, 2 при ошибке запуска.
     JSON терминала экранирует Unicode; файл результата записывается в UTF-8.
-    SyntaxError исходника отражается в парном отчёте как отказ метода.
+    SyntaxError и неподдерживаемые AST-конструкции отражаются в парном отчёте
+    как явные отказы метода, без автоматического переключения на token.
     """
     try:
         result = compare_corpus(args)

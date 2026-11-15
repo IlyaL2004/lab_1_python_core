@@ -1,4 +1,4 @@
-"""Неизменяемые настройки, признаки и результаты токенового сравнения."""
+"""Неизменяемые настройки, признаки и результаты парного сравнения."""
 from dataclasses import asdict, dataclass
 from typing import Literal
 
@@ -9,13 +9,13 @@ from .models import Evidence
 class SimilarityConfig:
     """Настройки извлечения признаков и выборки оснований.
 
-    Вход: method — token; n — размер токенового окна;
+    Вход: method — token или ast; n — размер токенового окна;
     exclude_template — исключать шаблон; max_evidence — предел примеров;
     config_version — непустая версия настроек.
     Выход: проверенная неизменяемая конфигурация.
     """
 
-    method: Literal["token"] = "token"
+    method: Literal["token", "ast"] = "token"
     n: int = 3
     exclude_template: bool = True
     max_evidence: int = 5
@@ -23,8 +23,8 @@ class SimilarityConfig:
 
     def __post_init__(self) -> None:
         """Вход: поля конфигурации. Выход: None; неверные значения — ValueError."""
-        if self.method != "token":
-            raise ValueError("method должен быть token")
+        if self.method not in ("token", "ast"):
+            raise ValueError("method должен быть token или ast")
         if type(self.n) is not int or self.n < 1:
             raise ValueError("n должен быть положительным целым числом")
         if type(self.exclude_template) is not bool:
@@ -37,7 +37,7 @@ class SimilarityConfig:
     @property
     def method_version(self) -> str:
         """Вход: выбранный метод. Выход: версия его реализации."""
-        return "token-ngram-v2"
+        return "token-ngram-v2" if self.method == "token" else "ast-subtree-v2"
 
 
 @dataclass(frozen=True, slots=True)

@@ -16,7 +16,7 @@ from .timing import Measurement, timed
 
 
 def create_parser() -> argparse.ArgumentParser:
-    """Описать аргументы команд import, analyze и token-сравнения compare.
+    """Описать аргументы команд import, analyze и token/AST-сравнения compare.
 
     Вход: без аргументов.
     Выход: ArgumentParser; обработка файлов ещё не запускается.

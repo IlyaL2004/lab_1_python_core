@@ -38,9 +38,9 @@ def track_file_open(monkeypatch, path):
     return opened
 
 
-@pytest.mark.parametrize("method", ["ast", "unknown", None, True])
-def test_config_accepts_only_token_method(method):
-    """Выбор ещё не реализованного метода отклоняется до подготовки сдач."""
+@pytest.mark.parametrize("method", ["unknown", None, True])
+def test_config_rejects_unknown_method(method):
+    """Вход: неизвестный метод. Выход: ValueError до подготовки сдач."""
     with pytest.raises(ValueError, match="method"):
         SimilarityConfig(method=method)
 
@@ -144,7 +144,7 @@ def test_invalid_python_has_explicit_status_without_partial_features(raw_submiss
 
 
 def test_token_method_accepts_comprehension_without_ast_normalization(raw_submission, assignment):
-    """Ограничения будущего структурного метода не применяются к токенам Python."""
+    """Ограничения AST-метода не применяются к токенам Python."""
     source = "result = [item + 1 for item in values]\n"
     prepared = prepare_submission(replace(parse_submission(raw_submission), code=source), assignment, SimilarityConfig())
     assert prepared.status == "ok" and prepared.features

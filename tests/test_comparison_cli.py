@@ -1,5 +1,6 @@
-"""Контракт token-сравнения через CLI на малых независимых входах."""
+"""Контракт token/AST-сравнения через CLI на малых независимых входах."""
 
+import ast
 import json
 import subprocess
 import sys
@@ -39,10 +40,11 @@ def inputs(directory, raw_submission):
     return corpus, assignments
 
 
-def test_compare_query_filters_and_stable_ties(temp_dir, raw_submission, capsys):
+@pytest.mark.parametrize("method", ["token", "ast"])
+def test_compare_query_filters_and_stable_ties(temp_dir, raw_submission, capsys, method):
     corpus, assignments = inputs(temp_dir, raw_submission)
     args = ["compare", str(corpus), "--assignments", str(assignments),
-            "--query", "q", "--top-k", "1", "--method", "token"]
+            "--query", "q", "--top-k", "1", "--method", method]
     assert main(args) == 0
     result = json.loads(capsys.readouterr().out)
     assert result["documents"] == 5
@@ -50,13 +52,15 @@ def test_compare_query_filters_and_stable_ties(temp_dir, raw_submission, capsys)
     assert len(result["pairs"]) == 1
     assert result["pairs"][0]["right_id"] == "b"
     assert result["pairs"][0]["score"] == 1
+    assert result["config"]["method"] == result["pairs"][0]["method"] == method
     assert result["pairs"][0]["review_required"] is True
     assert result["undefined_pairs"] == result["errors"] == []
 
 
-def test_compare_all_pairs_follow_public_contract(temp_dir, raw_submission, capsys):
+@pytest.mark.parametrize("method", ["token", "ast"])
+def test_compare_all_pairs_follow_public_contract(temp_dir, raw_submission, capsys, method):
     corpus, assignments_path = inputs(temp_dir, raw_submission)
-    assert main(["compare", str(corpus), "--assignments", str(assignments_path)]) == 0
+    assert main(["compare", str(corpus), "--assignments", str(assignments_path), "--method", method]) == 0
     result = json.loads(capsys.readouterr().out)
     assert result["schema_version"] == 1
     assert result["query"] is None
@@ -77,10 +81,12 @@ def test_compare_all_pairs_follow_public_contract(temp_dir, raw_submission, caps
         assert row == expected.to_dict()
 
 
-def test_compare_file_output_equals_stdout(temp_dir, raw_submission, capsys):
+@pytest.mark.parametrize("method", ["token", "ast"])
+def test_compare_file_output_equals_stdout(temp_dir, raw_submission, capsys, method):
     corpus, assignments = inputs(temp_dir, raw_submission)
     output = temp_dir / "results" / "pairs.json"
-    assert main(["compare", str(corpus), "--assignments", str(assignments), "--output", str(output)]) == 0
+    assert main(["compare", str(corpus), "--assignments", str(assignments),
+                 "--method", method, "--output", str(output)]) == 0
     captured = capsys.readouterr()
     assert captured.err == ""
     assert json.loads(output.read_text(encoding="utf-8")) == json.loads(captured.out)
@@ -99,9 +105,11 @@ def test_compare_bad_configuration(temp_dir, raw_submission, capsys, extra):
     assert json.loads(captured.err)["code"] == "configuration_error"
 
 
-def test_compare_threshold_and_config_version_are_recorded(temp_dir, raw_submission, capsys):
+@pytest.mark.parametrize("method", ["token", "ast"])
+def test_compare_threshold_and_config_version_are_recorded(temp_dir, raw_submission, capsys, method):
     corpus, assignments = inputs(temp_dir, raw_submission)
-    args = ["compare", str(corpus), "--assignments", str(assignments), "--query", "q"]
+    args = ["compare", str(corpus), "--assignments", str(assignments),
+            "--query", "q", "--method", method]
     assert main(args) == 0
     original = json.loads(capsys.readouterr().out)
     assert main([*args, "--threshold", "1.000001", "--config-version", "2"]) == 0
@@ -115,7 +123,8 @@ def test_compare_threshold_and_config_version_are_recorded(temp_dir, raw_submiss
         assert after["review_required"] is False
 
 
-def test_compare_keeps_partial_input_errors_and_continues(temp_dir, raw_submission, capsys):
+@pytest.mark.parametrize("method", ["token", "ast"])
+def test_compare_keeps_partial_input_errors_and_continues(temp_dir, raw_submission, capsys, method):
     corpus, assignments = inputs(temp_dir, raw_submission)
     first = json.loads(corpus.read_text(encoding="utf-8").splitlines()[0])
     with corpus.open("a", encoding="utf-8") as stream:
@@ -126,7 +135,8 @@ def test_compare_keeps_partial_input_errors_and_continues(temp_dir, raw_submissi
             dict(first, submission_id="after", student_id="last"),
         ]:
             stream.write(json.dumps(row) + "\n")
-    assert main(["compare", str(corpus), "--assignments", str(assignments), "--query", "q"]) == 1
+    assert main(["compare", str(corpus), "--assignments", str(assignments),
+                 "--query", "q", "--method", method]) == 1
     captured = capsys.readouterr()
     assert captured.err == ""
     result = json.loads(captured.out)
@@ -150,20 +160,22 @@ def test_compare_empty_or_invalid_jsonl(temp_dir, raw_submission, capsys, conten
 
 @pytest.mark.parametrize("code, status", [("", "insufficient_data"), ("def broken(:", "invalid_source")])
 @pytest.mark.parametrize("query", [False, True])
+@pytest.mark.parametrize("method", ["token", "ast"])
 def test_compare_undefined_results_are_reported_without_ranking(
-    temp_dir, raw_submission, capsys, code, status, query,
+    temp_dir, raw_submission, capsys, code, status, query, method,
 ):
     corpus, assignments = inputs(temp_dir, raw_submission)
     write_rows(corpus, [
         dict(raw_submission, submission_id="q", student_id="a", code=code),
         dict(raw_submission, submission_id="z", student_id="b", code=code),
     ])
-    args = ["compare", str(corpus), "--assignments", str(assignments)]
+    args = ["compare", str(corpus), "--assignments", str(assignments), "--method", method]
     assert main(args + (["--query", "q"] if query else [])) == 0
     result = json.loads(capsys.readouterr().out)
     assert result["comparisons"] == len(result["undefined_pairs"]) == 1
     report = result["undefined_pairs"][0]
     assert report["status"] == status
+    assert report["method"] == method
     assert report["score"] is None and report["review_required"] is False
     assert report["reason"]
     assert result["pairs"] == ([] if query else [report])
@@ -192,6 +204,81 @@ def test_compare_keep_template_changes_score_and_exclusions(temp_dir, raw_submis
     assert after["excluded_left"] == after["excluded_right"] == []
     assert before["config_hash"] != after["config_hash"]
     assert included["config"]["exclude_template"] is False
+
+
+def test_compare_ast_renaming_preserves_original_evidence_and_token_default(
+    temp_dir, raw_submission, capsys,
+):
+    corpus, assignments = inputs(temp_dir, raw_submission)
+    template = "from typing import Iterable"
+    left_code = template + "\n\ndef solve(value):\n    answer = value + 1\n    return answer\n"
+    right_code = (
+        "# переименование\n\n" + template
+        + "\n\ndef renamed(number):\n    total = number + 1\n    return total\n"
+    )
+    write_rows(corpus, [
+        dict(raw_submission, submission_id="q", student_id="a", code=left_code),
+        dict(raw_submission, submission_id="renamed", student_id="b", code=right_code),
+    ])
+    assignments.write_text(json.dumps([
+        {"assignment_id": raw_submission["assignment_id"], "allowed_template": template, "requirements": []},
+    ]), encoding="utf-8")
+    args = ["compare", str(corpus), "--assignments", str(assignments), "--query", "q", "--top-k", "1"]
+    assert main(args) == 0
+    token_result = json.loads(capsys.readouterr().out)
+    assert token_result["config"]["method"] == token_result["pairs"][0]["method"] == "token"
+    assert token_result["pairs"][0]["score"] < 1
+    assert main([*args, "--method", "ast"]) == 0
+    result = json.loads(capsys.readouterr().out)
+    assert result["comparisons"] == 1 and result["undefined_pairs"] == []
+    report = result["pairs"][0]
+    assert report["right_id"] == "renamed"
+    assert report["method"] == "ast" and report["score"] == 1
+    assert report["evidence"]
+    assert report["excluded_left"][0]["start_line"] == 1
+    assert report["excluded_right"][0]["start_line"] == 3
+    for side, identifier, source in [("left", "q", left_code), ("right", "renamed", right_code)]:
+        original_nodes = {
+            (type(node).__name__, node.lineno, node.end_lineno)
+            for node in ast.walk(ast.parse(source)) if hasattr(node, "lineno")
+        }
+        for item in report["evidence"]:
+            reference = item[side]
+            node_type = item["feature"].split("(", 1)[0]
+            assert reference["submission_id"] == identifier
+            assert (node_type, reference["start_line"], reference["end_line"]) in original_nodes
+    assignment_evidence = next(item for item in report["evidence"] if item["feature"].startswith("Assign("))
+    assert assignment_evidence["left"]["start_line"] == assignment_evidence["left"]["end_line"] == 4
+    assert assignment_evidence["right"]["start_line"] == assignment_evidence["right"]["end_line"] == 6
+
+
+def test_compare_ast_query_reports_unsupported_and_invalid_sources_without_fallback(
+    temp_dir, raw_submission, capsys,
+):
+    corpus, assignments = inputs(temp_dir, raw_submission)
+    source = "def solve(values):\n    return values\n"
+    write_rows(corpus, [
+        dict(raw_submission, submission_id="q", student_id="a", code=source),
+        dict(raw_submission, submission_id="copy", student_id="b", code=source),
+        dict(raw_submission, submission_id="unsupported", student_id="c",
+             code="def solve(values):\n    return [value for value in values]\n"),
+        dict(raw_submission, submission_id="invalid", student_id="d", code="def broken(:"),
+    ])
+    args = ["compare", str(corpus), "--assignments", str(assignments), "--query", "q"]
+    assert main([*args, "--method", "ast"]) == 0
+    result = json.loads(capsys.readouterr().out)
+    assert result["comparisons"] == 3
+    assert [row["right_id"] for row in result["pairs"]] == ["copy"]
+    assert {row["right_id"]: row["status"] for row in result["undefined_pairs"]} == {
+        "unsupported": "unsupported", "invalid": "invalid_source",
+    }
+    for row in result["undefined_pairs"]:
+        assert row["method"] == "ast" and row["score"] is None
+        assert row["review_required"] is False and row["reason"]
+    assert main(args) == 0
+    token_result = json.loads(capsys.readouterr().out)
+    assert {row["right_id"] for row in token_result["pairs"]} == {"copy", "unsupported"}
+    assert [row["right_id"] for row in token_result["undefined_pairs"]] == ["invalid"]
 
 
 def test_compare_unknown_assignment_fails_even_when_filtered(temp_dir, raw_submission, capsys):
@@ -234,7 +321,7 @@ def test_compare_invalid_assignments_are_configuration_error(temp_dir, raw_submi
 
 
 @pytest.mark.parametrize("args", [
-    ["compare", "unused", "--assignments", "unused", "--method", "ast"],
+    ["compare", "unused", "--assignments", "unused", "--method", "unknown"],
     ["evaluate"], ["benchmark"],
 ])
 def test_future_methods_and_commands_are_not_available(args, capsys):
@@ -246,13 +333,17 @@ def test_future_methods_and_commands_are_not_available(args, capsys):
     assert "invalid choice" in captured.err
 
 
-def test_compare_subprocess(temp_dir, raw_submission):
+@pytest.mark.parametrize("method", ["token", "ast"])
+def test_compare_subprocess(temp_dir, raw_submission, method):
     corpus, assignments = inputs(temp_dir, raw_submission)
     result = subprocess.run(
         [sys.executable, "-X", "utf8", "-m", "school_lab.cli", "compare", str(corpus),
-         "--assignments", str(assignments), "--query", "q"],
+         "--assignments", str(assignments), "--query", "q", "--method", method],
         capture_output=True, check=False,
     )
     assert result.returncode == 0, result.stderr
     assert result.stderr == b""
-    assert [row["right_id"] for row in json.loads(result.stdout)["pairs"]] == ["b", "z"]
+    result_json = json.loads(result.stdout)
+    assert result_json["config"]["method"] == method
+    assert [row["right_id"] for row in result_json["pairs"]] == ["b", "z"]
+    assert all(row["method"] == method for row in result_json["pairs"])

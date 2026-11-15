@@ -1,0 +1,440 @@
+{
+  "schema_version": 1,
+  "config": {
+    "method": "ast",
+    "n": 3,
+    "exclude_template": true,
+    "max_evidence": 5,
+    "config_version": "1"
+  },
+  "corpus_sha256": "dfe15edfcf2d155a1a3a660821f647dd077e0b4cc40b21f1dfd2b608c36e5c0a",
+  "threshold": 0.5,
+  "query": "squares-family-0-v0",
+  "documents": 56,
+  "comparisons": 11,
+  "pairs": [
+    {
+      "left_id": "squares-family-0-v0",
+      "right_id": "squares-family-0-v1",
+      "left_hash": "2d1e314eb2b0204f75770033c162eba0d9b1eaddff66ec231ece9a66ece4663f",
+      "right_hash": "db4d5772f3f822ff5f12039acb5759978440f372d9df45d59c4129c6322b0d0d",
+      "method": "ast",
+      "method_version": "ast-subtree-v2",
+      "config_hash": "050d09930d985425a59be5045f61bc70be42a6b1a5f0913a629456282e45a893",
+      "score": 1.0,
+      "status": "ok",
+      "reason": null,
+      "evidence": [
+        {
+          "feature": "Assign(targets=[Name(id='v1', ctx=Store())], value=Constant(value=0))",
+          "left": {
+            "submission_id": "squares-family-0-v0",
+            "field": "code",
+            "start_line": 4,
+            "end_line": 4
+          },
+          "right": {
+            "submission_id": "squares-family-0-v1",
+            "field": "code",
+            "start_line": 5,
+            "end_line": 5
+          }
+        },
+        {
+          "feature": "AugAssign(target=Name(id='v1', ctx=Store()), op=Add(), value=BinOp(left=Name(id='v2', ctx=Load()), op=Mult(), right=Name(id='v2', ctx=Load())))",
+          "left": {
+            "submission_id": "squares-family-0-v0",
+            "field": "code",
+            "start_line": 7,
+            "end_line": 7
+          },
+          "right": {
+            "submission_id": "squares-family-0-v1",
+            "field": "code",
+            "start_line": 8,
+            "end_line": 8
+          }
+        },
+        {
+          "feature": "BinOp(left=Name(id='v2', ctx=Load()), op=Mult(), right=Name(id='v2', ctx=Load()))",
+          "left": {
+            "submission_id": "squares-family-0-v0",
+            "field": "code",
+            "start_line": 7,
+            "end_line": 7
+          },
+          "right": {
+            "submission_id": "squares-family-0-v1",
+            "field": "code",
+            "start_line": 8,
+            "end_line": 8
+          }
+        },
+        {
+          "feature": "Compare(left=Name(id='v2', ctx=Load()), ops=[GtE()], comparators=[Constant(value=0)])",
+          "left": {
+            "submission_id": "squares-family-0-v0",
+            "field": "code",
+            "start_line": 6,
+            "end_line": 6
+          },
+          "right": {
+            "submission_id": "squares-family-0-v1",
+            "field": "code",
+            "start_line": 7,
+            "end_line": 7
+          }
+        },
+        {
+          "feature": "Constant(value=0)",
+          "left": {
+            "submission_id": "squares-family-0-v0",
+            "field": "code",
+            "start_line": 4,
+            "end_line": 4
+          },
+          "right": {
+            "submission_id": "squares-family-0-v1",
+            "field": "code",
+            "start_line": 5,
+            "end_line": 5
+          }
+        }
+      ],
+      "excluded_left": [
+        {
+          "submission_id": "squares-family-0-v0",
+          "field": "code",
+          "start_line": 1,
+          "end_line": 1
+        }
+      ],
+      "excluded_right": [
+        {
+          "submission_id": "squares-family-0-v1",
+          "field": "code",
+          "start_line": 1,
+          "end_line": 1
+        }
+      ],
+      "review_required": true,
+      "threshold": 0.5,
+      "schema_version": 1
+    },
+    {
+      "left_id": "squares-family-0-v0",
+      "right_id": "squares-family-0-v2",
+      "left_hash": "2d1e314eb2b0204f75770033c162eba0d9b1eaddff66ec231ece9a66ece4663f",
+      "right_hash": "ce43c8e779ebaf0bd2a5cf549c21c554b300f10249968a972af59b1d61cc2238",
+      "method": "ast",
+      "method_version": "ast-subtree-v2",
+      "config_hash": "050d09930d985425a59be5045f61bc70be42a6b1a5f0913a629456282e45a893",
+      "score": 1.0,
+      "status": "ok",
+      "reason": null,
+      "evidence": [
+        {
+          "feature": "Assign(targets=[Name(id='v1', ctx=Store())], value=Constant(value=0))",
+          "left": {
+            "submission_id": "squares-family-0-v0",
+            "field": "code",
+            "start_line": 4,
+            "end_line": 4
+          },
+          "right": {
+            "submission_id": "squares-family-0-v2",
+            "field": "code",
+            "start_line": 4,
+            "end_line": 4
+          }
+        },
+        {
+          "feature": "AugAssign(target=Name(id='v1', ctx=Store()), op=Add(), value=BinOp(left=Name(id='v2', ctx=Load()), op=Mult(), right=Name(id='v2', ctx=Load())))",
+          "left": {
+            "submission_id": "squares-family-0-v0",
+            "field": "code",
+            "start_line": 7,
+            "end_line": 7
+          },
+          "right": {
+            "submission_id": "squares-family-0-v2",
+            "field": "code",
+            "start_line": 7,
+            "end_line": 7
+          }
+        },
+        {
+          "feature": "BinOp(left=Name(id='v2', ctx=Load()), op=Mult(), right=Name(id='v2', ctx=Load()))",
+          "left": {
+            "submission_id": "squares-family-0-v0",
+            "field": "code",
+            "start_line": 7,
+            "end_line": 7
+          },
+          "right": {
+            "submission_id": "squares-family-0-v2",
+            "field": "code",
+            "start_line": 7,
+            "end_line": 7
+          }
+        },
+        {
+          "feature": "Compare(left=Name(id='v2', ctx=Load()), ops=[GtE()], comparators=[Constant(value=0)])",
+          "left": {
+            "submission_id": "squares-family-0-v0",
+            "field": "code",
+            "start_line": 6,
+            "end_line": 6
+          },
+          "right": {
+            "submission_id": "squares-family-0-v2",
+            "field": "code",
+            "start_line": 6,
+            "end_line": 6
+          }
+        },
+        {
+          "feature": "Constant(value=0)",
+          "left": {
+            "submission_id": "squares-family-0-v0",
+            "field": "code",
+            "start_line": 4,
+            "end_line": 4
+          },
+          "right": {
+            "submission_id": "squares-family-0-v2",
+            "field": "code",
+            "start_line": 4,
+            "end_line": 4
+          }
+        }
+      ],
+      "excluded_left": [
+        {
+          "submission_id": "squares-family-0-v0",
+          "field": "code",
+          "start_line": 1,
+          "end_line": 1
+        }
+      ],
+      "excluded_right": [
+        {
+          "submission_id": "squares-family-0-v2",
+          "field": "code",
+          "start_line": 1,
+          "end_line": 1
+        }
+      ],
+      "review_required": true,
+      "threshold": 0.5,
+      "schema_version": 1
+    },
+    {
+      "left_id": "squares-family-0-v0",
+      "right_id": "squares-family-3-v0",
+      "left_hash": "2d1e314eb2b0204f75770033c162eba0d9b1eaddff66ec231ece9a66ece4663f",
+      "right_hash": "8b42e1cf7eedb69be95867d75f1189d8213348218b4b380a2455a298ee740389",
+      "method": "ast",
+      "method_version": "ast-subtree-v2",
+      "config_hash": "050d09930d985425a59be5045f61bc70be42a6b1a5f0913a629456282e45a893",
+      "score": 0.2857142857142857,
+      "status": "ok",
+      "reason": null,
+      "evidence": [
+        {
+          "feature": "Compare(left=Name(id='v2', ctx=Load()), ops=[GtE()], comparators=[Constant(value=0)])",
+          "left": {
+            "submission_id": "squares-family-0-v0",
+            "field": "code",
+            "start_line": 6,
+            "end_line": 6
+          },
+          "right": {
+            "submission_id": "squares-family-3-v0",
+            "field": "code",
+            "start_line": 6,
+            "end_line": 6
+          }
+        },
+        {
+          "feature": "Constant(value=0)",
+          "left": {
+            "submission_id": "squares-family-0-v0",
+            "field": "code",
+            "start_line": 4,
+            "end_line": 4
+          },
+          "right": {
+            "submission_id": "squares-family-3-v0",
+            "field": "code",
+            "start_line": 6,
+            "end_line": 6
+          }
+        },
+        {
+          "feature": "Name(id='v0', ctx=Load())",
+          "left": {
+            "submission_id": "squares-family-0-v0",
+            "field": "code",
+            "start_line": 5,
+            "end_line": 5
+          },
+          "right": {
+            "submission_id": "squares-family-3-v0",
+            "field": "code",
+            "start_line": 5,
+            "end_line": 5
+          }
+        },
+        {
+          "feature": "Name(id='v1', ctx=Load())",
+          "left": {
+            "submission_id": "squares-family-0-v0",
+            "field": "code",
+            "start_line": 8,
+            "end_line": 8
+          },
+          "right": {
+            "submission_id": "squares-family-3-v0",
+            "field": "code",
+            "start_line": 7,
+            "end_line": 7
+          }
+        },
+        {
+          "feature": "Name(id='v1', ctx=Store())",
+          "left": {
+            "submission_id": "squares-family-0-v0",
+            "field": "code",
+            "start_line": 4,
+            "end_line": 4
+          },
+          "right": {
+            "submission_id": "squares-family-3-v0",
+            "field": "code",
+            "start_line": 4,
+            "end_line": 4
+          }
+        }
+      ],
+      "excluded_left": [
+        {
+          "submission_id": "squares-family-0-v0",
+          "field": "code",
+          "start_line": 1,
+          "end_line": 1
+        }
+      ],
+      "excluded_right": [
+        {
+          "submission_id": "squares-family-3-v0",
+          "field": "code",
+          "start_line": 1,
+          "end_line": 1
+        }
+      ],
+      "review_required": false,
+      "threshold": 0.5,
+      "schema_version": 1
+    }
+  ],
+  "undefined_pairs": [
+    {
+      "left_id": "squares-family-0-v0",
+      "right_id": "squares-family-1-v0",
+      "left_hash": "2d1e314eb2b0204f75770033c162eba0d9b1eaddff66ec231ece9a66ece4663f",
+      "right_hash": "d62ca2ee4cce1bafe4ed1e3d650a871947bd4f65ce33bc84751793ffe8d3fee0",
+      "method": "ast",
+      "method_version": "ast-subtree-v2",
+      "config_hash": "050d09930d985425a59be5045f61bc70be42a6b1a5f0913a629456282e45a893",
+      "score": null,
+      "status": "unsupported",
+      "reason": "squares-family-1-v0: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются",
+      "evidence": [],
+      "excluded_left": [
+        {
+          "submission_id": "squares-family-0-v0",
+          "field": "code",
+          "start_line": 1,
+          "end_line": 1
+        }
+      ],
+      "excluded_right": [
+        {
+          "submission_id": "squares-family-1-v0",
+          "field": "code",
+          "start_line": 1,
+          "end_line": 1
+        }
+      ],
+      "review_required": false,
+      "threshold": 0.5,
+      "schema_version": 1
+    },
+    {
+      "left_id": "squares-family-0-v0",
+      "right_id": "squares-family-1-v1",
+      "left_hash": "2d1e314eb2b0204f75770033c162eba0d9b1eaddff66ec231ece9a66ece4663f",
+      "right_hash": "3432d473ff5a28acb3c4a991bda0e6a177018258ed29b8141699672e832bbd00",
+      "method": "ast",
+      "method_version": "ast-subtree-v2",
+      "config_hash": "050d09930d985425a59be5045f61bc70be42a6b1a5f0913a629456282e45a893",
+      "score": null,
+      "status": "unsupported",
+      "reason": "squares-family-1-v1: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются",
+      "evidence": [],
+      "excluded_left": [
+        {
+          "submission_id": "squares-family-0-v0",
+          "field": "code",
+          "start_line": 1,
+          "end_line": 1
+        }
+      ],
+      "excluded_right": [
+        {
+          "submission_id": "squares-family-1-v1",
+          "field": "code",
+          "start_line": 1,
+          "end_line": 1
+        }
+      ],
+      "review_required": false,
+      "threshold": 0.5,
+      "schema_version": 1
+    },
+    {
+      "left_id": "squares-family-0-v0",
+      "right_id": "squares-family-1-v2",
+      "left_hash": "2d1e314eb2b0204f75770033c162eba0d9b1eaddff66ec231ece9a66ece4663f",
+      "right_hash": "ec2067ee3d28549c4656c8f8449ff147368ca09fb77529cdf5ed3c8be255746a",
+      "method": "ast",
+      "method_version": "ast-subtree-v2",
+      "config_hash": "050d09930d985425a59be5045f61bc70be42a6b1a5f0913a629456282e45a893",
+      "score": null,
+      "status": "unsupported",
+      "reason": "squares-family-1-v2: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются",
+      "evidence": [],
+      "excluded_left": [
+        {
+          "submission_id": "squares-family-0-v0",
+          "field": "code",
+          "start_line": 1,
+          "end_line": 1
+        }
+      ],
+      "excluded_right": [
+        {
+          "submission_id": "squares-family-1-v2",
+          "field": "code",
+          "start_line": 1,
+          "end_line": 1
+        }
+      ],
+      "review_required": false,
+      "threshold": 0.5,
+      "schema_version": 1
+    }
+  ],
+  "errors": []
+}
