@@ -1,0 +1,323 @@
+{
+  "schema_version": 1,
+  "seed": 42,
+  "environment": {
+    "python": "3.13.9 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 19:09:58) [MSC v.1929 64 bit (AMD64)]",
+    "implementation": "CPython",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "packages": {
+      "school-lab": "1.0.0",
+      "pytest": "9.1.1"
+    }
+  },
+  "configuration": {
+    "token": {
+      "method": "token",
+      "n": 3,
+      "exclude_template": true,
+      "max_evidence": 5,
+      "config_version": "1"
+    },
+    "ast": {
+      "method": "ast",
+      "n": 3,
+      "exclude_template": true,
+      "max_evidence": 5,
+      "config_version": "1"
+    }
+  },
+  "config_hashes_by_assignment": {
+    "token": {
+      "squares": "8aceef471ae3a9ea9f445bd97b94ea7643c5c2e76347d8e94f41ffb4c69473c3",
+      "count_positive": "03c56fb7a6e1eee8874b90b26f7ecfa8d7750508575441bcdf60a9114a23d6fb",
+      "maximum": "a427b862f064f312e4cfdf56580fc2ee8c5ffa719917dbb37a4ee6e36d1aa985",
+      "reverse": "f5e08051a7b27112dfe8792aa4dcac95578f1d3150f074cb2d38e26313a3be4f",
+      "template": "064104da9dcd00d41452a81c089b56967ffbe835e18d2b1ed8e7c256c236bfb8"
+    },
+    "ast": {
+      "squares": "050d09930d985425a59be5045f61bc70be42a6b1a5f0913a629456282e45a893",
+      "count_positive": "16ceeb817ac05f7739f47f49d320512667d265e9d0dd66b8300d3947256be13b",
+      "maximum": "e6d12b0336831a8d80de867a2b7dbc25ae5c96afad7cbed902b1cb2a51177427",
+      "reverse": "769bce08325c666faec7bf3ced13d88e68025cb8436300a508bb725a15f7669b",
+      "template": "c639cfb65bfdf432bc0122104fe88a5b151cb6317034456918d1a89a2fa43fed"
+    }
+  },
+  "configuration_sha256": "d27ffa5affbd64e31abe5e888d8920bbf757c01cb47c09434f319b27fe4af543",
+  "inputs": {
+    "corpus": {
+      "file": "submissions.jsonl",
+      "sha256": "dfe15edfcf2d155a1a3a660821f647dd077e0b4cc40b21f1dfd2b608c36e5c0a"
+    },
+    "assignments": {
+      "file": "assignments.json",
+      "sha256": "441c9653cad7044d721888d10ec70cb7d70a69beedfe37c1766deb6d6ee78302"
+    },
+    "provenance": {
+      "file": "provenance.json",
+      "sha256": "b386afebfeb9cbde3667d0a6ee830c657ed5388e2119f9d5fc4fc599d220c0cd"
+    },
+    "split": {
+      "file": "split.json",
+      "sha256": "017c888fbd8e8e16feb12233d360b580bd26e5b4383dc72f316b5753d359af38"
+    },
+    "pairs": {
+      "file": "pairs.jsonl",
+      "sha256": "b88f4cdc7bb734c09f91ed6206a300ede42a4b4e087ac7cceba85e5a587aff2b"
+    },
+    "diagnostics.jsonl": {
+      "file": "diagnostics.jsonl",
+      "sha256": "aa40232618405e354dacd729f731ac36ce903c9b5f60ceaa52d043ed1dcfa5ea"
+    },
+    "diagnostic_cases.json": {
+      "file": "diagnostic_cases.json",
+      "sha256": "0a9708c7b0599447a4f9ff354819c0c86a3b6815c2940bb9a492475a2e6e540d"
+    },
+    "config.json": {
+      "file": "config.json",
+      "sha256": "2ebacf3ad0e14f8838250daaa37f0f9ce41ff156e9ed90dc3801eece25762a03"
+    },
+    "corpus_manifest.json": {
+      "file": "corpus_manifest.json",
+      "sha256": "0e2f40129a6c36f40d37a5edf557e9c50821b074fe46ee5212e1fbecfef4670b"
+    }
+  },
+  "corpus_sha256": "dfe15edfcf2d155a1a3a660821f647dd077e0b4cc40b21f1dfd2b608c36e5c0a",
+  "source_sha256": "adba49d34634520d4f8804a962727179d9a163ae87cdf30ea3bbc5419c2c6ba8",
+  "source_files_sha256": {
+    "__init__.py": "1572d18263c294ae0bbc50753c9443ff60742271e0288c08bf40ac2bb5b6fc75",
+    "analyzers.py": "e18939d88d1d099edd348e8e47a7d4819128ee3e09e6a70f55d85c279e8e78d6",
+    "application.py": "3a9717a244f36512f1dd2cc6db63c45e860d6fcd8ca0971f858f8750fc1fc980",
+    "cli.py": "344405f76ff7f047218d525c5898b3b0d822f9a3989c73279144ae04f95e9ea6",
+    "comparison_cli.py": "be313450baa9f1aaf04f22bb7f888304bdbcfed037913c1ada745d2421a9fb39",
+    "errors.py": "2ca57f323b9f3baaa2ade08c1f25351319425d31515f66f8ed7c211f9f0ad80c",
+    "evaluation.py": "6a20a589af60ea4cde41704a9ade80c64eeeaf31b296389c7611b374783bcc41",
+    "experiments.py": "23d9ed0603f30b819b974e70d309474ed36030c33eb5b4dbedbe61f84f0c367b",
+    "features.py": "8a847f60f39449a30735baf4e43fdc56536f0e5e7fecb2e65a13c1e77e315fc4",
+    "hashing.py": "00f557e4055a0c5dfa825e4e53a9942c8d41351d3fad883eb9078a378f972658",
+    "models.py": "9074b3dc65d31ac3929698ecc7d0b3da8c15df24d240134c2a5af9641620473f",
+    "parsing.py": "c6eab3ad44004e92f912533d5748d7fb58016ba55395b0bcc14613d50df0f4f0",
+    "pipeline.py": "bc27a8ac9d547880c56e4757574d4691650fd412c7619152123515e58a857077",
+    "plugins.py": "50802336288b77569cd4fac24dff9cf2fcbd74cc5ee466a009865ac0ebf67b7a",
+    "reports.py": "601588d6ccb372191d7225e1fd0d7ef3f34c453796455605935c77eba63abeb2",
+    "repositories.py": "1482e2437003723a26d04afce6a18c8e8802dddb8e1430a13d5b7355069894c7",
+    "services.py": "50c91e1d1310e28abaa63f4505e66970a6ee1e349c46bf64337d34501952288d",
+    "similarity.py": "5c96046dd393df4d101a0575fdf7806ab3c0f8be30e4b168f1584130df96fa4b",
+    "similarity_models.py": "e5b3251ecbb4ae4bf2748f509b44af25eb34cb576ec3128c0a8dc7e0bb990408",
+    "source_text.py": "bed95217cef19e41f46eb93c02f5110442782b3d698721914a31fa604aeaa8e4",
+    "sources.py": "34dfa945e7857711abb3ef400fe71b11ad4b8bb05481f404de0c76b1a6282f48",
+    "timing.py": "ac2bc494fc3973c70aadae7cb83be0eb9ae8da901eb2d28d2a5acf210b43d2fc"
+  },
+  "documents": 56,
+  "labelled_pairs": 132,
+  "template_only_pairs": 12,
+  "families": 24,
+  "split": {
+    "validation": [
+      "squares-family-0-v0",
+      "squares-family-0-v1",
+      "squares-family-0-v2",
+      "squares-family-2-v0",
+      "squares-family-2-v1",
+      "squares-family-2-v2",
+      "count_positive-family-0-v0",
+      "count_positive-family-0-v1",
+      "count_positive-family-0-v2",
+      "count_positive-family-2-v0",
+      "count_positive-family-2-v1",
+      "count_positive-family-2-v2",
+      "maximum-family-0-v0",
+      "maximum-family-0-v1",
+      "maximum-family-0-v2",
+      "maximum-family-2-v0",
+      "maximum-family-2-v1",
+      "maximum-family-2-v2",
+      "reverse-family-0-v0",
+      "reverse-family-0-v1",
+      "reverse-family-0-v2",
+      "reverse-family-2-v0",
+      "reverse-family-2-v1",
+      "reverse-family-2-v2",
+      "template-independent-0",
+      "template-independent-1",
+      "template-independent-2",
+      "template-independent-3"
+    ],
+    "test": [
+      "squares-family-1-v0",
+      "squares-family-1-v1",
+      "squares-family-1-v2",
+      "squares-family-3-v0",
+      "squares-family-3-v1",
+      "squares-family-3-v2",
+      "count_positive-family-1-v0",
+      "count_positive-family-1-v1",
+      "count_positive-family-1-v2",
+      "count_positive-family-3-v0",
+      "count_positive-family-3-v1",
+      "count_positive-family-3-v2",
+      "maximum-family-1-v0",
+      "maximum-family-1-v1",
+      "maximum-family-1-v2",
+      "maximum-family-3-v0",
+      "maximum-family-3-v1",
+      "maximum-family-3-v2",
+      "reverse-family-1-v0",
+      "reverse-family-1-v1",
+      "reverse-family-1-v2",
+      "reverse-family-3-v0",
+      "reverse-family-3-v1",
+      "reverse-family-3-v2",
+      "template-independent-4",
+      "template-independent-5",
+      "template-independent-6",
+      "template-independent-7"
+    ]
+  },
+  "split_families": {
+    "validation": [
+      "count_positive-family-0",
+      "count_positive-family-2",
+      "maximum-family-0",
+      "maximum-family-2",
+      "reverse-family-0",
+      "reverse-family-2",
+      "squares-family-0",
+      "squares-family-2",
+      "template-independent-0",
+      "template-independent-1",
+      "template-independent-2",
+      "template-independent-3"
+    ],
+    "test": [
+      "count_positive-family-1",
+      "count_positive-family-3",
+      "maximum-family-1",
+      "maximum-family-3",
+      "reverse-family-1",
+      "reverse-family-3",
+      "squares-family-1",
+      "squares-family-3",
+      "template-independent-4",
+      "template-independent-5",
+      "template-independent-6",
+      "template-independent-7"
+    ]
+  },
+  "threshold_selection": "maximum validation F1; ties choose larger threshold; test never tunes threshold",
+  "abstention_policy": "metrics on defined scores plus abstention rate and recall across all positive pairs",
+  "metrics": {
+    "token": {
+      "threshold": 0.0975609756097561,
+      "threshold_selected_on": "validation",
+      "validation": {
+        "tp": 22,
+        "fp": 4,
+        "fn": 2,
+        "tn": 38,
+        "total_pairs": 66,
+        "defined_pairs": 66,
+        "precision": 0.8461538461538461,
+        "recall_defined": 0.9166666666666666,
+        "f1_defined": 0.88,
+        "abstentions": 0,
+        "abstention_rate": 0.0,
+        "positive_abstentions": 0,
+        "recall_all_positives": 0.9166666666666666
+      },
+      "test": {
+        "tp": 20,
+        "fp": 3,
+        "fn": 4,
+        "tn": 39,
+        "total_pairs": 66,
+        "defined_pairs": 66,
+        "precision": 0.8695652173913043,
+        "recall_defined": 0.8333333333333334,
+        "f1_defined": 0.851063829787234,
+        "abstentions": 0,
+        "abstention_rate": 0.0,
+        "positive_abstentions": 0,
+        "recall_all_positives": 0.8333333333333334
+      },
+      "test_template_only": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 6,
+        "total_pairs": 6,
+        "defined_pairs": 6,
+        "precision": null,
+        "recall_defined": null,
+        "f1_defined": null,
+        "abstentions": 0,
+        "abstention_rate": 0.0,
+        "positive_abstentions": 0,
+        "recall_all_positives": null
+      }
+    },
+    "ast": {
+      "threshold": 1.0,
+      "threshold_selected_on": "validation",
+      "validation": {
+        "tp": 24,
+        "fp": 0,
+        "fn": 0,
+        "tn": 36,
+        "total_pairs": 66,
+        "defined_pairs": 60,
+        "precision": 1.0,
+        "recall_defined": 1.0,
+        "f1_defined": 1.0,
+        "abstentions": 6,
+        "abstention_rate": 0.09090909090909091,
+        "positive_abstentions": 0,
+        "recall_all_positives": 1.0
+      },
+      "test": {
+        "tp": 18,
+        "fp": 0,
+        "fn": 0,
+        "tn": 18,
+        "total_pairs": 66,
+        "defined_pairs": 36,
+        "precision": 1.0,
+        "recall_defined": 1.0,
+        "f1_defined": 1.0,
+        "abstentions": 30,
+        "abstention_rate": 0.45454545454545453,
+        "positive_abstentions": 6,
+        "recall_all_positives": 0.75
+      },
+      "test_template_only": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 0,
+        "total_pairs": 6,
+        "defined_pairs": 0,
+        "precision": null,
+        "recall_defined": null,
+        "f1_defined": null,
+        "abstentions": 6,
+        "abstention_rate": 1.0,
+        "positive_abstentions": 0,
+        "recall_all_positives": null
+      }
+    }
+  },
+  "test_error_count": 37,
+  "diagnostic_comparisons": 10,
+  "artifacts": {
+    "pairs": "pair_results.jsonl",
+    "metrics": "metrics.json",
+    "errors": "error_analysis.json",
+    "manifest": "run.json"
+  },
+  "limitations": [
+    "Синтетический корпус: результаты не оценивают плагиат, использование ИИ или качество алгоритма.",
+    "Пары зависимы; разнообразие определяется семействами, а не только числом пар.",
+    "Некоторые конструкции AST намеренно не поддерживаются и дают явный отказ.",
+    "Диагностические случаи имеют заранее заданные пороги и не включены в test-метрики.",
+    "После анализа test новые изменения требуют нового отложенного корпуса для независимой оценки."
+  ]
+}

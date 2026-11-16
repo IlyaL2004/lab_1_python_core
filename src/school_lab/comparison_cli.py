@@ -1,4 +1,4 @@
-"""Token/AST-сравнение через CLI с повторной подготовкой признаков каждой пары."""
+"""Token/AST-сравнение и оценка качества через CLI без общего индекса признаков."""
 
 import argparse
 import json
@@ -10,6 +10,7 @@ from itertools import combinations
 from pathlib import Path
 
 from .errors import AnalysisFailure, SubmissionError
+from .experiments import run_experiment
 from .parsing import load_assignments
 from .pipeline import file_sha256, iter_submissions
 from .similarity import compare_submissions, eligible
@@ -17,10 +18,10 @@ from .similarity_models import SimilarityConfig
 
 
 def add_commands(commands: argparse._SubParsersAction) -> None:
-    """Добавить token/AST-команду compare к прежнему интерфейсу school-lab.
+    """Добавить команды compare и evaluate к прежнему интерфейсу school-lab.
 
     Вход: commands — подкоманды ArgumentParser.
-    Выход: None; зарегистрировано сравнение всех пар или top-k для запроса.
+    Выход: None; зарегистрированы сравнение пар/top-k и оценка фиксированного корпуса.
     """
     compare = commands.add_parser("compare", help="Сравнить код методом token или AST")
     compare.add_argument("path", type=Path)
@@ -32,6 +33,10 @@ def add_commands(commands: argparse._SubParsersAction) -> None:
     compare.add_argument("--config-version", default="1")
     compare.add_argument("--keep-template", action="store_true")
     compare.add_argument("--output", type=Path)
+    evaluate = commands.add_parser("evaluate", help="Настроить пороги и оценить token и AST")
+    evaluate.add_argument("--data", type=Path, default=Path("data/lab2"))
+    evaluate.add_argument("--output", type=Path, default=Path("results/lab2"))
+    evaluate.add_argument("--seed", type=int, default=42)
 
 
 def compare_corpus(args: argparse.Namespace) -> dict[str, object]:
@@ -93,24 +98,31 @@ def compare_corpus(args: argparse.Namespace) -> dict[str, object]:
 
 
 def run_command(args: argparse.Namespace) -> int:
-    """Запустить compare, сохранив машинный JSON и коды завершения.
+    """Запустить compare или evaluate, сохранив машинный JSON и коды завершения.
 
-    Вход: args — аргументы compare.
+    Вход: args — аргументы compare/evaluate.
     Выход: 0 при успехе, 1 при частичном приёме, 2 при ошибке запуска.
     JSON терминала экранирует Unicode; файл результата записывается в UTF-8.
     SyntaxError и неподдерживаемые AST-конструкции отражаются в парном отчёте
     как явные отказы метода, без автоматического переключения на token.
     """
     try:
-        result = compare_corpus(args)
-        if args.output is not None:
-            args.output.parent.mkdir(parents=True, exist_ok=True)
-            args.output.write_text(
-                json.dumps(result, ensure_ascii=False, allow_nan=False, indent=2) + "\n",
-                encoding="utf-8",
+        if args.command == "compare":
+            result = compare_corpus(args)
+            if args.output is not None:
+                args.output.parent.mkdir(parents=True, exist_ok=True)
+                args.output.write_text(
+                    json.dumps(result, ensure_ascii=False, allow_nan=False, indent=2) + "\n",
+                    encoding="utf-8",
+                )
+        else:
+            result = run_experiment(
+                args.data / "submissions.jsonl", args.data / "assignments.json",
+                args.data / "provenance.json", args.data / "split.json",
+                args.data / "pairs.jsonl", args.output, seed=args.seed,
             )
         print(json.dumps(result, ensure_ascii=True, allow_nan=False))
-        return 1 if result["errors"] else 0
+        return 1 if result.get("errors") else 0
     except (OSError, UnicodeError, SubmissionError, AnalysisFailure, ValueError) as exc:
         code = "source_unavailable" if isinstance(exc, (OSError, UnicodeError)) else "configuration_error"
         print(json.dumps({"code": code, "message": str(exc)}, ensure_ascii=True), file=sys.stderr)

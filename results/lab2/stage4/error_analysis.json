@@ -1,0 +1,2981 @@
+{
+  "test_errors": [
+    {
+      "left_id": "squares-family-1-v2",
+      "right_id": "squares-family-3-v2",
+      "split": "test",
+      "derivation_relation": false,
+      "template_only": false,
+      "explanation": "Разные явно записанные корни одного задания; общего предка в сценарии нет.",
+      "method": "token",
+      "threshold": 0.0975609756097561,
+      "kind": "FP",
+      "expected_signal": false,
+      "predicted_signal": true,
+      "left_family": "squares-family-1",
+      "right_family": "squares-family-3",
+      "result": {
+        "left_id": "squares-family-1-v2",
+        "right_id": "squares-family-3-v2",
+        "left_hash": "ec2067ee3d28549c4656c8f8449ff147368ca09fb77529cdf5ed3c8be255746a",
+        "right_hash": "3eaa2b15a4b672cf670840bbd92e79601e956026925ee9c259702fedaf51de43",
+        "method": "token",
+        "method_version": "token-ngram-v2",
+        "config_hash": "8aceef471ae3a9ea9f445bd97b94ea7643c5c2e76347d8e94f41ffb4c69473c3",
+        "score": 0.13636363636363635,
+        "status": "ok",
+        "reason": null,
+        "evidence": [
+          {
+            "feature": "[[\"NAME\",\"def\"],[\"NAME\",\"solve\"],[\"OP\",\"(\"]]",
+            "left": {
+              "submission_id": "squares-family-1-v2",
+              "field": "code",
+              "start_line": 3,
+              "end_line": 3
+            },
+            "right": {
+              "submission_id": "squares-family-3-v2",
+              "field": "code",
+              "start_line": 3,
+              "end_line": 3
+            }
+          },
+          {
+            "feature": "[[\"NAME\",\"renamed_0\"],[\"OP\",\")\"],[\"OP\",\":\"]]",
+            "left": {
+              "submission_id": "squares-family-1-v2",
+              "field": "code",
+              "start_line": 3,
+              "end_line": 3
+            },
+            "right": {
+              "submission_id": "squares-family-3-v2",
+              "field": "code",
+              "start_line": 3,
+              "end_line": 3
+            }
+          },
+          {
+            "feature": "[[\"NAME\",\"return\"],[\"NAME\",\"sum\"],[\"OP\",\"(\"]]",
+            "left": {
+              "submission_id": "squares-family-1-v2",
+              "field": "code",
+              "start_line": 4,
+              "end_line": 4
+            },
+            "right": {
+              "submission_id": "squares-family-3-v2",
+              "field": "code",
+              "start_line": 8,
+              "end_line": 8
+            }
+          },
+          {
+            "feature": "[[\"NAME\",\"solve\"],[\"OP\",\"(\"],[\"NAME\",\"renamed_0\"]]",
+            "left": {
+              "submission_id": "squares-family-1-v2",
+              "field": "code",
+              "start_line": 3,
+              "end_line": 3
+            },
+            "right": {
+              "submission_id": "squares-family-3-v2",
+              "field": "code",
+              "start_line": 3,
+              "end_line": 3
+            }
+          },
+          {
+            "feature": "[[\"NAME\",\"sum\"],[\"OP\",\"(\"],[\"NAME\",\"renamed_1\"]]",
+            "left": {
+              "submission_id": "squares-family-1-v2",
+              "field": "code",
+              "start_line": 4,
+              "end_line": 4
+            },
+            "right": {
+              "submission_id": "squares-family-3-v2",
+              "field": "code",
+              "start_line": 8,
+              "end_line": 8
+            }
+          }
+        ],
+        "excluded_left": [
+          {
+            "submission_id": "squares-family-1-v2",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "squares-family-3-v2",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": true,
+        "threshold": 0.0975609756097561,
+        "schema_version": 1
+      },
+      "analysis": "По provenance корни независимы. Общая постановка и короткие конструкции могут давать одинаковые признаки; для AST дополнительная причина — потеря различий при нормализации."
+    },
+    {
+      "left_id": "count_positive-family-1-v2",
+      "right_id": "count_positive-family-3-v2",
+      "split": "test",
+      "derivation_relation": false,
+      "template_only": false,
+      "explanation": "Разные явно записанные корни одного задания; общего предка в сценарии нет.",
+      "method": "token",
+      "threshold": 0.0975609756097561,
+      "kind": "FP",
+      "expected_signal": false,
+      "predicted_signal": true,
+      "left_family": "count_positive-family-1",
+      "right_family": "count_positive-family-3",
+      "result": {
+        "left_id": "count_positive-family-1-v2",
+        "right_id": "count_positive-family-3-v2",
+        "left_hash": "cb3642c4892b61231064bc970d62834921ba5f8100c628e3d4354ddf489a0ec9",
+        "right_hash": "c6caf14c038c9341806e206a02a2bc1d92fa382319e4a3c54d912369a96768dc",
+        "method": "token",
+        "method_version": "token-ngram-v2",
+        "config_hash": "03c56fb7a6e1eee8874b90b26f7ecfa8d7750508575441bcdf60a9114a23d6fb",
+        "score": 0.0975609756097561,
+        "status": "ok",
+        "reason": null,
+        "evidence": [
+          {
+            "feature": "[[\"NAME\",\"def\"],[\"NAME\",\"solve\"],[\"OP\",\"(\"]]",
+            "left": {
+              "submission_id": "count_positive-family-1-v2",
+              "field": "code",
+              "start_line": 3,
+              "end_line": 3
+            },
+            "right": {
+              "submission_id": "count_positive-family-3-v2",
+              "field": "code",
+              "start_line": 3,
+              "end_line": 3
+            }
+          },
+          {
+            "feature": "[[\"NAME\",\"renamed_0\"],[\"OP\",\")\"],[\"OP\",\":\"]]",
+            "left": {
+              "submission_id": "count_positive-family-1-v2",
+              "field": "code",
+              "start_line": 3,
+              "end_line": 3
+            },
+            "right": {
+              "submission_id": "count_positive-family-3-v2",
+              "field": "code",
+              "start_line": 3,
+              "end_line": 3
+            }
+          },
+          {
+            "feature": "[[\"NAME\",\"solve\"],[\"OP\",\"(\"],[\"NAME\",\"renamed_0\"]]",
+            "left": {
+              "submission_id": "count_positive-family-1-v2",
+              "field": "code",
+              "start_line": 3,
+              "end_line": 3
+            },
+            "right": {
+              "submission_id": "count_positive-family-3-v2",
+              "field": "code",
+              "start_line": 3,
+              "end_line": 3
+            }
+          },
+          {
+            "feature": "[[\"OP\",\"(\"],[\"NAME\",\"renamed_0\"],[\"OP\",\")\"]]",
+            "left": {
+              "submission_id": "count_positive-family-1-v2",
+              "field": "code",
+              "start_line": 3,
+              "end_line": 3
+            },
+            "right": {
+              "submission_id": "count_positive-family-3-v2",
+              "field": "code",
+              "start_line": 3,
+              "end_line": 3
+            }
+          }
+        ],
+        "excluded_left": [
+          {
+            "submission_id": "count_positive-family-1-v2",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "count_positive-family-3-v2",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": true,
+        "threshold": 0.0975609756097561,
+        "schema_version": 1
+      },
+      "analysis": "По provenance корни независимы. Общая постановка и короткие конструкции могут давать одинаковые признаки; для AST дополнительная причина — потеря различий при нормализации."
+    },
+    {
+      "left_id": "maximum-family-3-v0",
+      "right_id": "maximum-family-3-v2",
+      "split": "test",
+      "derivation_relation": true,
+      "template_only": false,
+      "explanation": "Потомки одного явно заданного корня.",
+      "method": "token",
+      "threshold": 0.0975609756097561,
+      "kind": "FN",
+      "expected_signal": true,
+      "predicted_signal": false,
+      "left_family": "maximum-family-3",
+      "right_family": "maximum-family-3",
+      "result": {
+        "left_id": "maximum-family-3-v0",
+        "right_id": "maximum-family-3-v2",
+        "left_hash": "f51c2c2bc6411816e0236c160464fa40a183e6450c1bf9a06b6c5ef38bcdf0c8",
+        "right_hash": "50c6bddec07234984c6a273d4d27d4c05dd886c712d59e750d918ba4b294f644",
+        "method": "token",
+        "method_version": "token-ngram-v2",
+        "config_hash": "a427b862f064f312e4cfdf56580fc2ee8c5ffa719917dbb37a4ee6e36d1aa985",
+        "score": 0.07042253521126761,
+        "status": "ok",
+        "reason": null,
+        "evidence": [
+          {
+            "feature": "[[\"NAME\",\"def\"],[\"NAME\",\"solve\"],[\"OP\",\"(\"]]",
+            "left": {
+              "submission_id": "maximum-family-3-v0",
+              "field": "code",
+              "start_line": 3,
+              "end_line": 3
+            },
+            "right": {
+              "submission_id": "maximum-family-3-v2",
+              "field": "code",
+              "start_line": 3,
+              "end_line": 3
+            }
+          },
+          {
+            "feature": "[[\"NUMBER\",\"0\"],[\"OP\",\"]\"],[\"NAME\",\"while\"]]",
+            "left": {
+              "submission_id": "maximum-family-3-v0",
+              "field": "code",
+              "start_line": 5,
+              "end_line": 6
+            },
+            "right": {
+              "submission_id": "maximum-family-3-v2",
+              "field": "code",
+              "start_line": 5,
+              "end_line": 6
+            }
+          },
+          {
+            "feature": "[[\"OP\",\"+=\"],[\"NUMBER\",\"1\"],[\"NAME\",\"return\"]]",
+            "left": {
+              "submission_id": "maximum-family-3-v0",
+              "field": "code",
+              "start_line": 9,
+              "end_line": 10
+            },
+            "right": {
+              "submission_id": "maximum-family-3-v2",
+              "field": "code",
+              "start_line": 9,
+              "end_line": 10
+            }
+          },
+          {
+            "feature": "[[\"OP\",\"<\"],[\"NAME\",\"len\"],[\"OP\",\"(\"]]",
+            "left": {
+              "submission_id": "maximum-family-3-v0",
+              "field": "code",
+              "start_line": 6,
+              "end_line": 6
+            },
+            "right": {
+              "submission_id": "maximum-family-3-v2",
+              "field": "code",
+              "start_line": 6,
+              "end_line": 6
+            }
+          },
+          {
+            "feature": "[[\"OP\",\"[\"],[\"NUMBER\",\"0\"],[\"OP\",\"]\"]]",
+            "left": {
+              "submission_id": "maximum-family-3-v0",
+              "field": "code",
+              "start_line": 5,
+              "end_line": 5
+            },
+            "right": {
+              "submission_id": "maximum-family-3-v2",
+              "field": "code",
+              "start_line": 5,
+              "end_line": 5
+            }
+          }
+        ],
+        "excluded_left": [
+          {
+            "submission_id": "maximum-family-3-v0",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "maximum-family-3-v2",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 0.0975609756097561,
+        "schema_version": 1
+      },
+      "analysis": "Общий корень известен; преобразования ['original', 'local-renaming']. Изменение значений токенов или структуры снизило score ниже выбранного порога."
+    },
+    {
+      "left_id": "maximum-family-3-v1",
+      "right_id": "maximum-family-3-v2",
+      "split": "test",
+      "derivation_relation": true,
+      "template_only": false,
+      "explanation": "Потомки одного явно заданного корня.",
+      "method": "token",
+      "threshold": 0.0975609756097561,
+      "kind": "FN",
+      "expected_signal": true,
+      "predicted_signal": false,
+      "left_family": "maximum-family-3",
+      "right_family": "maximum-family-3",
+      "result": {
+        "left_id": "maximum-family-3-v1",
+        "right_id": "maximum-family-3-v2",
+        "left_hash": "6a5fe3fa0296312ca53c163063fc02a091d0db7f578a526ae1f10be6d3dfde1e",
+        "right_hash": "50c6bddec07234984c6a273d4d27d4c05dd886c712d59e750d918ba4b294f644",
+        "method": "token",
+        "method_version": "token-ngram-v2",
+        "config_hash": "a427b862f064f312e4cfdf56580fc2ee8c5ffa719917dbb37a4ee6e36d1aa985",
+        "score": 0.07042253521126761,
+        "status": "ok",
+        "reason": null,
+        "evidence": [
+          {
+            "feature": "[[\"NAME\",\"def\"],[\"NAME\",\"solve\"],[\"OP\",\"(\"]]",
+            "left": {
+              "submission_id": "maximum-family-3-v1",
+              "field": "code",
+              "start_line": 4,
+              "end_line": 4
+            },
+            "right": {
+              "submission_id": "maximum-family-3-v2",
+              "field": "code",
+              "start_line": 3,
+              "end_line": 3
+            }
+          },
+          {
+            "feature": "[[\"NUMBER\",\"0\"],[\"OP\",\"]\"],[\"NAME\",\"while\"]]",
+            "left": {
+              "submission_id": "maximum-family-3-v1",
+              "field": "code",
+              "start_line": 6,
+              "end_line": 7
+            },
+            "right": {
+              "submission_id": "maximum-family-3-v2",
+              "field": "code",
+              "start_line": 5,
+              "end_line": 6
+            }
+          },
+          {
+            "feature": "[[\"OP\",\"+=\"],[\"NUMBER\",\"1\"],[\"NAME\",\"return\"]]",
+            "left": {
+              "submission_id": "maximum-family-3-v1",
+              "field": "code",
+              "start_line": 10,
+              "end_line": 11
+            },
+            "right": {
+              "submission_id": "maximum-family-3-v2",
+              "field": "code",
+              "start_line": 9,
+              "end_line": 10
+            }
+          },
+          {
+            "feature": "[[\"OP\",\"<\"],[\"NAME\",\"len\"],[\"OP\",\"(\"]]",
+            "left": {
+              "submission_id": "maximum-family-3-v1",
+              "field": "code",
+              "start_line": 7,
+              "end_line": 7
+            },
+            "right": {
+              "submission_id": "maximum-family-3-v2",
+              "field": "code",
+              "start_line": 6,
+              "end_line": 6
+            }
+          },
+          {
+            "feature": "[[\"OP\",\"[\"],[\"NUMBER\",\"0\"],[\"OP\",\"]\"]]",
+            "left": {
+              "submission_id": "maximum-family-3-v1",
+              "field": "code",
+              "start_line": 6,
+              "end_line": 6
+            },
+            "right": {
+              "submission_id": "maximum-family-3-v2",
+              "field": "code",
+              "start_line": 5,
+              "end_line": 5
+            }
+          }
+        ],
+        "excluded_left": [
+          {
+            "submission_id": "maximum-family-3-v1",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "maximum-family-3-v2",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 0.0975609756097561,
+        "schema_version": 1
+      },
+      "analysis": "Общий корень известен; преобразования ['comments-and-format', 'local-renaming']. Изменение значений токенов или структуры снизило score ниже выбранного порога."
+    },
+    {
+      "left_id": "reverse-family-1-v2",
+      "right_id": "reverse-family-3-v2",
+      "split": "test",
+      "derivation_relation": false,
+      "template_only": false,
+      "explanation": "Разные явно записанные корни одного задания; общего предка в сценарии нет.",
+      "method": "token",
+      "threshold": 0.0975609756097561,
+      "kind": "FP",
+      "expected_signal": false,
+      "predicted_signal": true,
+      "left_family": "reverse-family-1",
+      "right_family": "reverse-family-3",
+      "result": {
+        "left_id": "reverse-family-1-v2",
+        "right_id": "reverse-family-3-v2",
+        "left_hash": "c39a7606853671c79b13e4be8f1352e983744f87128941f15f601635abb9a8d4",
+        "right_hash": "79aa371ec1274108661ae1c811747fa835bbe285ca21b9d534dc4f56c5b35d8e",
+        "method": "token",
+        "method_version": "token-ngram-v2",
+        "config_hash": "f5e08051a7b27112dfe8792aa4dcac95578f1d3150f074cb2d38e26313a3be4f",
+        "score": 0.10810810810810811,
+        "status": "ok",
+        "reason": null,
+        "evidence": [
+          {
+            "feature": "[[\"NAME\",\"def\"],[\"NAME\",\"solve\"],[\"OP\",\"(\"]]",
+            "left": {
+              "submission_id": "reverse-family-1-v2",
+              "field": "code",
+              "start_line": 3,
+              "end_line": 3
+            },
+            "right": {
+              "submission_id": "reverse-family-3-v2",
+              "field": "code",
+              "start_line": 3,
+              "end_line": 3
+            }
+          },
+          {
+            "feature": "[[\"NAME\",\"renamed_0\"],[\"OP\",\")\"],[\"OP\",\":\"]]",
+            "left": {
+              "submission_id": "reverse-family-1-v2",
+              "field": "code",
+              "start_line": 3,
+              "end_line": 3
+            },
+            "right": {
+              "submission_id": "reverse-family-3-v2",
+              "field": "code",
+              "start_line": 3,
+              "end_line": 3
+            }
+          },
+          {
+            "feature": "[[\"NAME\",\"solve\"],[\"OP\",\"(\"],[\"NAME\",\"renamed_0\"]]",
+            "left": {
+              "submission_id": "reverse-family-1-v2",
+              "field": "code",
+              "start_line": 3,
+              "end_line": 3
+            },
+            "right": {
+              "submission_id": "reverse-family-3-v2",
+              "field": "code",
+              "start_line": 3,
+              "end_line": 3
+            }
+          },
+          {
+            "feature": "[[\"OP\",\"(\"],[\"NAME\",\"renamed_0\"],[\"OP\",\")\"]]",
+            "left": {
+              "submission_id": "reverse-family-1-v2",
+              "field": "code",
+              "start_line": 3,
+              "end_line": 3
+            },
+            "right": {
+              "submission_id": "reverse-family-3-v2",
+              "field": "code",
+              "start_line": 3,
+              "end_line": 3
+            }
+          }
+        ],
+        "excluded_left": [
+          {
+            "submission_id": "reverse-family-1-v2",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "reverse-family-3-v2",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": true,
+        "threshold": 0.0975609756097561,
+        "schema_version": 1
+      },
+      "analysis": "По provenance корни независимы. Общая постановка и короткие конструкции могут давать одинаковые признаки; для AST дополнительная причина — потеря различий при нормализации."
+    },
+    {
+      "left_id": "reverse-family-3-v0",
+      "right_id": "reverse-family-3-v2",
+      "split": "test",
+      "derivation_relation": true,
+      "template_only": false,
+      "explanation": "Потомки одного явно заданного корня.",
+      "method": "token",
+      "threshold": 0.0975609756097561,
+      "kind": "FN",
+      "expected_signal": true,
+      "predicted_signal": false,
+      "left_family": "reverse-family-3",
+      "right_family": "reverse-family-3",
+      "result": {
+        "left_id": "reverse-family-3-v0",
+        "right_id": "reverse-family-3-v2",
+        "left_hash": "028820d080d2eca28d95ae44524e228916358c78dac1646d2380d07e788d707d",
+        "right_hash": "79aa371ec1274108661ae1c811747fa835bbe285ca21b9d534dc4f56c5b35d8e",
+        "method": "token",
+        "method_version": "token-ngram-v2",
+        "config_hash": "f5e08051a7b27112dfe8792aa4dcac95578f1d3150f074cb2d38e26313a3be4f",
+        "score": 0.09090909090909091,
+        "status": "ok",
+        "reason": null,
+        "evidence": [
+          {
+            "feature": "[[\"NAME\",\"def\"],[\"NAME\",\"solve\"],[\"OP\",\"(\"]]",
+            "left": {
+              "submission_id": "reverse-family-3-v0",
+              "field": "code",
+              "start_line": 3,
+              "end_line": 3
+            },
+            "right": {
+              "submission_id": "reverse-family-3-v2",
+              "field": "code",
+              "start_line": 3,
+              "end_line": 3
+            }
+          },
+          {
+            "feature": "[[\"OP\",\".\"],[\"NAME\",\"append\"],[\"OP\",\"(\"]]",
+            "left": {
+              "submission_id": "reverse-family-3-v0",
+              "field": "code",
+              "start_line": 8,
+              "end_line": 8
+            },
+            "right": {
+              "submission_id": "reverse-family-3-v2",
+              "field": "code",
+              "start_line": 8,
+              "end_line": 8
+            }
+          },
+          {
+            "feature": "[[\"OP\",\"=\"],[\"NAME\",\"len\"],[\"OP\",\"(\"]]",
+            "left": {
+              "submission_id": "reverse-family-3-v0",
+              "field": "code",
+              "start_line": 5,
+              "end_line": 5
+            },
+            "right": {
+              "submission_id": "reverse-family-3-v2",
+              "field": "code",
+              "start_line": 5,
+              "end_line": 5
+            }
+          },
+          {
+            "feature": "[[\"OP\",\"=\"],[\"OP\",\"[\"],[\"OP\",\"]\"]]",
+            "left": {
+              "submission_id": "reverse-family-3-v0",
+              "field": "code",
+              "start_line": 4,
+              "end_line": 4
+            },
+            "right": {
+              "submission_id": "reverse-family-3-v2",
+              "field": "code",
+              "start_line": 4,
+              "end_line": 4
+            }
+          },
+          {
+            "feature": "[[\"OP\",\"]\"],[\"OP\",\")\"],[\"NAME\",\"return\"]]",
+            "left": {
+              "submission_id": "reverse-family-3-v0",
+              "field": "code",
+              "start_line": 8,
+              "end_line": 9
+            },
+            "right": {
+              "submission_id": "reverse-family-3-v2",
+              "field": "code",
+              "start_line": 8,
+              "end_line": 9
+            }
+          }
+        ],
+        "excluded_left": [
+          {
+            "submission_id": "reverse-family-3-v0",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "reverse-family-3-v2",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 0.0975609756097561,
+        "schema_version": 1
+      },
+      "analysis": "Общий корень известен; преобразования ['original', 'local-renaming']. Изменение значений токенов или структуры снизило score ниже выбранного порога."
+    },
+    {
+      "left_id": "reverse-family-3-v1",
+      "right_id": "reverse-family-3-v2",
+      "split": "test",
+      "derivation_relation": true,
+      "template_only": false,
+      "explanation": "Потомки одного явно заданного корня.",
+      "method": "token",
+      "threshold": 0.0975609756097561,
+      "kind": "FN",
+      "expected_signal": true,
+      "predicted_signal": false,
+      "left_family": "reverse-family-3",
+      "right_family": "reverse-family-3",
+      "result": {
+        "left_id": "reverse-family-3-v1",
+        "right_id": "reverse-family-3-v2",
+        "left_hash": "eabc0ed2b6877e8af6431fd7ae4036cf30a980c56e5bd3ab78d7e28c2268bf32",
+        "right_hash": "79aa371ec1274108661ae1c811747fa835bbe285ca21b9d534dc4f56c5b35d8e",
+        "method": "token",
+        "method_version": "token-ngram-v2",
+        "config_hash": "f5e08051a7b27112dfe8792aa4dcac95578f1d3150f074cb2d38e26313a3be4f",
+        "score": 0.09090909090909091,
+        "status": "ok",
+        "reason": null,
+        "evidence": [
+          {
+            "feature": "[[\"NAME\",\"def\"],[\"NAME\",\"solve\"],[\"OP\",\"(\"]]",
+            "left": {
+              "submission_id": "reverse-family-3-v1",
+              "field": "code",
+              "start_line": 4,
+              "end_line": 4
+            },
+            "right": {
+              "submission_id": "reverse-family-3-v2",
+              "field": "code",
+              "start_line": 3,
+              "end_line": 3
+            }
+          },
+          {
+            "feature": "[[\"OP\",\".\"],[\"NAME\",\"append\"],[\"OP\",\"(\"]]",
+            "left": {
+              "submission_id": "reverse-family-3-v1",
+              "field": "code",
+              "start_line": 9,
+              "end_line": 9
+            },
+            "right": {
+              "submission_id": "reverse-family-3-v2",
+              "field": "code",
+              "start_line": 8,
+              "end_line": 8
+            }
+          },
+          {
+            "feature": "[[\"OP\",\"=\"],[\"NAME\",\"len\"],[\"OP\",\"(\"]]",
+            "left": {
+              "submission_id": "reverse-family-3-v1",
+              "field": "code",
+              "start_line": 6,
+              "end_line": 6
+            },
+            "right": {
+              "submission_id": "reverse-family-3-v2",
+              "field": "code",
+              "start_line": 5,
+              "end_line": 5
+            }
+          },
+          {
+            "feature": "[[\"OP\",\"=\"],[\"OP\",\"[\"],[\"OP\",\"]\"]]",
+            "left": {
+              "submission_id": "reverse-family-3-v1",
+              "field": "code",
+              "start_line": 5,
+              "end_line": 5
+            },
+            "right": {
+              "submission_id": "reverse-family-3-v2",
+              "field": "code",
+              "start_line": 4,
+              "end_line": 4
+            }
+          },
+          {
+            "feature": "[[\"OP\",\"]\"],[\"OP\",\")\"],[\"NAME\",\"return\"]]",
+            "left": {
+              "submission_id": "reverse-family-3-v1",
+              "field": "code",
+              "start_line": 9,
+              "end_line": 10
+            },
+            "right": {
+              "submission_id": "reverse-family-3-v2",
+              "field": "code",
+              "start_line": 8,
+              "end_line": 9
+            }
+          }
+        ],
+        "excluded_left": [
+          {
+            "submission_id": "reverse-family-3-v1",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "reverse-family-3-v2",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 0.0975609756097561,
+        "schema_version": 1
+      },
+      "analysis": "Общий корень известен; преобразования ['comments-and-format', 'local-renaming']. Изменение значений токенов или структуры снизило score ниже выбранного порога."
+    },
+    {
+      "left_id": "squares-family-1-v0",
+      "right_id": "squares-family-1-v1",
+      "split": "test",
+      "derivation_relation": true,
+      "template_only": false,
+      "explanation": "Потомки одного явно заданного корня.",
+      "method": "ast",
+      "threshold": 1.0,
+      "kind": "ABSTENTION",
+      "expected_signal": true,
+      "predicted_signal": null,
+      "left_family": "squares-family-1",
+      "right_family": "squares-family-1",
+      "result": {
+        "left_id": "squares-family-1-v0",
+        "right_id": "squares-family-1-v1",
+        "left_hash": "d62ca2ee4cce1bafe4ed1e3d650a871947bd4f65ce33bc84751793ffe8d3fee0",
+        "right_hash": "3432d473ff5a28acb3c4a991bda0e6a177018258ed29b8141699672e832bbd00",
+        "method": "ast",
+        "method_version": "ast-subtree-v2",
+        "config_hash": "050d09930d985425a59be5045f61bc70be42a6b1a5f0913a629456282e45a893",
+        "score": null,
+        "status": "unsupported",
+        "reason": "squares-family-1-v0: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются; squares-family-1-v1: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются",
+        "evidence": [],
+        "excluded_left": [
+          {
+            "submission_id": "squares-family-1-v0",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "squares-family-1-v1",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 1.0,
+        "schema_version": 1
+      },
+      "analysis": "Метод отказался от оценки: squares-family-1-v0: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются; squares-family-1-v1: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются. Отказ учитывается в coverage и operational recall."
+    },
+    {
+      "left_id": "squares-family-1-v0",
+      "right_id": "squares-family-1-v2",
+      "split": "test",
+      "derivation_relation": true,
+      "template_only": false,
+      "explanation": "Потомки одного явно заданного корня.",
+      "method": "ast",
+      "threshold": 1.0,
+      "kind": "ABSTENTION",
+      "expected_signal": true,
+      "predicted_signal": null,
+      "left_family": "squares-family-1",
+      "right_family": "squares-family-1",
+      "result": {
+        "left_id": "squares-family-1-v0",
+        "right_id": "squares-family-1-v2",
+        "left_hash": "d62ca2ee4cce1bafe4ed1e3d650a871947bd4f65ce33bc84751793ffe8d3fee0",
+        "right_hash": "ec2067ee3d28549c4656c8f8449ff147368ca09fb77529cdf5ed3c8be255746a",
+        "method": "ast",
+        "method_version": "ast-subtree-v2",
+        "config_hash": "050d09930d985425a59be5045f61bc70be42a6b1a5f0913a629456282e45a893",
+        "score": null,
+        "status": "unsupported",
+        "reason": "squares-family-1-v0: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются; squares-family-1-v2: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются",
+        "evidence": [],
+        "excluded_left": [
+          {
+            "submission_id": "squares-family-1-v0",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "squares-family-1-v2",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 1.0,
+        "schema_version": 1
+      },
+      "analysis": "Метод отказался от оценки: squares-family-1-v0: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются; squares-family-1-v2: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются. Отказ учитывается в coverage и operational recall."
+    },
+    {
+      "left_id": "squares-family-1-v0",
+      "right_id": "squares-family-3-v0",
+      "split": "test",
+      "derivation_relation": false,
+      "template_only": false,
+      "explanation": "Разные явно записанные корни одного задания; общего предка в сценарии нет.",
+      "method": "ast",
+      "threshold": 1.0,
+      "kind": "ABSTENTION",
+      "expected_signal": false,
+      "predicted_signal": null,
+      "left_family": "squares-family-1",
+      "right_family": "squares-family-3",
+      "result": {
+        "left_id": "squares-family-1-v0",
+        "right_id": "squares-family-3-v0",
+        "left_hash": "d62ca2ee4cce1bafe4ed1e3d650a871947bd4f65ce33bc84751793ffe8d3fee0",
+        "right_hash": "8b42e1cf7eedb69be95867d75f1189d8213348218b4b380a2455a298ee740389",
+        "method": "ast",
+        "method_version": "ast-subtree-v2",
+        "config_hash": "050d09930d985425a59be5045f61bc70be42a6b1a5f0913a629456282e45a893",
+        "score": null,
+        "status": "unsupported",
+        "reason": "squares-family-1-v0: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются",
+        "evidence": [],
+        "excluded_left": [
+          {
+            "submission_id": "squares-family-1-v0",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "squares-family-3-v0",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 1.0,
+        "schema_version": 1
+      },
+      "analysis": "Метод отказался от оценки: squares-family-1-v0: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются. Отказ учитывается в coverage и operational recall."
+    },
+    {
+      "left_id": "squares-family-1-v0",
+      "right_id": "squares-family-3-v1",
+      "split": "test",
+      "derivation_relation": false,
+      "template_only": false,
+      "explanation": "Разные явно записанные корни одного задания; общего предка в сценарии нет.",
+      "method": "ast",
+      "threshold": 1.0,
+      "kind": "ABSTENTION",
+      "expected_signal": false,
+      "predicted_signal": null,
+      "left_family": "squares-family-1",
+      "right_family": "squares-family-3",
+      "result": {
+        "left_id": "squares-family-1-v0",
+        "right_id": "squares-family-3-v1",
+        "left_hash": "d62ca2ee4cce1bafe4ed1e3d650a871947bd4f65ce33bc84751793ffe8d3fee0",
+        "right_hash": "12b6c087446f052f2f83de6f1db3f344fbed35c168401d587d5b1f2291569a63",
+        "method": "ast",
+        "method_version": "ast-subtree-v2",
+        "config_hash": "050d09930d985425a59be5045f61bc70be42a6b1a5f0913a629456282e45a893",
+        "score": null,
+        "status": "unsupported",
+        "reason": "squares-family-1-v0: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются",
+        "evidence": [],
+        "excluded_left": [
+          {
+            "submission_id": "squares-family-1-v0",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "squares-family-3-v1",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 1.0,
+        "schema_version": 1
+      },
+      "analysis": "Метод отказался от оценки: squares-family-1-v0: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются. Отказ учитывается в coverage и operational recall."
+    },
+    {
+      "left_id": "squares-family-1-v0",
+      "right_id": "squares-family-3-v2",
+      "split": "test",
+      "derivation_relation": false,
+      "template_only": false,
+      "explanation": "Разные явно записанные корни одного задания; общего предка в сценарии нет.",
+      "method": "ast",
+      "threshold": 1.0,
+      "kind": "ABSTENTION",
+      "expected_signal": false,
+      "predicted_signal": null,
+      "left_family": "squares-family-1",
+      "right_family": "squares-family-3",
+      "result": {
+        "left_id": "squares-family-1-v0",
+        "right_id": "squares-family-3-v2",
+        "left_hash": "d62ca2ee4cce1bafe4ed1e3d650a871947bd4f65ce33bc84751793ffe8d3fee0",
+        "right_hash": "3eaa2b15a4b672cf670840bbd92e79601e956026925ee9c259702fedaf51de43",
+        "method": "ast",
+        "method_version": "ast-subtree-v2",
+        "config_hash": "050d09930d985425a59be5045f61bc70be42a6b1a5f0913a629456282e45a893",
+        "score": null,
+        "status": "unsupported",
+        "reason": "squares-family-1-v0: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются",
+        "evidence": [],
+        "excluded_left": [
+          {
+            "submission_id": "squares-family-1-v0",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "squares-family-3-v2",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 1.0,
+        "schema_version": 1
+      },
+      "analysis": "Метод отказался от оценки: squares-family-1-v0: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются. Отказ учитывается в coverage и operational recall."
+    },
+    {
+      "left_id": "squares-family-1-v1",
+      "right_id": "squares-family-1-v2",
+      "split": "test",
+      "derivation_relation": true,
+      "template_only": false,
+      "explanation": "Потомки одного явно заданного корня.",
+      "method": "ast",
+      "threshold": 1.0,
+      "kind": "ABSTENTION",
+      "expected_signal": true,
+      "predicted_signal": null,
+      "left_family": "squares-family-1",
+      "right_family": "squares-family-1",
+      "result": {
+        "left_id": "squares-family-1-v1",
+        "right_id": "squares-family-1-v2",
+        "left_hash": "3432d473ff5a28acb3c4a991bda0e6a177018258ed29b8141699672e832bbd00",
+        "right_hash": "ec2067ee3d28549c4656c8f8449ff147368ca09fb77529cdf5ed3c8be255746a",
+        "method": "ast",
+        "method_version": "ast-subtree-v2",
+        "config_hash": "050d09930d985425a59be5045f61bc70be42a6b1a5f0913a629456282e45a893",
+        "score": null,
+        "status": "unsupported",
+        "reason": "squares-family-1-v1: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются; squares-family-1-v2: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются",
+        "evidence": [],
+        "excluded_left": [
+          {
+            "submission_id": "squares-family-1-v1",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "squares-family-1-v2",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 1.0,
+        "schema_version": 1
+      },
+      "analysis": "Метод отказался от оценки: squares-family-1-v1: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются; squares-family-1-v2: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются. Отказ учитывается в coverage и operational recall."
+    },
+    {
+      "left_id": "squares-family-1-v1",
+      "right_id": "squares-family-3-v0",
+      "split": "test",
+      "derivation_relation": false,
+      "template_only": false,
+      "explanation": "Разные явно записанные корни одного задания; общего предка в сценарии нет.",
+      "method": "ast",
+      "threshold": 1.0,
+      "kind": "ABSTENTION",
+      "expected_signal": false,
+      "predicted_signal": null,
+      "left_family": "squares-family-1",
+      "right_family": "squares-family-3",
+      "result": {
+        "left_id": "squares-family-1-v1",
+        "right_id": "squares-family-3-v0",
+        "left_hash": "3432d473ff5a28acb3c4a991bda0e6a177018258ed29b8141699672e832bbd00",
+        "right_hash": "8b42e1cf7eedb69be95867d75f1189d8213348218b4b380a2455a298ee740389",
+        "method": "ast",
+        "method_version": "ast-subtree-v2",
+        "config_hash": "050d09930d985425a59be5045f61bc70be42a6b1a5f0913a629456282e45a893",
+        "score": null,
+        "status": "unsupported",
+        "reason": "squares-family-1-v1: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются",
+        "evidence": [],
+        "excluded_left": [
+          {
+            "submission_id": "squares-family-1-v1",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "squares-family-3-v0",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 1.0,
+        "schema_version": 1
+      },
+      "analysis": "Метод отказался от оценки: squares-family-1-v1: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются. Отказ учитывается в coverage и operational recall."
+    },
+    {
+      "left_id": "squares-family-1-v1",
+      "right_id": "squares-family-3-v1",
+      "split": "test",
+      "derivation_relation": false,
+      "template_only": false,
+      "explanation": "Разные явно записанные корни одного задания; общего предка в сценарии нет.",
+      "method": "ast",
+      "threshold": 1.0,
+      "kind": "ABSTENTION",
+      "expected_signal": false,
+      "predicted_signal": null,
+      "left_family": "squares-family-1",
+      "right_family": "squares-family-3",
+      "result": {
+        "left_id": "squares-family-1-v1",
+        "right_id": "squares-family-3-v1",
+        "left_hash": "3432d473ff5a28acb3c4a991bda0e6a177018258ed29b8141699672e832bbd00",
+        "right_hash": "12b6c087446f052f2f83de6f1db3f344fbed35c168401d587d5b1f2291569a63",
+        "method": "ast",
+        "method_version": "ast-subtree-v2",
+        "config_hash": "050d09930d985425a59be5045f61bc70be42a6b1a5f0913a629456282e45a893",
+        "score": null,
+        "status": "unsupported",
+        "reason": "squares-family-1-v1: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются",
+        "evidence": [],
+        "excluded_left": [
+          {
+            "submission_id": "squares-family-1-v1",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "squares-family-3-v1",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 1.0,
+        "schema_version": 1
+      },
+      "analysis": "Метод отказался от оценки: squares-family-1-v1: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются. Отказ учитывается в coverage и operational recall."
+    },
+    {
+      "left_id": "squares-family-1-v1",
+      "right_id": "squares-family-3-v2",
+      "split": "test",
+      "derivation_relation": false,
+      "template_only": false,
+      "explanation": "Разные явно записанные корни одного задания; общего предка в сценарии нет.",
+      "method": "ast",
+      "threshold": 1.0,
+      "kind": "ABSTENTION",
+      "expected_signal": false,
+      "predicted_signal": null,
+      "left_family": "squares-family-1",
+      "right_family": "squares-family-3",
+      "result": {
+        "left_id": "squares-family-1-v1",
+        "right_id": "squares-family-3-v2",
+        "left_hash": "3432d473ff5a28acb3c4a991bda0e6a177018258ed29b8141699672e832bbd00",
+        "right_hash": "3eaa2b15a4b672cf670840bbd92e79601e956026925ee9c259702fedaf51de43",
+        "method": "ast",
+        "method_version": "ast-subtree-v2",
+        "config_hash": "050d09930d985425a59be5045f61bc70be42a6b1a5f0913a629456282e45a893",
+        "score": null,
+        "status": "unsupported",
+        "reason": "squares-family-1-v1: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются",
+        "evidence": [],
+        "excluded_left": [
+          {
+            "submission_id": "squares-family-1-v1",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "squares-family-3-v2",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 1.0,
+        "schema_version": 1
+      },
+      "analysis": "Метод отказался от оценки: squares-family-1-v1: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются. Отказ учитывается в coverage и operational recall."
+    },
+    {
+      "left_id": "squares-family-1-v2",
+      "right_id": "squares-family-3-v0",
+      "split": "test",
+      "derivation_relation": false,
+      "template_only": false,
+      "explanation": "Разные явно записанные корни одного задания; общего предка в сценарии нет.",
+      "method": "ast",
+      "threshold": 1.0,
+      "kind": "ABSTENTION",
+      "expected_signal": false,
+      "predicted_signal": null,
+      "left_family": "squares-family-1",
+      "right_family": "squares-family-3",
+      "result": {
+        "left_id": "squares-family-1-v2",
+        "right_id": "squares-family-3-v0",
+        "left_hash": "ec2067ee3d28549c4656c8f8449ff147368ca09fb77529cdf5ed3c8be255746a",
+        "right_hash": "8b42e1cf7eedb69be95867d75f1189d8213348218b4b380a2455a298ee740389",
+        "method": "ast",
+        "method_version": "ast-subtree-v2",
+        "config_hash": "050d09930d985425a59be5045f61bc70be42a6b1a5f0913a629456282e45a893",
+        "score": null,
+        "status": "unsupported",
+        "reason": "squares-family-1-v2: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются",
+        "evidence": [],
+        "excluded_left": [
+          {
+            "submission_id": "squares-family-1-v2",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "squares-family-3-v0",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 1.0,
+        "schema_version": 1
+      },
+      "analysis": "Метод отказался от оценки: squares-family-1-v2: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются. Отказ учитывается в coverage и operational recall."
+    },
+    {
+      "left_id": "squares-family-1-v2",
+      "right_id": "squares-family-3-v1",
+      "split": "test",
+      "derivation_relation": false,
+      "template_only": false,
+      "explanation": "Разные явно записанные корни одного задания; общего предка в сценарии нет.",
+      "method": "ast",
+      "threshold": 1.0,
+      "kind": "ABSTENTION",
+      "expected_signal": false,
+      "predicted_signal": null,
+      "left_family": "squares-family-1",
+      "right_family": "squares-family-3",
+      "result": {
+        "left_id": "squares-family-1-v2",
+        "right_id": "squares-family-3-v1",
+        "left_hash": "ec2067ee3d28549c4656c8f8449ff147368ca09fb77529cdf5ed3c8be255746a",
+        "right_hash": "12b6c087446f052f2f83de6f1db3f344fbed35c168401d587d5b1f2291569a63",
+        "method": "ast",
+        "method_version": "ast-subtree-v2",
+        "config_hash": "050d09930d985425a59be5045f61bc70be42a6b1a5f0913a629456282e45a893",
+        "score": null,
+        "status": "unsupported",
+        "reason": "squares-family-1-v2: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются",
+        "evidence": [],
+        "excluded_left": [
+          {
+            "submission_id": "squares-family-1-v2",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "squares-family-3-v1",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 1.0,
+        "schema_version": 1
+      },
+      "analysis": "Метод отказался от оценки: squares-family-1-v2: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются. Отказ учитывается в coverage и operational recall."
+    },
+    {
+      "left_id": "squares-family-1-v2",
+      "right_id": "squares-family-3-v2",
+      "split": "test",
+      "derivation_relation": false,
+      "template_only": false,
+      "explanation": "Разные явно записанные корни одного задания; общего предка в сценарии нет.",
+      "method": "ast",
+      "threshold": 1.0,
+      "kind": "ABSTENTION",
+      "expected_signal": false,
+      "predicted_signal": null,
+      "left_family": "squares-family-1",
+      "right_family": "squares-family-3",
+      "result": {
+        "left_id": "squares-family-1-v2",
+        "right_id": "squares-family-3-v2",
+        "left_hash": "ec2067ee3d28549c4656c8f8449ff147368ca09fb77529cdf5ed3c8be255746a",
+        "right_hash": "3eaa2b15a4b672cf670840bbd92e79601e956026925ee9c259702fedaf51de43",
+        "method": "ast",
+        "method_version": "ast-subtree-v2",
+        "config_hash": "050d09930d985425a59be5045f61bc70be42a6b1a5f0913a629456282e45a893",
+        "score": null,
+        "status": "unsupported",
+        "reason": "squares-family-1-v2: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются",
+        "evidence": [],
+        "excluded_left": [
+          {
+            "submission_id": "squares-family-1-v2",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "squares-family-3-v2",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 1.0,
+        "schema_version": 1
+      },
+      "analysis": "Метод отказался от оценки: squares-family-1-v2: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются. Отказ учитывается в coverage и operational recall."
+    },
+    {
+      "left_id": "count_positive-family-1-v0",
+      "right_id": "count_positive-family-1-v1",
+      "split": "test",
+      "derivation_relation": true,
+      "template_only": false,
+      "explanation": "Потомки одного явно заданного корня.",
+      "method": "ast",
+      "threshold": 1.0,
+      "kind": "ABSTENTION",
+      "expected_signal": true,
+      "predicted_signal": null,
+      "left_family": "count_positive-family-1",
+      "right_family": "count_positive-family-1",
+      "result": {
+        "left_id": "count_positive-family-1-v0",
+        "right_id": "count_positive-family-1-v1",
+        "left_hash": "d7d4861c9572230ec625155f5c9d318e0c8579441a31d6efa4969cc619bd7e37",
+        "right_hash": "9e58056d369cccdc281fd9990bd5fb20ebff99840119e3d379523e6f8f968af7",
+        "method": "ast",
+        "method_version": "ast-subtree-v2",
+        "config_hash": "16ceeb817ac05f7739f47f49d320512667d265e9d0dd66b8300d3947256be13b",
+        "score": null,
+        "status": "unsupported",
+        "reason": "count_positive-family-1-v0: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются; count_positive-family-1-v1: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются",
+        "evidence": [],
+        "excluded_left": [
+          {
+            "submission_id": "count_positive-family-1-v0",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "count_positive-family-1-v1",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 1.0,
+        "schema_version": 1
+      },
+      "analysis": "Метод отказался от оценки: count_positive-family-1-v0: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются; count_positive-family-1-v1: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются. Отказ учитывается в coverage и operational recall."
+    },
+    {
+      "left_id": "count_positive-family-1-v0",
+      "right_id": "count_positive-family-1-v2",
+      "split": "test",
+      "derivation_relation": true,
+      "template_only": false,
+      "explanation": "Потомки одного явно заданного корня.",
+      "method": "ast",
+      "threshold": 1.0,
+      "kind": "ABSTENTION",
+      "expected_signal": true,
+      "predicted_signal": null,
+      "left_family": "count_positive-family-1",
+      "right_family": "count_positive-family-1",
+      "result": {
+        "left_id": "count_positive-family-1-v0",
+        "right_id": "count_positive-family-1-v2",
+        "left_hash": "d7d4861c9572230ec625155f5c9d318e0c8579441a31d6efa4969cc619bd7e37",
+        "right_hash": "cb3642c4892b61231064bc970d62834921ba5f8100c628e3d4354ddf489a0ec9",
+        "method": "ast",
+        "method_version": "ast-subtree-v2",
+        "config_hash": "16ceeb817ac05f7739f47f49d320512667d265e9d0dd66b8300d3947256be13b",
+        "score": null,
+        "status": "unsupported",
+        "reason": "count_positive-family-1-v0: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются; count_positive-family-1-v2: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются",
+        "evidence": [],
+        "excluded_left": [
+          {
+            "submission_id": "count_positive-family-1-v0",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "count_positive-family-1-v2",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 1.0,
+        "schema_version": 1
+      },
+      "analysis": "Метод отказался от оценки: count_positive-family-1-v0: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются; count_positive-family-1-v2: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются. Отказ учитывается в coverage и operational recall."
+    },
+    {
+      "left_id": "count_positive-family-1-v0",
+      "right_id": "count_positive-family-3-v0",
+      "split": "test",
+      "derivation_relation": false,
+      "template_only": false,
+      "explanation": "Разные явно записанные корни одного задания; общего предка в сценарии нет.",
+      "method": "ast",
+      "threshold": 1.0,
+      "kind": "ABSTENTION",
+      "expected_signal": false,
+      "predicted_signal": null,
+      "left_family": "count_positive-family-1",
+      "right_family": "count_positive-family-3",
+      "result": {
+        "left_id": "count_positive-family-1-v0",
+        "right_id": "count_positive-family-3-v0",
+        "left_hash": "d7d4861c9572230ec625155f5c9d318e0c8579441a31d6efa4969cc619bd7e37",
+        "right_hash": "81113a42d5a6976400a20b8a879f9405389ef57081ec9291651ed52718e7e277",
+        "method": "ast",
+        "method_version": "ast-subtree-v2",
+        "config_hash": "16ceeb817ac05f7739f47f49d320512667d265e9d0dd66b8300d3947256be13b",
+        "score": null,
+        "status": "unsupported",
+        "reason": "count_positive-family-1-v0: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются",
+        "evidence": [],
+        "excluded_left": [
+          {
+            "submission_id": "count_positive-family-1-v0",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "count_positive-family-3-v0",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 1.0,
+        "schema_version": 1
+      },
+      "analysis": "Метод отказался от оценки: count_positive-family-1-v0: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются. Отказ учитывается в coverage и operational recall."
+    },
+    {
+      "left_id": "count_positive-family-1-v0",
+      "right_id": "count_positive-family-3-v1",
+      "split": "test",
+      "derivation_relation": false,
+      "template_only": false,
+      "explanation": "Разные явно записанные корни одного задания; общего предка в сценарии нет.",
+      "method": "ast",
+      "threshold": 1.0,
+      "kind": "ABSTENTION",
+      "expected_signal": false,
+      "predicted_signal": null,
+      "left_family": "count_positive-family-1",
+      "right_family": "count_positive-family-3",
+      "result": {
+        "left_id": "count_positive-family-1-v0",
+        "right_id": "count_positive-family-3-v1",
+        "left_hash": "d7d4861c9572230ec625155f5c9d318e0c8579441a31d6efa4969cc619bd7e37",
+        "right_hash": "f927aa25e559bc27d6335709e27d0730e9028d504d215dd7b4c6f6c7beff976d",
+        "method": "ast",
+        "method_version": "ast-subtree-v2",
+        "config_hash": "16ceeb817ac05f7739f47f49d320512667d265e9d0dd66b8300d3947256be13b",
+        "score": null,
+        "status": "unsupported",
+        "reason": "count_positive-family-1-v0: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются",
+        "evidence": [],
+        "excluded_left": [
+          {
+            "submission_id": "count_positive-family-1-v0",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "count_positive-family-3-v1",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 1.0,
+        "schema_version": 1
+      },
+      "analysis": "Метод отказался от оценки: count_positive-family-1-v0: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются. Отказ учитывается в coverage и operational recall."
+    },
+    {
+      "left_id": "count_positive-family-1-v0",
+      "right_id": "count_positive-family-3-v2",
+      "split": "test",
+      "derivation_relation": false,
+      "template_only": false,
+      "explanation": "Разные явно записанные корни одного задания; общего предка в сценарии нет.",
+      "method": "ast",
+      "threshold": 1.0,
+      "kind": "ABSTENTION",
+      "expected_signal": false,
+      "predicted_signal": null,
+      "left_family": "count_positive-family-1",
+      "right_family": "count_positive-family-3",
+      "result": {
+        "left_id": "count_positive-family-1-v0",
+        "right_id": "count_positive-family-3-v2",
+        "left_hash": "d7d4861c9572230ec625155f5c9d318e0c8579441a31d6efa4969cc619bd7e37",
+        "right_hash": "c6caf14c038c9341806e206a02a2bc1d92fa382319e4a3c54d912369a96768dc",
+        "method": "ast",
+        "method_version": "ast-subtree-v2",
+        "config_hash": "16ceeb817ac05f7739f47f49d320512667d265e9d0dd66b8300d3947256be13b",
+        "score": null,
+        "status": "unsupported",
+        "reason": "count_positive-family-1-v0: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются",
+        "evidence": [],
+        "excluded_left": [
+          {
+            "submission_id": "count_positive-family-1-v0",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "count_positive-family-3-v2",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 1.0,
+        "schema_version": 1
+      },
+      "analysis": "Метод отказался от оценки: count_positive-family-1-v0: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются. Отказ учитывается в coverage и operational recall."
+    },
+    {
+      "left_id": "count_positive-family-1-v1",
+      "right_id": "count_positive-family-1-v2",
+      "split": "test",
+      "derivation_relation": true,
+      "template_only": false,
+      "explanation": "Потомки одного явно заданного корня.",
+      "method": "ast",
+      "threshold": 1.0,
+      "kind": "ABSTENTION",
+      "expected_signal": true,
+      "predicted_signal": null,
+      "left_family": "count_positive-family-1",
+      "right_family": "count_positive-family-1",
+      "result": {
+        "left_id": "count_positive-family-1-v1",
+        "right_id": "count_positive-family-1-v2",
+        "left_hash": "9e58056d369cccdc281fd9990bd5fb20ebff99840119e3d379523e6f8f968af7",
+        "right_hash": "cb3642c4892b61231064bc970d62834921ba5f8100c628e3d4354ddf489a0ec9",
+        "method": "ast",
+        "method_version": "ast-subtree-v2",
+        "config_hash": "16ceeb817ac05f7739f47f49d320512667d265e9d0dd66b8300d3947256be13b",
+        "score": null,
+        "status": "unsupported",
+        "reason": "count_positive-family-1-v1: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются; count_positive-family-1-v2: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются",
+        "evidence": [],
+        "excluded_left": [
+          {
+            "submission_id": "count_positive-family-1-v1",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "count_positive-family-1-v2",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 1.0,
+        "schema_version": 1
+      },
+      "analysis": "Метод отказался от оценки: count_positive-family-1-v1: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются; count_positive-family-1-v2: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются. Отказ учитывается в coverage и operational recall."
+    },
+    {
+      "left_id": "count_positive-family-1-v1",
+      "right_id": "count_positive-family-3-v0",
+      "split": "test",
+      "derivation_relation": false,
+      "template_only": false,
+      "explanation": "Разные явно записанные корни одного задания; общего предка в сценарии нет.",
+      "method": "ast",
+      "threshold": 1.0,
+      "kind": "ABSTENTION",
+      "expected_signal": false,
+      "predicted_signal": null,
+      "left_family": "count_positive-family-1",
+      "right_family": "count_positive-family-3",
+      "result": {
+        "left_id": "count_positive-family-1-v1",
+        "right_id": "count_positive-family-3-v0",
+        "left_hash": "9e58056d369cccdc281fd9990bd5fb20ebff99840119e3d379523e6f8f968af7",
+        "right_hash": "81113a42d5a6976400a20b8a879f9405389ef57081ec9291651ed52718e7e277",
+        "method": "ast",
+        "method_version": "ast-subtree-v2",
+        "config_hash": "16ceeb817ac05f7739f47f49d320512667d265e9d0dd66b8300d3947256be13b",
+        "score": null,
+        "status": "unsupported",
+        "reason": "count_positive-family-1-v1: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются",
+        "evidence": [],
+        "excluded_left": [
+          {
+            "submission_id": "count_positive-family-1-v1",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "count_positive-family-3-v0",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 1.0,
+        "schema_version": 1
+      },
+      "analysis": "Метод отказался от оценки: count_positive-family-1-v1: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются. Отказ учитывается в coverage и operational recall."
+    },
+    {
+      "left_id": "count_positive-family-1-v1",
+      "right_id": "count_positive-family-3-v1",
+      "split": "test",
+      "derivation_relation": false,
+      "template_only": false,
+      "explanation": "Разные явно записанные корни одного задания; общего предка в сценарии нет.",
+      "method": "ast",
+      "threshold": 1.0,
+      "kind": "ABSTENTION",
+      "expected_signal": false,
+      "predicted_signal": null,
+      "left_family": "count_positive-family-1",
+      "right_family": "count_positive-family-3",
+      "result": {
+        "left_id": "count_positive-family-1-v1",
+        "right_id": "count_positive-family-3-v1",
+        "left_hash": "9e58056d369cccdc281fd9990bd5fb20ebff99840119e3d379523e6f8f968af7",
+        "right_hash": "f927aa25e559bc27d6335709e27d0730e9028d504d215dd7b4c6f6c7beff976d",
+        "method": "ast",
+        "method_version": "ast-subtree-v2",
+        "config_hash": "16ceeb817ac05f7739f47f49d320512667d265e9d0dd66b8300d3947256be13b",
+        "score": null,
+        "status": "unsupported",
+        "reason": "count_positive-family-1-v1: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются",
+        "evidence": [],
+        "excluded_left": [
+          {
+            "submission_id": "count_positive-family-1-v1",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "count_positive-family-3-v1",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 1.0,
+        "schema_version": 1
+      },
+      "analysis": "Метод отказался от оценки: count_positive-family-1-v1: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются. Отказ учитывается в coverage и operational recall."
+    },
+    {
+      "left_id": "count_positive-family-1-v1",
+      "right_id": "count_positive-family-3-v2",
+      "split": "test",
+      "derivation_relation": false,
+      "template_only": false,
+      "explanation": "Разные явно записанные корни одного задания; общего предка в сценарии нет.",
+      "method": "ast",
+      "threshold": 1.0,
+      "kind": "ABSTENTION",
+      "expected_signal": false,
+      "predicted_signal": null,
+      "left_family": "count_positive-family-1",
+      "right_family": "count_positive-family-3",
+      "result": {
+        "left_id": "count_positive-family-1-v1",
+        "right_id": "count_positive-family-3-v2",
+        "left_hash": "9e58056d369cccdc281fd9990bd5fb20ebff99840119e3d379523e6f8f968af7",
+        "right_hash": "c6caf14c038c9341806e206a02a2bc1d92fa382319e4a3c54d912369a96768dc",
+        "method": "ast",
+        "method_version": "ast-subtree-v2",
+        "config_hash": "16ceeb817ac05f7739f47f49d320512667d265e9d0dd66b8300d3947256be13b",
+        "score": null,
+        "status": "unsupported",
+        "reason": "count_positive-family-1-v1: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются",
+        "evidence": [],
+        "excluded_left": [
+          {
+            "submission_id": "count_positive-family-1-v1",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "count_positive-family-3-v2",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 1.0,
+        "schema_version": 1
+      },
+      "analysis": "Метод отказался от оценки: count_positive-family-1-v1: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются. Отказ учитывается в coverage и operational recall."
+    },
+    {
+      "left_id": "count_positive-family-1-v2",
+      "right_id": "count_positive-family-3-v0",
+      "split": "test",
+      "derivation_relation": false,
+      "template_only": false,
+      "explanation": "Разные явно записанные корни одного задания; общего предка в сценарии нет.",
+      "method": "ast",
+      "threshold": 1.0,
+      "kind": "ABSTENTION",
+      "expected_signal": false,
+      "predicted_signal": null,
+      "left_family": "count_positive-family-1",
+      "right_family": "count_positive-family-3",
+      "result": {
+        "left_id": "count_positive-family-1-v2",
+        "right_id": "count_positive-family-3-v0",
+        "left_hash": "cb3642c4892b61231064bc970d62834921ba5f8100c628e3d4354ddf489a0ec9",
+        "right_hash": "81113a42d5a6976400a20b8a879f9405389ef57081ec9291651ed52718e7e277",
+        "method": "ast",
+        "method_version": "ast-subtree-v2",
+        "config_hash": "16ceeb817ac05f7739f47f49d320512667d265e9d0dd66b8300d3947256be13b",
+        "score": null,
+        "status": "unsupported",
+        "reason": "count_positive-family-1-v2: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются",
+        "evidence": [],
+        "excluded_left": [
+          {
+            "submission_id": "count_positive-family-1-v2",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "count_positive-family-3-v0",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 1.0,
+        "schema_version": 1
+      },
+      "analysis": "Метод отказался от оценки: count_positive-family-1-v2: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются. Отказ учитывается в coverage и operational recall."
+    },
+    {
+      "left_id": "count_positive-family-1-v2",
+      "right_id": "count_positive-family-3-v1",
+      "split": "test",
+      "derivation_relation": false,
+      "template_only": false,
+      "explanation": "Разные явно записанные корни одного задания; общего предка в сценарии нет.",
+      "method": "ast",
+      "threshold": 1.0,
+      "kind": "ABSTENTION",
+      "expected_signal": false,
+      "predicted_signal": null,
+      "left_family": "count_positive-family-1",
+      "right_family": "count_positive-family-3",
+      "result": {
+        "left_id": "count_positive-family-1-v2",
+        "right_id": "count_positive-family-3-v1",
+        "left_hash": "cb3642c4892b61231064bc970d62834921ba5f8100c628e3d4354ddf489a0ec9",
+        "right_hash": "f927aa25e559bc27d6335709e27d0730e9028d504d215dd7b4c6f6c7beff976d",
+        "method": "ast",
+        "method_version": "ast-subtree-v2",
+        "config_hash": "16ceeb817ac05f7739f47f49d320512667d265e9d0dd66b8300d3947256be13b",
+        "score": null,
+        "status": "unsupported",
+        "reason": "count_positive-family-1-v2: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются",
+        "evidence": [],
+        "excluded_left": [
+          {
+            "submission_id": "count_positive-family-1-v2",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "count_positive-family-3-v1",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 1.0,
+        "schema_version": 1
+      },
+      "analysis": "Метод отказался от оценки: count_positive-family-1-v2: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются. Отказ учитывается в coverage и operational recall."
+    },
+    {
+      "left_id": "count_positive-family-1-v2",
+      "right_id": "count_positive-family-3-v2",
+      "split": "test",
+      "derivation_relation": false,
+      "template_only": false,
+      "explanation": "Разные явно записанные корни одного задания; общего предка в сценарии нет.",
+      "method": "ast",
+      "threshold": 1.0,
+      "kind": "ABSTENTION",
+      "expected_signal": false,
+      "predicted_signal": null,
+      "left_family": "count_positive-family-1",
+      "right_family": "count_positive-family-3",
+      "result": {
+        "left_id": "count_positive-family-1-v2",
+        "right_id": "count_positive-family-3-v2",
+        "left_hash": "cb3642c4892b61231064bc970d62834921ba5f8100c628e3d4354ddf489a0ec9",
+        "right_hash": "c6caf14c038c9341806e206a02a2bc1d92fa382319e4a3c54d912369a96768dc",
+        "method": "ast",
+        "method_version": "ast-subtree-v2",
+        "config_hash": "16ceeb817ac05f7739f47f49d320512667d265e9d0dd66b8300d3947256be13b",
+        "score": null,
+        "status": "unsupported",
+        "reason": "count_positive-family-1-v2: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются",
+        "evidence": [],
+        "excluded_left": [
+          {
+            "submission_id": "count_positive-family-1-v2",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "count_positive-family-3-v2",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 1.0,
+        "schema_version": 1
+      },
+      "analysis": "Метод отказался от оценки: count_positive-family-1-v2: Вложенные области, import, async, match, :=, type и global/nonlocal не поддерживаются. Отказ учитывается в coverage и operational recall."
+    },
+    {
+      "left_id": "template-independent-4",
+      "right_id": "template-independent-5",
+      "split": "test",
+      "derivation_relation": false,
+      "template_only": true,
+      "explanation": "Независимые короткие фрагменты разделяют только разрешённый import.",
+      "method": "ast",
+      "threshold": 1.0,
+      "kind": "ABSTENTION",
+      "expected_signal": false,
+      "predicted_signal": null,
+      "left_family": "template-independent-4",
+      "right_family": "template-independent-5",
+      "result": {
+        "left_id": "template-independent-4",
+        "right_id": "template-independent-5",
+        "left_hash": "00198b3fc9c67dfb013e341395ae0aff2a454e1c0f95d1fe756fd84428b44bd0",
+        "right_hash": "a337a124f6e85a42f5fb0903468a2584748fe145c14b2a6c84ea2fc7a0575466",
+        "method": "ast",
+        "method_version": "ast-subtree-v2",
+        "config_hash": "c639cfb65bfdf432bc0122104fe88a5b151cb6317034456918d1a89a2fa43fed",
+        "score": null,
+        "status": "unsupported",
+        "reason": "template-independent-4: AST-метод поддерживает одну синхронную функцию; template-independent-5: AST-метод поддерживает одну синхронную функцию",
+        "evidence": [],
+        "excluded_left": [
+          {
+            "submission_id": "template-independent-4",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "template-independent-5",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 1.0,
+        "schema_version": 1
+      },
+      "analysis": "Метод отказался от оценки: template-independent-4: AST-метод поддерживает одну синхронную функцию; template-independent-5: AST-метод поддерживает одну синхронную функцию. Отказ учитывается в coverage и operational recall."
+    },
+    {
+      "left_id": "template-independent-4",
+      "right_id": "template-independent-6",
+      "split": "test",
+      "derivation_relation": false,
+      "template_only": true,
+      "explanation": "Независимые короткие фрагменты разделяют только разрешённый import.",
+      "method": "ast",
+      "threshold": 1.0,
+      "kind": "ABSTENTION",
+      "expected_signal": false,
+      "predicted_signal": null,
+      "left_family": "template-independent-4",
+      "right_family": "template-independent-6",
+      "result": {
+        "left_id": "template-independent-4",
+        "right_id": "template-independent-6",
+        "left_hash": "00198b3fc9c67dfb013e341395ae0aff2a454e1c0f95d1fe756fd84428b44bd0",
+        "right_hash": "85ba4edd74395611ac2a54f2dae7c2a28c09dcfb446ef7a6500e6e5eaba76dab",
+        "method": "ast",
+        "method_version": "ast-subtree-v2",
+        "config_hash": "c639cfb65bfdf432bc0122104fe88a5b151cb6317034456918d1a89a2fa43fed",
+        "score": null,
+        "status": "unsupported",
+        "reason": "template-independent-4: AST-метод поддерживает одну синхронную функцию; template-independent-6: AST-метод поддерживает одну синхронную функцию",
+        "evidence": [],
+        "excluded_left": [
+          {
+            "submission_id": "template-independent-4",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "template-independent-6",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 1.0,
+        "schema_version": 1
+      },
+      "analysis": "Метод отказался от оценки: template-independent-4: AST-метод поддерживает одну синхронную функцию; template-independent-6: AST-метод поддерживает одну синхронную функцию. Отказ учитывается в coverage и operational recall."
+    },
+    {
+      "left_id": "template-independent-4",
+      "right_id": "template-independent-7",
+      "split": "test",
+      "derivation_relation": false,
+      "template_only": true,
+      "explanation": "Независимые короткие фрагменты разделяют только разрешённый import.",
+      "method": "ast",
+      "threshold": 1.0,
+      "kind": "ABSTENTION",
+      "expected_signal": false,
+      "predicted_signal": null,
+      "left_family": "template-independent-4",
+      "right_family": "template-independent-7",
+      "result": {
+        "left_id": "template-independent-4",
+        "right_id": "template-independent-7",
+        "left_hash": "00198b3fc9c67dfb013e341395ae0aff2a454e1c0f95d1fe756fd84428b44bd0",
+        "right_hash": "58fea181eb64d122c7fe2a9028e89e4cfd0ab3ace7e04cf5d691a02089104a9c",
+        "method": "ast",
+        "method_version": "ast-subtree-v2",
+        "config_hash": "c639cfb65bfdf432bc0122104fe88a5b151cb6317034456918d1a89a2fa43fed",
+        "score": null,
+        "status": "unsupported",
+        "reason": "template-independent-4: AST-метод поддерживает одну синхронную функцию; template-independent-7: AST-метод поддерживает одну синхронную функцию",
+        "evidence": [],
+        "excluded_left": [
+          {
+            "submission_id": "template-independent-4",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "template-independent-7",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 1.0,
+        "schema_version": 1
+      },
+      "analysis": "Метод отказался от оценки: template-independent-4: AST-метод поддерживает одну синхронную функцию; template-independent-7: AST-метод поддерживает одну синхронную функцию. Отказ учитывается в coverage и operational recall."
+    },
+    {
+      "left_id": "template-independent-5",
+      "right_id": "template-independent-6",
+      "split": "test",
+      "derivation_relation": false,
+      "template_only": true,
+      "explanation": "Независимые короткие фрагменты разделяют только разрешённый import.",
+      "method": "ast",
+      "threshold": 1.0,
+      "kind": "ABSTENTION",
+      "expected_signal": false,
+      "predicted_signal": null,
+      "left_family": "template-independent-5",
+      "right_family": "template-independent-6",
+      "result": {
+        "left_id": "template-independent-5",
+        "right_id": "template-independent-6",
+        "left_hash": "a337a124f6e85a42f5fb0903468a2584748fe145c14b2a6c84ea2fc7a0575466",
+        "right_hash": "85ba4edd74395611ac2a54f2dae7c2a28c09dcfb446ef7a6500e6e5eaba76dab",
+        "method": "ast",
+        "method_version": "ast-subtree-v2",
+        "config_hash": "c639cfb65bfdf432bc0122104fe88a5b151cb6317034456918d1a89a2fa43fed",
+        "score": null,
+        "status": "unsupported",
+        "reason": "template-independent-5: AST-метод поддерживает одну синхронную функцию; template-independent-6: AST-метод поддерживает одну синхронную функцию",
+        "evidence": [],
+        "excluded_left": [
+          {
+            "submission_id": "template-independent-5",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "template-independent-6",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 1.0,
+        "schema_version": 1
+      },
+      "analysis": "Метод отказался от оценки: template-independent-5: AST-метод поддерживает одну синхронную функцию; template-independent-6: AST-метод поддерживает одну синхронную функцию. Отказ учитывается в coverage и operational recall."
+    },
+    {
+      "left_id": "template-independent-5",
+      "right_id": "template-independent-7",
+      "split": "test",
+      "derivation_relation": false,
+      "template_only": true,
+      "explanation": "Независимые короткие фрагменты разделяют только разрешённый import.",
+      "method": "ast",
+      "threshold": 1.0,
+      "kind": "ABSTENTION",
+      "expected_signal": false,
+      "predicted_signal": null,
+      "left_family": "template-independent-5",
+      "right_family": "template-independent-7",
+      "result": {
+        "left_id": "template-independent-5",
+        "right_id": "template-independent-7",
+        "left_hash": "a337a124f6e85a42f5fb0903468a2584748fe145c14b2a6c84ea2fc7a0575466",
+        "right_hash": "58fea181eb64d122c7fe2a9028e89e4cfd0ab3ace7e04cf5d691a02089104a9c",
+        "method": "ast",
+        "method_version": "ast-subtree-v2",
+        "config_hash": "c639cfb65bfdf432bc0122104fe88a5b151cb6317034456918d1a89a2fa43fed",
+        "score": null,
+        "status": "unsupported",
+        "reason": "template-independent-5: AST-метод поддерживает одну синхронную функцию; template-independent-7: AST-метод поддерживает одну синхронную функцию",
+        "evidence": [],
+        "excluded_left": [
+          {
+            "submission_id": "template-independent-5",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "template-independent-7",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 1.0,
+        "schema_version": 1
+      },
+      "analysis": "Метод отказался от оценки: template-independent-5: AST-метод поддерживает одну синхронную функцию; template-independent-7: AST-метод поддерживает одну синхронную функцию. Отказ учитывается в coverage и operational recall."
+    },
+    {
+      "left_id": "template-independent-6",
+      "right_id": "template-independent-7",
+      "split": "test",
+      "derivation_relation": false,
+      "template_only": true,
+      "explanation": "Независимые короткие фрагменты разделяют только разрешённый import.",
+      "method": "ast",
+      "threshold": 1.0,
+      "kind": "ABSTENTION",
+      "expected_signal": false,
+      "predicted_signal": null,
+      "left_family": "template-independent-6",
+      "right_family": "template-independent-7",
+      "result": {
+        "left_id": "template-independent-6",
+        "right_id": "template-independent-7",
+        "left_hash": "85ba4edd74395611ac2a54f2dae7c2a28c09dcfb446ef7a6500e6e5eaba76dab",
+        "right_hash": "58fea181eb64d122c7fe2a9028e89e4cfd0ab3ace7e04cf5d691a02089104a9c",
+        "method": "ast",
+        "method_version": "ast-subtree-v2",
+        "config_hash": "c639cfb65bfdf432bc0122104fe88a5b151cb6317034456918d1a89a2fa43fed",
+        "score": null,
+        "status": "unsupported",
+        "reason": "template-independent-6: AST-метод поддерживает одну синхронную функцию; template-independent-7: AST-метод поддерживает одну синхронную функцию",
+        "evidence": [],
+        "excluded_left": [
+          {
+            "submission_id": "template-independent-6",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "template-independent-7",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 1.0,
+        "schema_version": 1
+      },
+      "analysis": "Метод отказался от оценки: template-independent-6: AST-метод поддерживает одну синхронную функцию; template-independent-7: AST-метод поддерживает одну синхронную функцию. Отказ учитывается в coverage и operational recall."
+    }
+  ],
+  "diagnostics": [
+    {
+      "name": "rename-fn",
+      "scope": "diagnostic-not-test",
+      "derivation_relation": true,
+      "explanation": "Известный потомок получен переименованием; токеновый метод чувствителен к NAME. AST проверяется по собственному контракту.",
+      "config": {
+        "method": "token",
+        "n": 3,
+        "exclude_template": true,
+        "max_evidence": 5,
+        "config_version": "1"
+      },
+      "threshold": 0.5,
+      "kind": "FN",
+      "expected_signal": true,
+      "predicted_signal": false,
+      "result": {
+        "left_id": "diag-rename-base",
+        "right_id": "diag-rename-child",
+        "left_hash": "31e4b89f4edbc5598df0f585ca690de7ff107b95347028e1aba53e07d867a7b7",
+        "right_hash": "942142f6c025c892aa9739102e52471000c1d0c0d205b5fba7ad5304cc580aa2",
+        "method": "token",
+        "method_version": "token-ngram-v2",
+        "config_hash": "8aceef471ae3a9ea9f445bd97b94ea7643c5c2e76347d8e94f41ffb4c69473c3",
+        "score": 0.06666666666666667,
+        "status": "ok",
+        "reason": null,
+        "evidence": [
+          {
+            "feature": "[[\"NAME\",\"def\"],[\"NAME\",\"solve\"],[\"OP\",\"(\"]]",
+            "left": {
+              "submission_id": "diag-rename-base",
+              "field": "code",
+              "start_line": 2,
+              "end_line": 2
+            },
+            "right": {
+              "submission_id": "diag-rename-child",
+              "field": "code",
+              "start_line": 2,
+              "end_line": 2
+            }
+          },
+          {
+            "feature": "[[\"OP\",\"=\"],[\"NUMBER\",\"0\"],[\"NAME\",\"for\"]]",
+            "left": {
+              "submission_id": "diag-rename-base",
+              "field": "code",
+              "start_line": 3,
+              "end_line": 4
+            },
+            "right": {
+              "submission_id": "diag-rename-child",
+              "field": "code",
+              "start_line": 3,
+              "end_line": 4
+            }
+          },
+          {
+            "feature": "[[\"OP\",\">=\"],[\"NUMBER\",\"0\"],[\"OP\",\":\"]]",
+            "left": {
+              "submission_id": "diag-rename-base",
+              "field": "code",
+              "start_line": 5,
+              "end_line": 5
+            },
+            "right": {
+              "submission_id": "diag-rename-child",
+              "field": "code",
+              "start_line": 5,
+              "end_line": 5
+            }
+          }
+        ],
+        "excluded_left": [
+          {
+            "submission_id": "diag-rename-base",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "diag-rename-child",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 0.5,
+        "schema_version": 1
+      }
+    },
+    {
+      "name": "rename-fn",
+      "scope": "diagnostic-not-test",
+      "derivation_relation": true,
+      "explanation": "Известный потомок получен переименованием; токеновый метод чувствителен к NAME. AST проверяется по собственному контракту.",
+      "config": {
+        "method": "ast",
+        "n": 3,
+        "exclude_template": true,
+        "max_evidence": 5,
+        "config_version": "1"
+      },
+      "threshold": 0.5,
+      "kind": "TP",
+      "expected_signal": true,
+      "predicted_signal": true,
+      "result": {
+        "left_id": "diag-rename-base",
+        "right_id": "diag-rename-child",
+        "left_hash": "31e4b89f4edbc5598df0f585ca690de7ff107b95347028e1aba53e07d867a7b7",
+        "right_hash": "942142f6c025c892aa9739102e52471000c1d0c0d205b5fba7ad5304cc580aa2",
+        "method": "ast",
+        "method_version": "ast-subtree-v2",
+        "config_hash": "050d09930d985425a59be5045f61bc70be42a6b1a5f0913a629456282e45a893",
+        "score": 1.0,
+        "status": "ok",
+        "reason": null,
+        "evidence": [
+          {
+            "feature": "Assign(targets=[Name(id='v1', ctx=Store())], value=Constant(value=0))",
+            "left": {
+              "submission_id": "diag-rename-base",
+              "field": "code",
+              "start_line": 3,
+              "end_line": 3
+            },
+            "right": {
+              "submission_id": "diag-rename-child",
+              "field": "code",
+              "start_line": 3,
+              "end_line": 3
+            }
+          },
+          {
+            "feature": "AugAssign(target=Name(id='v1', ctx=Store()), op=Add(), value=BinOp(left=Name(id='v2', ctx=Load()), op=Mult(), right=Name(id='v2', ctx=Load())))",
+            "left": {
+              "submission_id": "diag-rename-base",
+              "field": "code",
+              "start_line": 6,
+              "end_line": 6
+            },
+            "right": {
+              "submission_id": "diag-rename-child",
+              "field": "code",
+              "start_line": 6,
+              "end_line": 6
+            }
+          },
+          {
+            "feature": "BinOp(left=Name(id='v2', ctx=Load()), op=Mult(), right=Name(id='v2', ctx=Load()))",
+            "left": {
+              "submission_id": "diag-rename-base",
+              "field": "code",
+              "start_line": 6,
+              "end_line": 6
+            },
+            "right": {
+              "submission_id": "diag-rename-child",
+              "field": "code",
+              "start_line": 6,
+              "end_line": 6
+            }
+          },
+          {
+            "feature": "Compare(left=Name(id='v2', ctx=Load()), ops=[GtE()], comparators=[Constant(value=0)])",
+            "left": {
+              "submission_id": "diag-rename-base",
+              "field": "code",
+              "start_line": 5,
+              "end_line": 5
+            },
+            "right": {
+              "submission_id": "diag-rename-child",
+              "field": "code",
+              "start_line": 5,
+              "end_line": 5
+            }
+          },
+          {
+            "feature": "Constant(value=0)",
+            "left": {
+              "submission_id": "diag-rename-base",
+              "field": "code",
+              "start_line": 3,
+              "end_line": 3
+            },
+            "right": {
+              "submission_id": "diag-rename-child",
+              "field": "code",
+              "start_line": 3,
+              "end_line": 3
+            }
+          }
+        ],
+        "excluded_left": [
+          {
+            "submission_id": "diag-rename-base",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "diag-rename-child",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": true,
+        "threshold": 0.5,
+        "schema_version": 1
+      }
+    },
+    {
+      "name": "template-fp",
+      "scope": "diagnostic-not-test",
+      "derivation_relation": false,
+      "explanation": "Независимые короткие фрагменты имеют общий разрешённый import. Сравниваются две разные конфигурации.",
+      "config": {
+        "method": "token",
+        "n": 3,
+        "exclude_template": false,
+        "max_evidence": 5,
+        "config_version": "1"
+      },
+      "threshold": 0.2,
+      "kind": "FP",
+      "expected_signal": false,
+      "predicted_signal": true,
+      "result": {
+        "left_id": "diag-template-a",
+        "right_id": "diag-template-b",
+        "left_hash": "1fc4d4e563abfe05ae59b7206cfea0f715e67a6485a7a4e139c68a6a8042970e",
+        "right_hash": "4f0e665347ae941eb61aeafdb7b831742fade84a432ce18d2e32ac72fc114414",
+        "method": "token",
+        "method_version": "token-ngram-v2",
+        "config_hash": "577f8dccffb67a18e8e987c3b70bee6cc0878bfce03b8b34b28f03ded063c09f",
+        "score": 0.25,
+        "status": "ok",
+        "reason": null,
+        "evidence": [
+          {
+            "feature": "[[\"NAME\",\"from\"],[\"NAME\",\"typing\"],[\"NAME\",\"import\"]]",
+            "left": {
+              "submission_id": "diag-template-a",
+              "field": "code",
+              "start_line": 1,
+              "end_line": 1
+            },
+            "right": {
+              "submission_id": "diag-template-b",
+              "field": "code",
+              "start_line": 1,
+              "end_line": 1
+            }
+          },
+          {
+            "feature": "[[\"NAME\",\"typing\"],[\"NAME\",\"import\"],[\"NAME\",\"Iterable\"]]",
+            "left": {
+              "submission_id": "diag-template-a",
+              "field": "code",
+              "start_line": 1,
+              "end_line": 1
+            },
+            "right": {
+              "submission_id": "diag-template-b",
+              "field": "code",
+              "start_line": 1,
+              "end_line": 1
+            }
+          }
+        ],
+        "excluded_left": [],
+        "excluded_right": [],
+        "review_required": true,
+        "threshold": 0.2,
+        "schema_version": 1
+      }
+    },
+    {
+      "name": "template-fp",
+      "scope": "diagnostic-not-test",
+      "derivation_relation": false,
+      "explanation": "Независимые короткие фрагменты имеют общий разрешённый import. Сравниваются две разные конфигурации.",
+      "config": {
+        "method": "token",
+        "n": 3,
+        "exclude_template": true,
+        "max_evidence": 5,
+        "config_version": "1"
+      },
+      "threshold": 0.2,
+      "kind": "TN",
+      "expected_signal": false,
+      "predicted_signal": false,
+      "result": {
+        "left_id": "diag-template-a",
+        "right_id": "diag-template-b",
+        "left_hash": "1fc4d4e563abfe05ae59b7206cfea0f715e67a6485a7a4e139c68a6a8042970e",
+        "right_hash": "4f0e665347ae941eb61aeafdb7b831742fade84a432ce18d2e32ac72fc114414",
+        "method": "token",
+        "method_version": "token-ngram-v2",
+        "config_hash": "064104da9dcd00d41452a81c089b56967ffbe835e18d2b1ed8e7c256c236bfb8",
+        "score": 0.0,
+        "status": "ok",
+        "reason": null,
+        "evidence": [],
+        "excluded_left": [
+          {
+            "submission_id": "diag-template-a",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "excluded_right": [
+          {
+            "submission_id": "diag-template-b",
+            "field": "code",
+            "start_line": 1,
+            "end_line": 1
+          }
+        ],
+        "review_required": false,
+        "threshold": 0.2,
+        "schema_version": 1
+      }
+    },
+    {
+      "name": "independent-standard-fp",
+      "scope": "diagnostic-not-test",
+      "derivation_relation": false,
+      "explanation": "По сценарию авторы независимо выбрали стандартное одношаговое решение. Равное представление не доказывает происхождение.",
+      "config": {
+        "method": "token",
+        "n": 3,
+        "exclude_template": true,
+        "max_evidence": 5,
+        "config_version": "1"
+      },
+      "threshold": 0.9,
+      "kind": "FP",
+      "expected_signal": false,
+      "predicted_signal": true,
+      "result": {
+        "left_id": "diag-standard-a",
+        "right_id": "diag-standard-b",
+        "left_hash": "f23cf603874c705c0cbde08abfbfaaa571bdb0ecf8f19b4c2a0669081fc2b6f6",
+        "right_hash": "77c8b25091568d7b1f33cfd710d18eb26673dc99f0ff2188f85b5f9eb9077c10",
+        "method": "token",
+        "method_version": "token-ngram-v2",
+        "config_hash": "7ef8898e1a712dcdaf334f8e81af6c1f9f4560eb80a49a5937aab274756c6858",
+        "score": 1.0,
+        "status": "ok",
+        "reason": null,
+        "evidence": [
+          {
+            "feature": "[[\"NAME\",\"def\"],[\"NAME\",\"is_positive\"],[\"OP\",\"(\"]]",
+            "left": {
+              "submission_id": "diag-standard-a",
+              "field": "code",
+              "start_line": 1,
+              "end_line": 1
+            },
+            "right": {
+              "submission_id": "diag-standard-b",
+              "field": "code",
+              "start_line": 1,
+              "end_line": 1
+            }
+          },
+          {
+            "feature": "[[\"NAME\",\"is_positive\"],[\"OP\",\"(\"],[\"NAME\",\"x\"]]",
+            "left": {
+              "submission_id": "diag-standard-a",
+              "field": "code",
+              "start_line": 1,
+              "end_line": 1
+            },
+            "right": {
+              "submission_id": "diag-standard-b",
+              "field": "code",
+              "start_line": 1,
+              "end_line": 1
+            }
+          },
+          {
+            "feature": "[[\"NAME\",\"return\"],[\"NAME\",\"x\"],[\"OP\",\">\"]]",
+            "left": {
+              "submission_id": "diag-standard-a",
+              "field": "code",
+              "start_line": 2,
+              "end_line": 2
+            },
+            "right": {
+              "submission_id": "diag-standard-b",
+              "field": "code",
+              "start_line": 2,
+              "end_line": 2
+            }
+          },
+          {
+            "feature": "[[\"NAME\",\"x\"],[\"OP\",\")\"],[\"OP\",\":\"]]",
+            "left": {
+              "submission_id": "diag-standard-a",
+              "field": "code",
+              "start_line": 1,
+              "end_line": 1
+            },
+            "right": {
+              "submission_id": "diag-standard-b",
+              "field": "code",
+              "start_line": 1,
+              "end_line": 1
+            }
+          },
+          {
+            "feature": "[[\"NAME\",\"x\"],[\"OP\",\">\"],[\"NUMBER\",\"0\"]]",
+            "left": {
+              "submission_id": "diag-standard-a",
+              "field": "code",
+              "start_line": 2,
+              "end_line": 2
+            },
+            "right": {
+              "submission_id": "diag-standard-b",
+              "field": "code",
+              "start_line": 2,
+              "end_line": 2
+            }
+          }
+        ],
+        "excluded_left": [],
+        "excluded_right": [],
+        "review_required": true,
+        "threshold": 0.9,
+        "schema_version": 1
+      }
+    },
+    {
+      "name": "independent-standard-fp",
+      "scope": "diagnostic-not-test",
+      "derivation_relation": false,
+      "explanation": "По сценарию авторы независимо выбрали стандартное одношаговое решение. Равное представление не доказывает происхождение.",
+      "config": {
+        "method": "ast",
+        "n": 3,
+        "exclude_template": true,
+        "max_evidence": 5,
+        "config_version": "1"
+      },
+      "threshold": 0.9,
+      "kind": "FP",
+      "expected_signal": false,
+      "predicted_signal": true,
+      "result": {
+        "left_id": "diag-standard-a",
+        "right_id": "diag-standard-b",
+        "left_hash": "f23cf603874c705c0cbde08abfbfaaa571bdb0ecf8f19b4c2a0669081fc2b6f6",
+        "right_hash": "77c8b25091568d7b1f33cfd710d18eb26673dc99f0ff2188f85b5f9eb9077c10",
+        "method": "ast",
+        "method_version": "ast-subtree-v2",
+        "config_hash": "1c19fc23f601d98c86d782926c938e72be1259fbe8f5758e78c543ebdd0da69c",
+        "score": 1.0,
+        "status": "ok",
+        "reason": null,
+        "evidence": [
+          {
+            "feature": "Compare(left=Name(id='v0', ctx=Load()), ops=[Gt()], comparators=[Constant(value=0)])",
+            "left": {
+              "submission_id": "diag-standard-a",
+              "field": "code",
+              "start_line": 2,
+              "end_line": 2
+            },
+            "right": {
+              "submission_id": "diag-standard-b",
+              "field": "code",
+              "start_line": 2,
+              "end_line": 2
+            }
+          },
+          {
+            "feature": "Constant(value=0)",
+            "left": {
+              "submission_id": "diag-standard-a",
+              "field": "code",
+              "start_line": 2,
+              "end_line": 2
+            },
+            "right": {
+              "submission_id": "diag-standard-b",
+              "field": "code",
+              "start_line": 2,
+              "end_line": 2
+            }
+          },
+          {
+            "feature": "FunctionDef(name='function', args=arguments(args=[arg(arg='v0')]), body=[Return(value=Compare(left=Name(id='v0', ctx=Load()), ops=[Gt()], comparators=[Constant(value=0)]))])",
+            "left": {
+              "submission_id": "diag-standard-a",
+              "field": "code",
+              "start_line": 1,
+              "end_line": 2
+            },
+            "right": {
+              "submission_id": "diag-standard-b",
+              "field": "code",
+              "start_line": 1,
+              "end_line": 2
+            }
+          },
+          {
+            "feature": "Name(id='v0', ctx=Load())",
+            "left": {
+              "submission_id": "diag-standard-a",
+              "field": "code",
+              "start_line": 2,
+              "end_line": 2
+            },
+            "right": {
+              "submission_id": "diag-standard-b",
+              "field": "code",
+              "start_line": 2,
+              "end_line": 2
+            }
+          },
+          {
+            "feature": "Return(value=Compare(left=Name(id='v0', ctx=Load()), ops=[Gt()], comparators=[Constant(value=0)]))",
+            "left": {
+              "submission_id": "diag-standard-a",
+              "field": "code",
+              "start_line": 2,
+              "end_line": 2
+            },
+            "right": {
+              "submission_id": "diag-standard-b",
+              "field": "code",
+              "start_line": 2,
+              "end_line": 2
+            }
+          }
+        ],
+        "excluded_left": [],
+        "excluded_right": [],
+        "review_required": true,
+        "threshold": 0.9,
+        "schema_version": 1
+      }
+    },
+    {
+      "name": "empty-abstention",
+      "scope": "diagnostic-not-test",
+      "derivation_relation": false,
+      "explanation": "В обоих входах нет значимых признаков; отказ отражается отдельно от отрицательной оценки.",
+      "config": {
+        "method": "token",
+        "n": 3,
+        "exclude_template": true,
+        "max_evidence": 5,
+        "config_version": "1"
+      },
+      "threshold": 0.5,
+      "kind": "ABSTENTION",
+      "expected_signal": false,
+      "predicted_signal": null,
+      "result": {
+        "left_id": "diag-empty-a",
+        "right_id": "diag-empty-b",
+        "left_hash": "3d68084c32a8c66180c32690ef1b53620ff3f3c753596a6de2c6042d805605ab",
+        "right_hash": "38eff8a97f7006d397090f3e87a20fa2ddf0ef12a867f01b8d3233a7d87fe3ca",
+        "method": "token",
+        "method_version": "token-ngram-v2",
+        "config_hash": "7ef8898e1a712dcdaf334f8e81af6c1f9f4560eb80a49a5937aab274756c6858",
+        "score": null,
+        "status": "insufficient_data",
+        "reason": "После извлечения и исключения шаблона оба множества пусты",
+        "evidence": [],
+        "excluded_left": [],
+        "excluded_right": [],
+        "review_required": false,
+        "threshold": 0.5,
+        "schema_version": 1
+      }
+    },
+    {
+      "name": "empty-abstention",
+      "scope": "diagnostic-not-test",
+      "derivation_relation": false,
+      "explanation": "В обоих входах нет значимых признаков; отказ отражается отдельно от отрицательной оценки.",
+      "config": {
+        "method": "ast",
+        "n": 3,
+        "exclude_template": true,
+        "max_evidence": 5,
+        "config_version": "1"
+      },
+      "threshold": 0.5,
+      "kind": "ABSTENTION",
+      "expected_signal": false,
+      "predicted_signal": null,
+      "result": {
+        "left_id": "diag-empty-a",
+        "right_id": "diag-empty-b",
+        "left_hash": "3d68084c32a8c66180c32690ef1b53620ff3f3c753596a6de2c6042d805605ab",
+        "right_hash": "38eff8a97f7006d397090f3e87a20fa2ddf0ef12a867f01b8d3233a7d87fe3ca",
+        "method": "ast",
+        "method_version": "ast-subtree-v2",
+        "config_hash": "1c19fc23f601d98c86d782926c938e72be1259fbe8f5758e78c543ebdd0da69c",
+        "score": null,
+        "status": "insufficient_data",
+        "reason": "После извлечения и исключения шаблона оба множества пусты",
+        "evidence": [],
+        "excluded_left": [],
+        "excluded_right": [],
+        "review_required": false,
+        "threshold": 0.5,
+        "schema_version": 1
+      }
+    },
+    {
+      "name": "syntax-abstention",
+      "scope": "diagnostic-not-test",
+      "derivation_relation": false,
+      "explanation": "Некорректный синтаксис не позволяет надёжно сравнить представления; требуется явный отказ.",
+      "config": {
+        "method": "token",
+        "n": 3,
+        "exclude_template": true,
+        "max_evidence": 5,
+        "config_version": "1"
+      },
+      "threshold": 0.5,
+      "kind": "ABSTENTION",
+      "expected_signal": false,
+      "predicted_signal": null,
+      "result": {
+        "left_id": "diag-invalid",
+        "right_id": "diag-standard-a",
+        "left_hash": "8c5bb4b3e1af5e39da4a1bb12c464588a6e9a71977b5c8f3c46ab9010d779c7c",
+        "right_hash": "f23cf603874c705c0cbde08abfbfaaa571bdb0ecf8f19b4c2a0669081fc2b6f6",
+        "method": "token",
+        "method_version": "token-ngram-v2",
+        "config_hash": "7ef8898e1a712dcdaf334f8e81af6c1f9f4560eb80a49a5937aab274756c6858",
+        "score": null,
+        "status": "invalid_source",
+        "reason": "diag-invalid: Некорректный Python: invalid syntax (<unknown>, line 1)",
+        "evidence": [],
+        "excluded_left": [],
+        "excluded_right": [],
+        "review_required": false,
+        "threshold": 0.5,
+        "schema_version": 1
+      }
+    },
+    {
+      "name": "syntax-abstention",
+      "scope": "diagnostic-not-test",
+      "derivation_relation": false,
+      "explanation": "Некорректный синтаксис не позволяет надёжно сравнить представления; требуется явный отказ.",
+      "config": {
+        "method": "ast",
+        "n": 3,
+        "exclude_template": true,
+        "max_evidence": 5,
+        "config_version": "1"
+      },
+      "threshold": 0.5,
+      "kind": "ABSTENTION",
+      "expected_signal": false,
+      "predicted_signal": null,
+      "result": {
+        "left_id": "diag-invalid",
+        "right_id": "diag-standard-a",
+        "left_hash": "8c5bb4b3e1af5e39da4a1bb12c464588a6e9a71977b5c8f3c46ab9010d779c7c",
+        "right_hash": "f23cf603874c705c0cbde08abfbfaaa571bdb0ecf8f19b4c2a0669081fc2b6f6",
+        "method": "ast",
+        "method_version": "ast-subtree-v2",
+        "config_hash": "1c19fc23f601d98c86d782926c938e72be1259fbe8f5758e78c543ebdd0da69c",
+        "score": null,
+        "status": "invalid_source",
+        "reason": "diag-invalid: Некорректный Python: invalid syntax (<unknown>, line 1)",
+        "evidence": [],
+        "excluded_left": [],
+        "excluded_right": [],
+        "review_required": false,
+        "threshold": 0.5,
+        "schema_version": 1
+      }
+    }
+  ]
+}

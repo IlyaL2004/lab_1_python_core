@@ -1,0 +1,9 @@
+{
+  "token_top3_unchanged": true,
+  "ast_top3_unchanged": true,
+  "legacy_import_accepted": 2,
+  "legacy_analysis_reports": 10,
+  "legacy_measurements": 10,
+  "pip_check": "No broken requirements found.",
+  "fixed_corpus_validation": "passed"
+}

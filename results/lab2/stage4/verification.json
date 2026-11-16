@@ -1,0 +1,139 @@
+{
+  "checked_at": "2026-11-16T17:04:18.903562+00:00",
+  "stage": "lab2-stage4-thresholds-and-quality",
+  "base_commit": "a324b9b4a9f5335423b5743be30a15ec91de3f8f",
+  "environment": {
+    "python": "3.13.9 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 19:09:58) [MSC v.1929 64 bit (AMD64)]",
+    "implementation": "CPython",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "packages": {
+      "school-lab": "1.0.0",
+      "pytest": "9.1.1"
+    }
+  },
+  "tests": {
+    "command": "python -B -X utf8 -m pytest -q -p no:cacheprovider",
+    "passed": 559,
+    "duration_seconds": 7.6,
+    "output": "tests.txt"
+  },
+  "evaluation_command": "python -B -X utf8 -m school_lab.cli evaluate --data data/lab2 --output results/lab2/stage4 --seed 42",
+  "documents": 56,
+  "labelled_pairs": 132,
+  "metrics": {
+    "token": {
+      "threshold": 0.0975609756097561,
+      "threshold_selected_on": "validation",
+      "validation": {
+        "tp": 22,
+        "fp": 4,
+        "fn": 2,
+        "tn": 38,
+        "total_pairs": 66,
+        "defined_pairs": 66,
+        "precision": 0.8461538461538461,
+        "recall_defined": 0.9166666666666666,
+        "f1_defined": 0.88,
+        "abstentions": 0,
+        "abstention_rate": 0.0,
+        "positive_abstentions": 0,
+        "recall_all_positives": 0.9166666666666666
+      },
+      "test": {
+        "tp": 20,
+        "fp": 3,
+        "fn": 4,
+        "tn": 39,
+        "total_pairs": 66,
+        "defined_pairs": 66,
+        "precision": 0.8695652173913043,
+        "recall_defined": 0.8333333333333334,
+        "f1_defined": 0.851063829787234,
+        "abstentions": 0,
+        "abstention_rate": 0.0,
+        "positive_abstentions": 0,
+        "recall_all_positives": 0.8333333333333334
+      },
+      "test_template_only": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 6,
+        "total_pairs": 6,
+        "defined_pairs": 6,
+        "precision": null,
+        "recall_defined": null,
+        "f1_defined": null,
+        "abstentions": 0,
+        "abstention_rate": 0.0,
+        "positive_abstentions": 0,
+        "recall_all_positives": null
+      }
+    },
+    "ast": {
+      "threshold": 1.0,
+      "threshold_selected_on": "validation",
+      "validation": {
+        "tp": 24,
+        "fp": 0,
+        "fn": 0,
+        "tn": 36,
+        "total_pairs": 66,
+        "defined_pairs": 60,
+        "precision": 1.0,
+        "recall_defined": 1.0,
+        "f1_defined": 1.0,
+        "abstentions": 6,
+        "abstention_rate": 0.09090909090909091,
+        "positive_abstentions": 0,
+        "recall_all_positives": 1.0
+      },
+      "test": {
+        "tp": 18,
+        "fp": 0,
+        "fn": 0,
+        "tn": 18,
+        "total_pairs": 66,
+        "defined_pairs": 36,
+        "precision": 1.0,
+        "recall_defined": 1.0,
+        "f1_defined": 1.0,
+        "abstentions": 30,
+        "abstention_rate": 0.45454545454545453,
+        "positive_abstentions": 6,
+        "recall_all_positives": 0.75
+      },
+      "test_template_only": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 0,
+        "total_pairs": 6,
+        "defined_pairs": 0,
+        "precision": null,
+        "recall_defined": null,
+        "f1_defined": null,
+        "abstentions": 6,
+        "abstention_rate": 1.0,
+        "positive_abstentions": 0,
+        "recall_all_positives": null
+      }
+    }
+  },
+  "source_sha256": "adba49d34634520d4f8804a962727179d9a163ae87cdf30ea3bbc5419c2c6ba8",
+  "quality_artifacts_sha256": {
+    "run.json": "d1ae6d0d8b3afda123533045af31863632d3a39da0cd401f17df5a4bf1e618f2",
+    "metrics.json": "896747a3d6f19e0d0d72112d974fbe55b7b2480796c7ad11c85111580c365d70",
+    "pair_results.jsonl": "c3b4486d88de9976b70ec61f86cf8888eb967b312f004b9968baa9799bdaec6f",
+    "error_analysis.json": "6f86ca2c17a95cdcb32de2228efe8820ba9547d3275f078f49b0ad061528011b"
+  },
+  "smoke_checks": {
+    "token_top3_unchanged": true,
+    "ast_top3_unchanged": true,
+    "legacy_import_accepted": 2,
+    "legacy_analysis_reports": 10,
+    "legacy_measurements": 10,
+    "pip_check": "No broken requirements found.",
+    "fixed_corpus_validation": "passed"
+  }
+}

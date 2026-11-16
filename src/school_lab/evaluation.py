@@ -1,6 +1,8 @@
-"""Проверка происхождения, разбиения корпуса и разметки пар."""
+"""Разбиение по происхождению, проверка разметки и метрики сходства."""
+from collections import Counter
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
+import math
 
 from .models import Submission
 
@@ -132,3 +134,68 @@ def validate_pairs(
     if {pair.split for pair in result} != {"validation", "test"}:
         raise ValueError("Размеченные пары требуются в обеих частях")
     return result
+
+
+def _ratio(numerator: int, denominator: int) -> float | None:
+    """Вход: числитель и знаменатель. Выход: доля либо None при нуле."""
+    return numerator / denominator if denominator else None
+
+
+def metrics(rows: Sequence[tuple[bool, float | None]], threshold: float) -> dict:
+    """Посчитать качество на определённых score и отдельно долю отказов.
+
+    Вход: пары (известная метка, score либо None) и конечный порог 0–1.000001.
+    Выход: матрица ошибок, precision/recall/F1 и показатели отказов.
+    При нулевом знаменателе метрика равна None. Ошибки входа — ValueError.
+    """
+    if (type(threshold) not in (int, float) or not 0 <= threshold <= 1.000001
+            or not math.isfinite(threshold)):
+        raise ValueError("Порог должен быть числом от 0 до 1.000001")
+    counts = Counter({"tp": 0, "fp": 0, "fn": 0, "tn": 0})
+    abstentions = positive_abstentions = positives = 0
+    for label, score in rows:
+        if type(label) is not bool:
+            raise ValueError("Метка должна быть bool")
+        positives += label
+        if score is None:
+            abstentions += 1
+            positive_abstentions += label
+            continue
+        if (type(score) not in (int, float) or not 0 <= score <= 1
+                or not math.isfinite(score)):
+            raise ValueError("Score должен быть конечным числом 0–1 либо None")
+        predicted = score >= threshold
+        key = "tp" if label and predicted else "fn" if label else "fp" if predicted else "tn"
+        counts[key] += 1
+    tp, fp, fn = counts["tp"], counts["fp"], counts["fn"]
+    return {
+        **counts,
+        "total_pairs": len(rows),
+        "defined_pairs": len(rows) - abstentions,
+        "precision": _ratio(tp, tp + fp),
+        "recall_defined": _ratio(tp, tp + fn),
+        "f1_defined": _ratio(2 * tp, 2 * tp + fp + fn),
+        "abstentions": abstentions,
+        "abstention_rate": _ratio(abstentions, len(rows)),
+        "positive_abstentions": positive_abstentions,
+        "recall_all_positives": _ratio(tp, positives),
+    }
+
+
+def choose_threshold(rows: Sequence[tuple[bool, float | None]]) -> tuple[float, dict]:
+    """Подобрать порог только по переданной настроечной части.
+
+    Вход: validation-метки и score. Выход: (порог, метрики validation).
+    Максимизируется F1; при равенстве берётся больший порог. Точка выше 1
+    позволяет не выдавать ни одного сигнала. Пустой вход вызывает ValueError.
+    Неопределённый F1 при выборе считается нулём, но в метриках остаётся None.
+    """
+    if not rows:
+        raise ValueError("Для выбора порога нужны размеченные validation-пары")
+    metrics(rows, 0.0)
+    thresholds = sorted({0.0, 1.000001} | {float(score) for _, score in rows if score is not None})
+    candidates = [(threshold, metrics(rows, threshold)) for threshold in thresholds]
+    return max(candidates, key=lambda item: (
+        item[1]["f1_defined"] if item[1]["f1_defined"] is not None else 0,
+        item[0],
+    ))

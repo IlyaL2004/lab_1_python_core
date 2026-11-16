@@ -16,7 +16,7 @@ from .timing import Measurement, timed
 
 
 def create_parser() -> argparse.ArgumentParser:
-    """Описать аргументы команд import, analyze и token/AST-сравнения compare.
+    """Описать аргументы приёма, анализа, сравнения и оценки token/AST.
 
     Вход: без аргументов.
     Выход: ArgumentParser; обработка файлов ещё не запускается.
@@ -95,7 +95,7 @@ def main(argv: list[str] | None = None) -> int:
     Неверные аргументы argparse завершают запуск через SystemExit(2).
     """
     args = create_parser().parse_args(argv)
-    if args.command == "compare":
+    if args.command in {"compare", "evaluate"}:
         return run_command(args)
     try:
         app = build_application(plugins=args.plugins)
