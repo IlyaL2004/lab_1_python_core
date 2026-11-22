@@ -1,0 +1,91 @@
+{
+  "checked_at": "2026-11-22T15:33:41.512008+00:00",
+  "stage": "lab2-stage5-baseline-profiling",
+  "base_commit": "6033cd101a597d2bc5e0139f5b78778079224573",
+  "environment": {
+    "python": "3.13.9 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 19:09:58) [MSC v.1929 64 bit (AMD64)]",
+    "implementation": "CPython",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "machine": "AMD64",
+    "packages": {
+      "school-lab": "1.0.0",
+      "pytest": "9.1.1"
+    }
+  },
+  "tests": {
+    "command": "python -B -X utf8 -m pytest -q -p no:cacheprovider",
+    "passed": 600,
+    "duration_seconds": 9.55,
+    "output": "tests.txt"
+  },
+  "benchmark_command": "python -B -X utf8 -m school_lab.cli benchmark --data data/lab2 --output results/lab2/stage5 --sizes 100 1000 5000 --repeats 3 --seed 42",
+  "benchmark_exit_code": 0,
+  "benchmark_stdout_matches_artifact": true,
+  "source_sha256": "ca4e7ed1039dca530efc097f17eacca02b06355f33cf05abdbb43d8f9f3e327f",
+  "sizes": [
+    100,
+    1000,
+    5000
+  ],
+  "repeats_per_measurement": 3,
+  "seed": 42,
+  "methods": [
+    "token",
+    "ast"
+  ],
+  "baseline_records": 12,
+  "baseline_pairs_per_method": 66,
+  "optimization_applied": false,
+  "artifacts_sha256": {
+    "benchmark.json": "0b201dd225f3dc85bd28a258dd2ed68edd0975c055e8ec2768b0fe64a6acf8e8",
+    "baseline.json": "d7d9f00d07ede9c22bc2aed76f75502a5b0e2c9bbbd9b721e0eb150b3258fd60",
+    "profile_before.txt": "21d49b99ace971eab143bb9c47a65a4d65bfa9615378c3b629739bb7e68894b1",
+    "tests.txt": "e3941591b8b161efd131392e5788088f6a141c8cc057bab9a1a2749efdc928c1",
+    "smoke_checks.json": "f4fee6171baf64acc127dce1ba437231a7922e6d64bee0f755e699760e418abd"
+  },
+  "smoke_checks": {
+    "benchmark_source_and_input_hashes_valid": true,
+    "benchmark_raw_runs_and_medians_valid": true,
+    "synthetic_workload_hashes_reproduced": true,
+    "baseline_full_report_hashes_reproduced": true,
+    "quality_artifacts_unchanged_sha256": {
+      "metrics.json": "896747a3d6f19e0d0d72112d974fbe55b7b2480796c7ad11c85111580c365d70",
+      "pair_results.jsonl": "c3b4486d88de9976b70ec61f86cf8888eb967b312f004b9968baa9799bdaec6f",
+      "error_analysis.json": "6f86ca2c17a95cdcb32de2228efe8820ba9547d3275f078f49b0ad061528011b"
+    },
+    "token_top3_unchanged": true,
+    "ast_top3_unchanged": true,
+    "legacy_import_accepted": 2,
+    "legacy_analysis_reports": 10,
+    "legacy_measurements": 10,
+    "fixed_corpus_validation": {
+      "status": "ok",
+      "submissions": 56,
+      "families": 24,
+      "pairs": 132,
+      "template_only": 12,
+      "split": {
+        "validation": {
+          "submissions": 28,
+          "families": 12,
+          "pairs": 66,
+          "template_only": 6
+        },
+        "test": {
+          "submissions": 28,
+          "families": 12,
+          "pairs": 66,
+          "template_only": 6
+        }
+      },
+      "input_sha256": {
+        "assignments.json": "441c9653cad7044d721888d10ec70cb7d70a69beedfe37c1766deb6d6ee78302",
+        "submissions.jsonl": "dfe15edfcf2d155a1a3a660821f647dd077e0b4cc40b21f1dfd2b608c36e5c0a",
+        "provenance.json": "b386afebfeb9cbde3667d0a6ee830c657ed5388e2119f9d5fc4fc599d220c0cd",
+        "split.json": "017c888fbd8e8e16feb12233d360b580bd26e5b4383dc72f316b5753d359af38",
+        "pairs.jsonl": "b88f4cdc7bb734c09f91ed6206a300ede42a4b4e087ac7cceba85e5a587aff2b"
+      }
+    },
+    "pip_check": "No broken requirements found."
+  }
+}

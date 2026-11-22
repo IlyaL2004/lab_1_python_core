@@ -322,7 +322,6 @@ def test_compare_invalid_assignments_are_configuration_error(temp_dir, raw_submi
 
 @pytest.mark.parametrize("args", [
     ["compare", "unused", "--assignments", "unused", "--method", "unknown"],
-    ["benchmark"],
 ])
 def test_future_methods_and_commands_are_not_available(args, capsys):
     with pytest.raises(SystemExit) as exc:

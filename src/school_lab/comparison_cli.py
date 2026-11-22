@@ -1,4 +1,4 @@
-"""Token/AST-сравнение и оценка качества через CLI без общего индекса признаков."""
+"""Token/AST-сравнение, оценка качества и последовательные замеры через CLI."""
 
 import argparse
 import json
@@ -9,6 +9,7 @@ from dataclasses import asdict
 from itertools import combinations
 from pathlib import Path
 
+from .benchmarking import run_benchmarks
 from .errors import AnalysisFailure, SubmissionError
 from .experiments import run_experiment
 from .parsing import load_assignments
@@ -18,10 +19,10 @@ from .similarity_models import SimilarityConfig
 
 
 def add_commands(commands: argparse._SubParsersAction) -> None:
-    """Добавить команды compare и evaluate к прежнему интерфейсу school-lab.
+    """Добавить compare, evaluate и benchmark к интерфейсу school-lab.
 
     Вход: commands — подкоманды ArgumentParser.
-    Выход: None; зарегистрированы сравнение пар/top-k и оценка фиксированного корпуса.
+    Выход: None; зарегистрированы сравнение, оценка качества и замеры нагрузки.
     """
     compare = commands.add_parser("compare", help="Сравнить код методом token или AST")
     compare.add_argument("path", type=Path)
@@ -37,6 +38,12 @@ def add_commands(commands: argparse._SubParsersAction) -> None:
     evaluate.add_argument("--data", type=Path, default=Path("data/lab2"))
     evaluate.add_argument("--output", type=Path, default=Path("results/lab2"))
     evaluate.add_argument("--seed", type=int, default=42)
+    benchmark = commands.add_parser("benchmark", help="Измерить время, память и профиль token/AST")
+    benchmark.add_argument("--data", type=Path, default=Path("data/lab2"))
+    benchmark.add_argument("--output", type=Path, default=Path("results/lab2"))
+    benchmark.add_argument("--sizes", type=int, nargs="+", default=[100, 1000, 5000])
+    benchmark.add_argument("--repeats", type=int, default=3)
+    benchmark.add_argument("--seed", type=int, default=42)
 
 
 def compare_corpus(args: argparse.Namespace) -> dict[str, object]:
@@ -98,9 +105,9 @@ def compare_corpus(args: argparse.Namespace) -> dict[str, object]:
 
 
 def run_command(args: argparse.Namespace) -> int:
-    """Запустить compare или evaluate, сохранив машинный JSON и коды завершения.
+    """Запустить команду ЛР2, сохранив машинный JSON и коды завершения.
 
-    Вход: args — аргументы compare/evaluate.
+    Вход: args — аргументы compare/evaluate/benchmark.
     Выход: 0 при успехе, 1 при частичном приёме, 2 при ошибке запуска.
     JSON терминала экранирует Unicode; файл результата записывается в UTF-8.
     SyntaxError и неподдерживаемые AST-конструкции отражаются в парном отчёте
@@ -115,11 +122,16 @@ def run_command(args: argparse.Namespace) -> int:
                     json.dumps(result, ensure_ascii=False, allow_nan=False, indent=2) + "\n",
                     encoding="utf-8",
                 )
-        else:
+        elif args.command == "evaluate":
             result = run_experiment(
                 args.data / "submissions.jsonl", args.data / "assignments.json",
                 args.data / "provenance.json", args.data / "split.json",
                 args.data / "pairs.jsonl", args.output, seed=args.seed,
+            )
+        else:
+            result = run_benchmarks(
+                args.data / "submissions.jsonl", args.data / "assignments.json",
+                args.output, sizes=tuple(args.sizes), repeats=args.repeats, seed=args.seed,
             )
         print(json.dumps(result, ensure_ascii=True, allow_nan=False))
         return 1 if result.get("errors") else 0
