@@ -1,0 +1,79 @@
+METHOD token
+         146277 function calls (139881 primitive calls) in 0.086 seconds
+
+   Ordered by: cumulative time
+   List reduced from 68 to 30 due to restriction <30>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.090    0.090 benchmarking.py:299(before)
+        1    0.000    0.000    0.090    0.090 benchmarking.py:110(pair_results)
+       66    0.000    0.000    0.085    0.001 similarity.py:107(compare_submissions)
+      132    0.002    0.000    0.077    0.001 features.py:213(prepare_submission)
+      132    0.006    0.000    0.062    0.000 features.py:76(token_occurrences)
+      132    0.006    0.000    0.027    0.000 features.py:53(source_tokens)
+     4290    0.002    0.000    0.025    0.000 hashing.py:8(canonical_json)
+     4290    0.005    0.000    0.023    0.000 __init__.py:183(dumps)
+     4290    0.004    0.000    0.017    0.000 encoder.py:183(encode)
+     4290    0.011    0.000    0.011    0.000 encoder.py:205(iterencode)
+      462    0.000    0.000    0.009    0.000 dataclasses.py:1338(asdict)
+     6919    0.005    0.000    0.009    0.000 tokenize.py:575(_generate_tokens_from_c_tokenizer)
+ 6858/462    0.004    0.000    0.009    0.000 dataclasses.py:1362(_asdict_inner)
+       66    0.000    0.000    0.008    0.000 similarity.py:79(compare_prepared)
+      132    0.000    0.000    0.008    0.000 features.py:42(parse_source)
+      132    0.000    0.000    0.008    0.000 ast.py:30(parse)
+      132    0.008    0.000    0.008    0.000 {built-in method builtins.compile}
+      132    0.000    0.000    0.006    0.000 hashing.py:34(submission_hash)
+      264    0.000    0.000    0.005    0.000 hashing.py:25(stable_hash)
+     4554    0.002    0.000    0.005    0.000 features.py:37(overlaps)
+       66    0.000    0.000    0.005    0.000 similarity_models.py:118(to_dict)
+       66    0.001    0.000    0.004    0.000 similarity.py:158(validate_pair_result)
+     5146    0.002    0.000    0.004    0.000 {built-in method builtins.any}
+     6787    0.002    0.000    0.004    0.000 __init__.py:450(_make)
+     1170    0.002    0.000    0.003    0.000 dataclasses.py:1308(fields)
+       66    0.001    0.000    0.003    0.000 similarity.py:62(_evidence)
+     4818    0.003    0.000    0.003    0.000 <string>:2(__init__)
+      132    0.000    0.000    0.002    0.000 features.py:203(configuration_payload)
+      428    0.000    0.000    0.001    0.000 similarity.py:147(_validate_reference)
+      692    0.001    0.000    0.001    0.000 source_text.py:4(physical_lines)
+
+
+
+METHOD ast
+         592824 function calls (533673 primitive calls) in 0.229 seconds
+
+   Ordered by: cumulative time
+   List reduced from 95 to 30 due to restriction <30>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.233    0.233 benchmarking.py:299(before)
+        1    0.000    0.000    0.233    0.233 benchmarking.py:110(pair_results)
+       66    0.000    0.000    0.227    0.003 similarity.py:107(compare_submissions)
+      132    0.002    0.000    0.218    0.002 features.py:213(prepare_submission)
+      132    0.010    0.000    0.198    0.001 features.py:165(ast_occurrences)
+     2706    0.003    0.000    0.068    0.000 ast.py:113(dump)
+26235/2706    0.044    0.000    0.065    0.000 ast.py:131(_format)
+    15147    0.009    0.000    0.048    0.000 ast.py:384(walk)
+19860/9168    0.005    0.000    0.038    0.000 {method 'join' of 'str' objects}
+    14784    0.006    0.000    0.037    0.000 {method 'extend' of 'collections.deque' objects}
+      132    0.006    0.000    0.036    0.000 features.py:111(_normalize_function)
+6105/3234    0.002    0.000    0.035    0.000 ast.py:187(<genexpr>)
+      132    0.001    0.000    0.031    0.000 features.py:97(_remove_template_statements)
+    29205    0.015    0.000    0.030    0.000 ast.py:284(iter_child_nodes)
+ 5313/132    0.004    0.000    0.028    0.000 features.py:100(visit)
+ 5181/132    0.003    0.000    0.028    0.000 ast.py:418(visit)
+ 5181/132    0.009    0.000    0.028    0.000 ast.py:492(generic_visit)
+   167997    0.018    0.000    0.018    0.000 {built-in method builtins.isinstance}
+    56034    0.011    0.000    0.015    0.000 ast.py:272(iter_fields)
+     4911    0.005    0.000    0.014    0.000 {built-in method builtins.any}
+    78882    0.012    0.000    0.012    0.000 {built-in method builtins.getattr}
+      132    0.000    0.000    0.011    0.000 features.py:42(parse_source)
+      132    0.000    0.000    0.010    0.000 ast.py:30(parse)
+      462    0.000    0.000    0.010    0.000 dataclasses.py:1338(asdict)
+      132    0.010    0.000    0.010    0.000 {built-in method builtins.compile}
+      132    0.000    0.000    0.010    0.000 hashing.py:34(submission_hash)
+      264    0.000    0.000    0.010    0.000 hashing.py:25(stable_hash)
+ 7242/462    0.005    0.000    0.010    0.000 dataclasses.py:1362(_asdict_inner)
+       66    0.000    0.000    0.008    0.000 similarity.py:79(compare_prepared)
+      264    0.000    0.000    0.008    0.000 hashing.py:8(canonical_json)
+
+

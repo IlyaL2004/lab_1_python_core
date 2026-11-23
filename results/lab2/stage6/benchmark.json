@@ -1,0 +1,482 @@
+{
+  "schema_version": 1,
+  "environment": {
+    "python": "3.13.9 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 19:09:58) [MSC v.1929 64 bit (AMD64)]",
+    "implementation": "CPython",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "machine": "AMD64"
+  },
+  "seed": 42,
+  "repeats": 3,
+  "corpus_sha256": "dfe15edfcf2d155a1a3a660821f647dd077e0b4cc40b21f1dfd2b608c36e5c0a",
+  "assignments_sha256": "441c9653cad7044d721888d10ec70cb7d70a69beedfe37c1766deb6d6ee78302",
+  "source_files_sha256": {
+    "__init__.py": "6d38881259e06b7c4242cc0abbb9da5e1fcc51b49c33377409d2c7d4fca2e7de",
+    "analyzers.py": "e18939d88d1d099edd348e8e47a7d4819128ee3e09e6a70f55d85c279e8e78d6",
+    "application.py": "3a9717a244f36512f1dd2cc6db63c45e860d6fcd8ca0971f858f8750fc1fc980",
+    "benchmarking.py": "e894c0fb1b4f1a87c51515bbad6ec74760ed407837fed330aaefe5cec4625a5b",
+    "cli.py": "a64a8ba00aa6d235026a773f5edb5b822759c558fe722d5f26cabc5ddaf9caea",
+    "comparison_cli.py": "d6db6dc7cbd92f25db7a7ee97fa6998fa2bc6d818f0908cfb2226309d68b00c6",
+    "errors.py": "2ca57f323b9f3baaa2ade08c1f25351319425d31515f66f8ed7c211f9f0ad80c",
+    "evaluation.py": "6a20a589af60ea4cde41704a9ade80c64eeeaf31b296389c7611b374783bcc41",
+    "experiments.py": "89de75a0a6cf07f5a3e5e0c85ca8dacdb9a8d84d5bef5e1c136769ca0edaeec8",
+    "features.py": "8a847f60f39449a30735baf4e43fdc56536f0e5e7fecb2e65a13c1e77e315fc4",
+    "hashing.py": "00f557e4055a0c5dfa825e4e53a9942c8d41351d3fad883eb9078a378f972658",
+    "models.py": "9074b3dc65d31ac3929698ecc7d0b3da8c15df24d240134c2a5af9641620473f",
+    "parsing.py": "c6eab3ad44004e92f912533d5748d7fb58016ba55395b0bcc14613d50df0f4f0",
+    "pipeline.py": "bc27a8ac9d547880c56e4757574d4691650fd412c7619152123515e58a857077",
+    "plugins.py": "50802336288b77569cd4fac24dff9cf2fcbd74cc5ee466a009865ac0ebf67b7a",
+    "reports.py": "601588d6ccb372191d7225e1fd0d7ef3f34c453796455605935c77eba63abeb2",
+    "repositories.py": "1482e2437003723a26d04afce6a18c8e8802dddb8e1430a13d5b7355069894c7",
+    "services.py": "50c91e1d1310e28abaa63f4505e66970a6ee1e349c46bf64337d34501952288d",
+    "similarity.py": "5c96046dd393df4d101a0575fdf7806ab3c0f8be30e4b168f1584130df96fa4b",
+    "similarity_models.py": "e5b3251ecbb4ae4bf2748f509b44af25eb34cb576ec3128c0a8dc7e0bb990408",
+    "source_text.py": "bed95217cef19e41f46eb93c02f5110442782b3d698721914a31fa604aeaa8e4",
+    "sources.py": "34dfa945e7857711abb3ef400fe71b11ad4b8bb05481f404de0c76b1a6282f48",
+    "timing.py": "ac2bc494fc3973c70aadae7cb83be0eb9ae8da901eb2d28d2a5acf210b43d2fc"
+  },
+  "source_sha256": "94f904d4fb60c79b5bae6411fbf22e487dad1c972e5c7eae38c82faffc384e98",
+  "workload": {
+    "synthetic": true,
+    "example_ids": [
+      "squares-family-0-v0",
+      "squares-family-0-v1",
+      "squares-family-0-v2",
+      "squares-family-1-v0",
+      "squares-family-1-v1",
+      "squares-family-1-v2",
+      "squares-family-2-v0",
+      "squares-family-2-v1",
+      "squares-family-2-v2",
+      "squares-family-3-v0",
+      "squares-family-3-v1",
+      "squares-family-3-v2",
+      "count_positive-family-0-v0",
+      "count_positive-family-0-v1",
+      "count_positive-family-0-v2",
+      "count_positive-family-1-v0",
+      "count_positive-family-1-v1",
+      "count_positive-family-1-v2",
+      "count_positive-family-2-v0",
+      "count_positive-family-2-v1",
+      "count_positive-family-2-v2",
+      "count_positive-family-3-v0",
+      "count_positive-family-3-v1",
+      "count_positive-family-3-v2",
+      "maximum-family-0-v0",
+      "maximum-family-0-v1",
+      "maximum-family-0-v2",
+      "maximum-family-1-v0",
+      "maximum-family-1-v1",
+      "maximum-family-1-v2",
+      "maximum-family-2-v0",
+      "maximum-family-2-v1"
+    ],
+    "files": [
+      {
+        "records": 100,
+        "sha256": "18320e398371dffc5a9e13259bb8912e42510cbd849c79efd0751f976b22f2fc"
+      },
+      {
+        "records": 1000,
+        "sha256": "74e58423123a0e741a3269a99ec81184dcaa70d1cce6d141a936e5fa55b7b212"
+      },
+      {
+        "records": 5000,
+        "sha256": "a540676d1681308713b139448042e8a05e1cf75130eecf56606facaaacb31bbb"
+      }
+    ],
+    "generation_measured": false
+  },
+  "measurement": {
+    "scaling": "JSONL read -> validate -> features -> complete feature index",
+    "index_memory": "Пропорциональна объёму признаков и координат; text/code не хранятся. AST-поддеревья могут занимать квадратичный объём по длине кода",
+    "pairwise_at_large_sizes": false,
+    "pairwise": "Первые 12 образцов: повторная подготовка для каждой пары и однократная подготовка на сдачу",
+    "wall_time": "perf_counter, без cProfile и tracemalloc",
+    "peak_memory": "tracemalloc peak Python allocations, не RSS процесса",
+    "separate_time_and_memory_runs": true,
+    "concurrency": false
+  },
+  "scaling": [
+    {
+      "method": "token",
+      "method_version": "token-ngram-v2",
+      "config": {
+        "method": "token",
+        "n": 3,
+        "exclude_template": true,
+        "max_evidence": 5,
+        "config_version": "1"
+      },
+      "records": 100,
+      "wall_seconds": [
+        0.044923700392246246,
+        0.03431759960949421,
+        0.033940499648451805
+      ],
+      "wall_seconds_median": 0.03431759960949421,
+      "peak_bytes": [
+        806522,
+        805699,
+        808274
+      ],
+      "peak_bytes_median": 806522,
+      "indexed_records": 100,
+      "status_counts": {
+        "ok": 100,
+        "unsupported": 0,
+        "invalid_source": 0
+      },
+      "empty_features": 0
+    },
+    {
+      "method": "ast",
+      "method_version": "ast-subtree-v2",
+      "config": {
+        "method": "ast",
+        "n": 3,
+        "exclude_template": true,
+        "max_evidence": 5,
+        "config_version": "1"
+      },
+      "records": 100,
+      "wall_seconds": [
+        0.057401400059461594,
+        0.05556980147957802,
+        0.05861630104482174
+      ],
+      "wall_seconds_median": 0.057401400059461594,
+      "peak_bytes": [
+        817207,
+        815715,
+        815542
+      ],
+      "peak_bytes_median": 815715,
+      "indexed_records": 100,
+      "status_counts": {
+        "ok": 75,
+        "unsupported": 25,
+        "invalid_source": 0
+      },
+      "empty_features": 25
+    },
+    {
+      "method": "token",
+      "method_version": "token-ngram-v2",
+      "config": {
+        "method": "token",
+        "n": 3,
+        "exclude_template": true,
+        "max_evidence": 5,
+        "config_version": "1"
+      },
+      "records": 1000,
+      "wall_seconds": [
+        0.33481239899992943,
+        0.3403459005057812,
+        0.3694409001618624
+      ],
+      "wall_seconds_median": 0.3403459005057812,
+      "peak_bytes": [
+        7185931,
+        7185213,
+        7182323
+      ],
+      "peak_bytes_median": 7185213,
+      "indexed_records": 1000,
+      "status_counts": {
+        "ok": 1000,
+        "unsupported": 0,
+        "invalid_source": 0
+      },
+      "empty_features": 0
+    },
+    {
+      "method": "ast",
+      "method_version": "ast-subtree-v2",
+      "config": {
+        "method": "ast",
+        "n": 3,
+        "exclude_template": true,
+        "max_evidence": 5,
+        "config_version": "1"
+      },
+      "records": 1000,
+      "wall_seconds": [
+        0.5789531003683805,
+        0.6169539988040924,
+        0.5808530002832413
+      ],
+      "wall_seconds_median": 0.5808530002832413,
+      "peak_bytes": [
+        5966438,
+        5966060,
+        5967882
+      ],
+      "peak_bytes_median": 5966438,
+      "indexed_records": 1000,
+      "status_counts": {
+        "ok": 785,
+        "unsupported": 215,
+        "invalid_source": 0
+      },
+      "empty_features": 215
+    },
+    {
+      "method": "token",
+      "method_version": "token-ngram-v2",
+      "config": {
+        "method": "token",
+        "n": 3,
+        "exclude_template": true,
+        "max_evidence": 5,
+        "config_version": "1"
+      },
+      "records": 5000,
+      "wall_seconds": [
+        1.9096000995486975,
+        1.8522223010659218,
+        1.8893210999667645
+      ],
+      "wall_seconds_median": 1.8893210999667645,
+      "peak_bytes": [
+        34048374,
+        34060242,
+        34060085
+      ],
+      "peak_bytes_median": 34060085,
+      "indexed_records": 5000,
+      "status_counts": {
+        "ok": 5000,
+        "unsupported": 0,
+        "invalid_source": 0
+      },
+      "empty_features": 0
+    },
+    {
+      "method": "ast",
+      "method_version": "ast-subtree-v2",
+      "config": {
+        "method": "ast",
+        "n": 3,
+        "exclude_template": true,
+        "max_evidence": 5,
+        "config_version": "1"
+      },
+      "records": 5000,
+      "wall_seconds": [
+        3.145288899540901,
+        3.1970495004206896,
+        3.2052708007395267
+      ],
+      "wall_seconds_median": 3.1970495004206896,
+      "peak_bytes": [
+        27192118,
+        27194966,
+        27195532
+      ],
+      "peak_bytes_median": 27194966,
+      "indexed_records": 5000,
+      "status_counts": {
+        "ok": 4040,
+        "unsupported": 960,
+        "invalid_source": 0
+      },
+      "empty_features": 960
+    }
+  ],
+  "baseline": {
+    "sample_ids": [
+      "squares-family-0-v0",
+      "squares-family-0-v1",
+      "squares-family-0-v2",
+      "squares-family-1-v0",
+      "squares-family-1-v1",
+      "squares-family-1-v2",
+      "squares-family-2-v0",
+      "squares-family-2-v1",
+      "squares-family-2-v2",
+      "squares-family-3-v0",
+      "squares-family-3-v1",
+      "squares-family-3-v2"
+    ],
+    "records": 12,
+    "eligible_pairs": 66,
+    "strategy": "Извлечение признаков обеих сдач заново для каждой пары",
+    "threshold": 0.5,
+    "result_hash_format": "SHA-256 JSON PairResult.to_dict: sort_keys=True, ensure_ascii=True, default separators",
+    "methods": [
+      {
+        "method": "token",
+        "config": {
+          "method": "token",
+          "n": 3,
+          "exclude_template": true,
+          "max_evidence": 5,
+          "config_version": "1"
+        },
+        "method_version": "token-ngram-v2",
+        "pairs": 66,
+        "result_sha256": "3f63ee3eaf46fc10d2cc4129e5afe1ecbe34cd0a5e96e582671b488003d3b655",
+        "measurements": {
+          "wall_seconds": [
+            0.05187460035085678,
+            0.04911160096526146,
+            0.048664700239896774
+          ],
+          "wall_seconds_median": 0.04911160096526146,
+          "peak_bytes": [
+            340011,
+            340011,
+            340011
+          ],
+          "peak_bytes_median": 340011
+        }
+      },
+      {
+        "method": "ast",
+        "config": {
+          "method": "ast",
+          "n": 3,
+          "exclude_template": true,
+          "max_evidence": 5,
+          "config_version": "1"
+        },
+        "method_version": "ast-subtree-v2",
+        "pairs": 66,
+        "result_sha256": "1b586b1e3fe04d8a1d27babceb474fee91eb5319210ad20c176a6218875d1c2c",
+        "measurements": {
+          "wall_seconds": [
+            0.09650520049035549,
+            0.09267440065741539,
+            0.09258260019123554
+          ],
+          "wall_seconds_median": 0.09267440065741539,
+          "peak_bytes": [
+            654358,
+            653504,
+            655855
+          ],
+          "peak_bytes_median": 654358
+        }
+      }
+    ]
+  },
+  "optimization": {
+    "sample_ids": [
+      "squares-family-0-v0",
+      "squares-family-0-v1",
+      "squares-family-0-v2",
+      "squares-family-1-v0",
+      "squares-family-1-v1",
+      "squares-family-1-v2",
+      "squares-family-2-v0",
+      "squares-family-2-v1",
+      "squares-family-2-v2",
+      "squares-family-3-v0",
+      "squares-family-3-v1",
+      "squares-family-3-v2"
+    ],
+    "records": 12,
+    "eligible_pairs": 66,
+    "before": "Извлечение признаков обеих сдач заново для каждой пары",
+    "after": "Одно извлечение признаков на сдачу, затем те же сравнения",
+    "equality": "Полные PairResult.to_dict, включая evidence и review_required",
+    "methods": [
+      {
+        "method": "token",
+        "config": {
+          "method": "token",
+          "n": 3,
+          "exclude_template": true,
+          "max_evidence": 5,
+          "config_version": "1"
+        },
+        "method_version": "token-ngram-v2",
+        "pairs": 66,
+        "full_results_equal": true,
+        "result_sha256": "3f63ee3eaf46fc10d2cc4129e5afe1ecbe34cd0a5e96e582671b488003d3b655",
+        "before": {
+          "wall_seconds": [
+            0.05187460035085678,
+            0.04911160096526146,
+            0.048664700239896774
+          ],
+          "wall_seconds_median": 0.04911160096526146,
+          "peak_bytes": [
+            340011,
+            340011,
+            340011
+          ],
+          "peak_bytes_median": 340011
+        },
+        "after": {
+          "wall_seconds": [
+            0.00936649926006794,
+            0.01139410026371479,
+            0.007727000862360001
+          ],
+          "wall_seconds_median": 0.00936649926006794,
+          "peak_bytes": [
+            305103,
+            305103,
+            305103
+          ],
+          "peak_bytes_median": 305103
+        },
+        "wall_speedup": 5.243325131582322
+      },
+      {
+        "method": "ast",
+        "config": {
+          "method": "ast",
+          "n": 3,
+          "exclude_template": true,
+          "max_evidence": 5,
+          "config_version": "1"
+        },
+        "method_version": "ast-subtree-v2",
+        "pairs": 66,
+        "full_results_equal": true,
+        "result_sha256": "1b586b1e3fe04d8a1d27babceb474fee91eb5319210ad20c176a6218875d1c2c",
+        "before": {
+          "wall_seconds": [
+            0.09650520049035549,
+            0.09267440065741539,
+            0.09258260019123554
+          ],
+          "wall_seconds_median": 0.09267440065741539,
+          "peak_bytes": [
+            654358,
+            653504,
+            655855
+          ],
+          "peak_bytes_median": 654358
+        },
+        "after": {
+          "wall_seconds": [
+            0.012558398768305779,
+            0.010745799168944359,
+            0.016208700835704803
+          ],
+          "wall_seconds_median": 0.012558398768305779,
+          "peak_bytes": [
+            381157,
+            382531,
+            383255
+          ],
+          "peak_bytes_median": 382531
+        },
+        "wall_speedup": 7.379475868476333
+      }
+    ]
+  },
+  "artifacts": [
+    "benchmark.json",
+    "baseline.json",
+    "optimization.json",
+    "profile_before.txt",
+    "profile_after.txt"
+  ]
+}

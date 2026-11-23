@@ -1,4 +1,4 @@
-"""Проверки воспроизводимой нагрузки и последовательных замеров baseline."""
+"""Проверки воспроизводимой нагрузки и последовательных замеров оптимизации."""
 
 import hashlib
 import json
@@ -9,7 +9,7 @@ from statistics import median
 
 import pytest
 
-from school_lab import benchmarking
+from school_lab import benchmarking, similarity
 from school_lab.benchmarking import (
     build_feature_index,
     pair_results,
@@ -141,7 +141,8 @@ def test_pair_baseline_matches_public_reports(benchmark_inputs, monkeypatch, met
     assert result[0]["score"] == 1 and result[0]["evidence"]
 
 
-def test_pair_baseline_keeps_versions_and_filters_author_and_assignment(benchmark_inputs):
+@pytest.mark.parametrize("cached", [False, True])
+def test_pair_baseline_keeps_versions_and_filters_author_and_assignment(benchmark_inputs, cached):
     """Обе версии сравниваются с другим студентом; между собой — нет."""
     _, _, submissions, assignment = benchmark_inputs
     first, second = submissions[:2]
@@ -153,10 +154,70 @@ def test_pair_baseline_keeps_versions_and_filters_author_and_assignment(benchmar
         assignment.assignment_id: assignment,
         "different": Assignment("different", "", ()),
     }
-    result = pair_results(records, assignments, SimilarityConfig())
+    result = pair_results(records, assignments, SimilarityConfig(), cached=cached)
     assert [(row["left_id"], row["right_id"]) for row in result] == [
         (first.submission_id, second.submission_id), ("new-version", second.submission_id),
     ]
+
+
+@pytest.mark.parametrize("method", ["token", "ast"])
+def test_preparation_is_once_per_submission_and_repeated_each_run(benchmark_inputs, monkeypatch, method):
+    """Измерение включает новую подготовку всех сдач, но не повторяет её для каждой пары."""
+    _, _, submissions, assignment = benchmark_inputs
+    assignments = {assignment.assignment_id: assignment}
+    config = SimilarityConfig(method=method)
+    calls = []
+    prepare = benchmarking.prepare_submission
+
+    def recorded(item, *args, **kwargs):
+        calls.append(item.submission_id)
+        return prepare(item, *args, **kwargs)
+
+    monkeypatch.setattr(benchmarking, "prepare_submission", recorded)
+    monkeypatch.setattr(similarity, "prepare_submission", recorded)
+    expected = pair_results(submissions, assignments, config)
+    assert len(calls) == 6
+    for _ in range(2):
+        calls.clear()
+        actual = pair_results(submissions, assignments, config, cached=True)
+        assert calls == [item.submission_id for item in submissions]
+        assert actual == expected
+
+
+@pytest.mark.parametrize("method", ["token", "ast"])
+@pytest.mark.parametrize("exclude_template", [False, True])
+def test_cached_reports_keep_template_errors_and_source_coordinates(
+    benchmark_inputs, method, exclude_template,
+):
+    """Оптимизация сохраняет весь отчёт, включая отказы, шаблон и ссылки на исходник."""
+    _, _, submissions, assignment = benchmark_inputs
+    template = "print('header')\n"
+    assignment = replace(assignment, allowed_template=template)
+    base = submissions[0]
+    codes = [
+        template + base.code,
+        template + "def solve(число):\n    ответ = число + 1\n    return ответ\n",
+        template,
+        "def broken(:\n    return 1\n",
+        "# only comment\n",
+        base.code,
+        submissions[2].code,
+    ]
+    records = [
+        replace(base, submission_id=f"case-{number}", student_id=f"author-{number}", code=code)
+        for number, code in enumerate(codes)
+    ]
+    original = [asdict(item) for item in records]
+    config = SimilarityConfig(method=method, exclude_template=exclude_template)
+    assignments = {assignment.assignment_id: assignment}
+    expected = pair_results(records, assignments, config)
+    actual = pair_results(records, assignments, config, cached=True)
+    assert actual == expected
+    assert any(row["score"] is None for row in actual)
+    assert any(row["evidence"] for row in actual)
+    if exclude_template:
+        assert any(row["excluded_left"] for row in actual)
+    assert [asdict(item) for item in records] == original
 
 
 def test_time_and_memory_runs_are_separate():
@@ -243,15 +304,57 @@ def test_small_benchmark_saves_actual_measurements_and_baseline(benchmark_inputs
         assert row["result_sha256"] == hashlib.sha256(encoded).hexdigest()
         assert "after" not in row and "wall_speedup" not in row
         measurements.append(row["measurements"])
+    optimization = result["optimization"]
+    assert optimization == json.loads((output / "optimization.json").read_text(encoding="utf-8"))
+    for key in ("sample_ids", "records", "eligible_pairs"):
+        assert optimization[key] == baseline[key]
+    assert optimization["before"] == baseline["strategy"]
+    assert {row["method"] for row in optimization["methods"]} == {"token", "ast"}
+    for row, original in zip(optimization["methods"], baseline["methods"]):
+        assert row["method"] == original["method"]
+        assert row["config"] == original["config"]
+        assert row["method_version"] == original["method_version"]
+        assert row["pairs"] == original["pairs"] == 3
+        assert row["full_results_equal"] is True
+        assert row["result_sha256"] == original["result_sha256"]
+        assert row["before"] == original["measurements"]
+        assert row["wall_speedup"] == pytest.approx(
+            row["before"]["wall_seconds_median"] / row["after"]["wall_seconds_median"],
+        )
+        measurements.append(row["after"])
     for row in measurements:
         assert len(row["wall_seconds"]) == len(row["peak_bytes"]) == 3
         assert row["wall_seconds_median"] == median(row["wall_seconds"])
         assert row["peak_bytes_median"] == median(row["peak_bytes"])
         assert all(value >= 0 for value in row["wall_seconds"])
         assert all(value > 0 for value in row["peak_bytes"])
-    assert "optimization" not in result
-    assert set(result["artifacts"]) == {"benchmark.json", "baseline.json", "profile_before.txt"}
+    assert set(result["artifacts"]) == {
+        "benchmark.json", "baseline.json", "optimization.json",
+        "profile_before.txt", "profile_after.txt",
+    }
     assert {path.name for path in output.iterdir()} == set(result["artifacts"])
     profile = (output / "profile_before.txt").read_text(encoding="utf-8")
     assert "METHOD token" in profile and "METHOD ast" in profile
     assert "function calls" in profile and "compare_submissions" in profile
+    profile = (output / "profile_after.txt").read_text(encoding="utf-8")
+    assert "METHOD token" in profile and "METHOD ast" in profile
+    assert "function calls" in profile and "compare_prepared" in profile
+
+
+def test_benchmark_rejects_changed_evidence_even_when_scores_match(benchmark_inputs, temp_dir, monkeypatch):
+    """Проверка оптимизации сравнивает полный результат, а не только числовую оценку."""
+    corpus, assignments, _, _ = benchmark_inputs
+    original = benchmarking.pair_results
+
+    def changed(*args, cached=False, **kwargs):
+        reports = original(*args, cached=cached, **kwargs)
+        if cached:
+            reports[0]["evidence"] = []
+        return reports
+
+    monkeypatch.setattr(benchmarking, "pair_results", changed)
+    output = temp_dir / "results"
+    with pytest.raises(AssertionError, match="полный результат"):
+        run_benchmarks(corpus, assignments, output, sizes=(3,))
+    assert not (output / "optimization.json").exists()
+    assert not (output / "benchmark.json").exists()

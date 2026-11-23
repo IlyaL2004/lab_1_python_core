@@ -1,0 +1,109 @@
+{
+  "sample_ids": [
+    "squares-family-0-v0",
+    "squares-family-0-v1",
+    "squares-family-0-v2",
+    "squares-family-1-v0",
+    "squares-family-1-v1",
+    "squares-family-1-v2",
+    "squares-family-2-v0",
+    "squares-family-2-v1",
+    "squares-family-2-v2",
+    "squares-family-3-v0",
+    "squares-family-3-v1",
+    "squares-family-3-v2"
+  ],
+  "records": 12,
+  "eligible_pairs": 66,
+  "before": "Извлечение признаков обеих сдач заново для каждой пары",
+  "after": "Одно извлечение признаков на сдачу, затем те же сравнения",
+  "equality": "Полные PairResult.to_dict, включая evidence и review_required",
+  "methods": [
+    {
+      "method": "token",
+      "config": {
+        "method": "token",
+        "n": 3,
+        "exclude_template": true,
+        "max_evidence": 5,
+        "config_version": "1"
+      },
+      "method_version": "token-ngram-v2",
+      "pairs": 66,
+      "full_results_equal": true,
+      "result_sha256": "3f63ee3eaf46fc10d2cc4129e5afe1ecbe34cd0a5e96e582671b488003d3b655",
+      "before": {
+        "wall_seconds": [
+          0.05187460035085678,
+          0.04911160096526146,
+          0.048664700239896774
+        ],
+        "wall_seconds_median": 0.04911160096526146,
+        "peak_bytes": [
+          340011,
+          340011,
+          340011
+        ],
+        "peak_bytes_median": 340011
+      },
+      "after": {
+        "wall_seconds": [
+          0.00936649926006794,
+          0.01139410026371479,
+          0.007727000862360001
+        ],
+        "wall_seconds_median": 0.00936649926006794,
+        "peak_bytes": [
+          305103,
+          305103,
+          305103
+        ],
+        "peak_bytes_median": 305103
+      },
+      "wall_speedup": 5.243325131582322
+    },
+    {
+      "method": "ast",
+      "config": {
+        "method": "ast",
+        "n": 3,
+        "exclude_template": true,
+        "max_evidence": 5,
+        "config_version": "1"
+      },
+      "method_version": "ast-subtree-v2",
+      "pairs": 66,
+      "full_results_equal": true,
+      "result_sha256": "1b586b1e3fe04d8a1d27babceb474fee91eb5319210ad20c176a6218875d1c2c",
+      "before": {
+        "wall_seconds": [
+          0.09650520049035549,
+          0.09267440065741539,
+          0.09258260019123554
+        ],
+        "wall_seconds_median": 0.09267440065741539,
+        "peak_bytes": [
+          654358,
+          653504,
+          655855
+        ],
+        "peak_bytes_median": 654358
+      },
+      "after": {
+        "wall_seconds": [
+          0.012558398768305779,
+          0.010745799168944359,
+          0.016208700835704803
+        ],
+        "wall_seconds_median": 0.012558398768305779,
+        "peak_bytes": [
+          381157,
+          382531,
+          383255
+        ],
+        "peak_bytes_median": 382531
+      },
+      "wall_speedup": 7.379475868476333
+    }
+  ]
+}

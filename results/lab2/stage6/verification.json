@@ -1,0 +1,120 @@
+{
+  "checked_at": "2026-11-23T17:13:21.644074+00:00",
+  "stage": "lab2-stage6-optimization-and-final-verification",
+  "base_commit": "80a9c91521d800527cc46b79a4405300abf2bc2c",
+  "environment": {
+    "python": "3.13.9 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 19:09:58) [MSC v.1929 64 bit (AMD64)]",
+    "implementation": "CPython",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "machine": "AMD64",
+    "packages": {
+      "school-lab": "1.1.0",
+      "school-declaration-plugin": "1.0.0",
+      "pytest": "9.1.1"
+    }
+  },
+  "tests": {
+    "command": "python -B -X utf8 -m pytest -q -p no:cacheprovider",
+    "passed": 613,
+    "duration_seconds": 10.12,
+    "output": "tests.txt"
+  },
+  "commands": {
+    "evaluate": "python -B -X utf8 -m school_lab.cli evaluate --data data/lab2 --output results/lab2/stage6 --seed 42",
+    "benchmark": "python -B -X utf8 -m school_lab.cli benchmark --data data/lab2 --output results/lab2/stage6 --sizes 100 1000 5000 --repeats 3 --seed 42"
+  },
+  "commands_exit_codes": {
+    "evaluate": 0,
+    "benchmark": 0
+  },
+  "commands_stdout_match_artifacts": true,
+  "source_sha256": "94f904d4fb60c79b5bae6411fbf22e487dad1c972e5c7eae38c82faffc384e98",
+  "sizes": [
+    100,
+    1000,
+    5000
+  ],
+  "repeats_per_measurement": 3,
+  "seed": 42,
+  "optimization_records": 12,
+  "optimization_pairs_per_method": 66,
+  "optimization_applied": true,
+  "wall_speedup": {
+    "token": 5.243325131582322,
+    "ast": 7.379475868476333
+  },
+  "artifacts_sha256": {
+    "baseline.json": "6fd876dce4b842bdf6a2741afced28fa39476660621fc65ee8e68261bee12d80",
+    "benchmark.json": "83cfed3561afb5e8995f3052af4487c434f5b259319325dae4fbce2786c2584a",
+    "error_analysis.json": "6f86ca2c17a95cdcb32de2228efe8820ba9547d3275f078f49b0ad061528011b",
+    "metrics.json": "896747a3d6f19e0d0d72112d974fbe55b7b2480796c7ad11c85111580c365d70",
+    "optimization.json": "cbe022735c5e4c49560429f9491708d392df37cb6fd692f444704df41184823c",
+    "pair_results.jsonl": "c3b4486d88de9976b70ec61f86cf8888eb967b312f004b9968baa9799bdaec6f",
+    "profile_after.txt": "0a0d535b2760693fbd251c26c00b263f14f0e89ede42bf6141b74887109b9f84",
+    "profile_before.txt": "ce08b4565fa0d32b6e55661a80ba481a45da9484b46b002b8dd95fca047dada3",
+    "run.json": "587582554e4edc04f087f023711b7761e208fdbdc1b92fe9d0c463851ba3a843",
+    "smoke_checks.json": "dbb0966feaceab6285a14183227dd6f34ba8791e01296e649f4d9e504afe1124",
+    "template_change.json": "250307d8b2ac3984f0318aefee5982c9de9e3a8a3fc879d5e79dc76408de2c68",
+    "tests.txt": "1dfa08885d496bc972be5dba10efd46994cc8864a393a4eca02b7e3ea0c8359c"
+  },
+  "smoke_checks": {
+    "source_and_input_hashes_valid": true,
+    "raw_runs_and_medians_valid": true,
+    "synthetic_workload_hashes_reproduced": true,
+    "before_after_full_reports_equal": true,
+    "baseline_hashes_match_stage5": true,
+    "profile_prepare_calls": {
+      "before": {
+        "token": 132,
+        "ast": 132
+      },
+      "after": {
+        "token": 12,
+        "ast": 12
+      }
+    },
+    "quality_artifacts_unchanged_sha256": {
+      "metrics.json": "896747a3d6f19e0d0d72112d974fbe55b7b2480796c7ad11c85111580c365d70",
+      "pair_results.jsonl": "c3b4486d88de9976b70ec61f86cf8888eb967b312f004b9968baa9799bdaec6f",
+      "error_analysis.json": "6f86ca2c17a95cdcb32de2228efe8820ba9547d3275f078f49b0ad061528011b"
+    },
+    "token_top3_unchanged": true,
+    "ast_top3_unchanged": true,
+    "new_template_check": {
+      "result": "passed",
+      "artifact": "template_change.json"
+    },
+    "legacy_import_accepted": 2,
+    "legacy_analysis_reports": 10,
+    "legacy_measurements": 10,
+    "fixed_corpus_validation": {
+      "status": "ok",
+      "submissions": 56,
+      "families": 24,
+      "pairs": 132,
+      "template_only": 12,
+      "split": {
+        "validation": {
+          "submissions": 28,
+          "families": 12,
+          "pairs": 66,
+          "template_only": 6
+        },
+        "test": {
+          "submissions": 28,
+          "families": 12,
+          "pairs": 66,
+          "template_only": 6
+        }
+      },
+      "input_sha256": {
+        "assignments.json": "441c9653cad7044d721888d10ec70cb7d70a69beedfe37c1766deb6d6ee78302",
+        "submissions.jsonl": "dfe15edfcf2d155a1a3a660821f647dd077e0b4cc40b21f1dfd2b608c36e5c0a",
+        "provenance.json": "b386afebfeb9cbde3667d0a6ee830c657ed5388e2119f9d5fc4fc599d220c0cd",
+        "split.json": "017c888fbd8e8e16feb12233d360b580bd26e5b4383dc72f316b5753d359af38",
+        "pairs.jsonl": "b88f4cdc7bb734c09f91ed6206a300ede42a4b4e087ac7cceba85e5a587aff2b"
+      }
+    },
+    "pip_check": "No broken requirements found."
+  }
+}

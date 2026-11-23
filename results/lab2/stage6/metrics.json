@@ -1,0 +1,100 @@
+{
+  "token": {
+    "threshold": 0.0975609756097561,
+    "threshold_selected_on": "validation",
+    "validation": {
+      "tp": 22,
+      "fp": 4,
+      "fn": 2,
+      "tn": 38,
+      "total_pairs": 66,
+      "defined_pairs": 66,
+      "precision": 0.8461538461538461,
+      "recall_defined": 0.9166666666666666,
+      "f1_defined": 0.88,
+      "abstentions": 0,
+      "abstention_rate": 0.0,
+      "positive_abstentions": 0,
+      "recall_all_positives": 0.9166666666666666
+    },
+    "test": {
+      "tp": 20,
+      "fp": 3,
+      "fn": 4,
+      "tn": 39,
+      "total_pairs": 66,
+      "defined_pairs": 66,
+      "precision": 0.8695652173913043,
+      "recall_defined": 0.8333333333333334,
+      "f1_defined": 0.851063829787234,
+      "abstentions": 0,
+      "abstention_rate": 0.0,
+      "positive_abstentions": 0,
+      "recall_all_positives": 0.8333333333333334
+    },
+    "test_template_only": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "tn": 6,
+      "total_pairs": 6,
+      "defined_pairs": 6,
+      "precision": null,
+      "recall_defined": null,
+      "f1_defined": null,
+      "abstentions": 0,
+      "abstention_rate": 0.0,
+      "positive_abstentions": 0,
+      "recall_all_positives": null
+    }
+  },
+  "ast": {
+    "threshold": 1.0,
+    "threshold_selected_on": "validation",
+    "validation": {
+      "tp": 24,
+      "fp": 0,
+      "fn": 0,
+      "tn": 36,
+      "total_pairs": 66,
+      "defined_pairs": 60,
+      "precision": 1.0,
+      "recall_defined": 1.0,
+      "f1_defined": 1.0,
+      "abstentions": 6,
+      "abstention_rate": 0.09090909090909091,
+      "positive_abstentions": 0,
+      "recall_all_positives": 1.0
+    },
+    "test": {
+      "tp": 18,
+      "fp": 0,
+      "fn": 0,
+      "tn": 18,
+      "total_pairs": 66,
+      "defined_pairs": 36,
+      "precision": 1.0,
+      "recall_defined": 1.0,
+      "f1_defined": 1.0,
+      "abstentions": 30,
+      "abstention_rate": 0.45454545454545453,
+      "positive_abstentions": 6,
+      "recall_all_positives": 0.75
+    },
+    "test_template_only": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "tn": 0,
+      "total_pairs": 6,
+      "defined_pairs": 0,
+      "precision": null,
+      "recall_defined": null,
+      "f1_defined": null,
+      "abstentions": 6,
+      "abstention_rate": 1.0,
+      "positive_abstentions": 0,
+      "recall_all_positives": null
+    }
+  }
+}

@@ -12,7 +12,7 @@ from . import features
 from .hashing import stable_hash
 from .parsing import decode_json, load_assignments
 from .pipeline import file_sha256, iter_submissions
-from .similarity import compare_submissions
+from .similarity import compare_prepared, compare_submissions
 from .similarity_models import SimilarityConfig
 
 
@@ -62,6 +62,7 @@ def _diagnostics(directory: Path, assignments: dict) -> list[dict]:
 
     Вход: каталог данных и задания. Выход: результаты с evidence и объяснением;
     эти примеры не входят в метрики validation/test и не меняют их пороги.
+    Конфигурации отдельных случаев различаются; признаки вычисляются для каждой пары.
     """
     documents_path = directory / "diagnostics.jsonl"
     cases_path = directory / "diagnostic_cases.json"
@@ -103,7 +104,8 @@ def run_experiment(
     Вход: JSONL сдач, задания, provenance, split, JSONL меток, каталог и seed.
     Выход: сводка run.json. Split/метки проверяются до извлечения признаков;
     порог выбирается по validation, затем без изменения применяется к test.
-    Признаки извлекаются заново для каждой пары, без общего индекса.
+    Признаки каждой сдачи вычисляются один раз для каждого метода в локальном индексе.
+    Извлечение зависит только от самой сдачи и конфигурации, без обучения на корпусе.
     Seed записывается для протокола: фиксированный split не пересоздаётся.
     """
     if type(seed) is not int:
@@ -122,7 +124,6 @@ def run_experiment(
         raise ValueError("Эксперимент сравнивает token и ast в зафиксированном порядке")
     feature_settings = {name: settings[name] for name in
                         ("n", "exclude_template", "max_evidence", "config_version") if name in settings}
-    by_id = {item.submission_id: item for item in documents}
     validation_pairs = [pair for pair in pairs if pair.split == "validation"]
     all_results, method_metrics, configurations, config_hashes = [], {}, {}, {}
     for method in ("token", "ast"):
@@ -132,10 +133,13 @@ def run_experiment(
             assignment_id: stable_hash(features.configuration_payload(assignments[assignment_id], config))
             for assignment_id in dict.fromkeys(item.assignment_id for item in documents)
         }
+        prepared = {
+            item.submission_id: features.prepare_submission(item, assignments[item.assignment_id], config)
+            for item in documents
+        }
         validation_scores = [
             (pair.derivation_relation,
-             compare_submissions(by_id[pair.left_id], by_id[pair.right_id],
-                                 assignments[by_id[pair.left_id].assignment_id], config).score)
+             compare_prepared(prepared[pair.left_id], prepared[pair.right_id]).score)
             for pair in validation_pairs
         ]
         threshold, validation_metrics = choose_threshold(validation_scores)
@@ -143,9 +147,8 @@ def run_experiment(
         test_rows = []
         template_rows = []
         for pair in pairs:
-            compared = compare_submissions(
-                by_id[pair.left_id], by_id[pair.right_id],
-                assignments[by_id[pair.left_id].assignment_id], config, threshold=threshold,
+            compared = compare_prepared(
+                prepared[pair.left_id], prepared[pair.right_id], threshold=threshold,
             )
             if pair.split == "test":
                 test_rows.append((pair.derivation_relation, compared.score))

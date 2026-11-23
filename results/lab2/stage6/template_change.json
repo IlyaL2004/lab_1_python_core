@@ -1,0 +1,408 @@
+{
+  "scope": "configuration-demo-not-quality-evaluation",
+  "source": "def solve(value):\n    answer = value + 1\n    return answer\n",
+  "changed_fields": [
+    "allowed_template",
+    "config_version"
+  ],
+  "methods": {
+    "token": {
+      "before": {
+        "schema_version": 1,
+        "config": {
+          "method": "token",
+          "n": 3,
+          "exclude_template": true,
+          "max_evidence": 5,
+          "config_version": "1"
+        },
+        "corpus_sha256": "09b3ed7baa94a476ff39039ce8d56be2b8d353712d2fb8209f27240c8b290766",
+        "threshold": 0.5,
+        "query": null,
+        "documents": 2,
+        "comparisons": 1,
+        "pairs": [
+          {
+            "left_id": "template-demo-0",
+            "right_id": "template-demo-1",
+            "left_hash": "151c781a623562293022fb38ce4adce12766ca02c802bcd9e042c912d57ef25e",
+            "right_hash": "c2071bd7419752fa768149ee2d36d325e5891de2400c4547897356d576e71ab8",
+            "method": "token",
+            "method_version": "token-ngram-v2",
+            "config_hash": "8946013c794f26cacf24069bff0f8fc02dc079400ccc79c96e146014f9bed1b4",
+            "score": 1.0,
+            "status": "ok",
+            "reason": null,
+            "evidence": [
+              {
+                "feature": "[[\"NAME\",\"answer\"],[\"OP\",\"=\"],[\"NAME\",\"value\"]]",
+                "left": {
+                  "submission_id": "template-demo-0",
+                  "field": "code",
+                  "start_line": 2,
+                  "end_line": 2
+                },
+                "right": {
+                  "submission_id": "template-demo-1",
+                  "field": "code",
+                  "start_line": 2,
+                  "end_line": 2
+                }
+              },
+              {
+                "feature": "[[\"NAME\",\"def\"],[\"NAME\",\"solve\"],[\"OP\",\"(\"]]",
+                "left": {
+                  "submission_id": "template-demo-0",
+                  "field": "code",
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "right": {
+                  "submission_id": "template-demo-1",
+                  "field": "code",
+                  "start_line": 1,
+                  "end_line": 1
+                }
+              },
+              {
+                "feature": "[[\"NAME\",\"solve\"],[\"OP\",\"(\"],[\"NAME\",\"value\"]]",
+                "left": {
+                  "submission_id": "template-demo-0",
+                  "field": "code",
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "right": {
+                  "submission_id": "template-demo-1",
+                  "field": "code",
+                  "start_line": 1,
+                  "end_line": 1
+                }
+              },
+              {
+                "feature": "[[\"NAME\",\"value\"],[\"OP\",\")\"],[\"OP\",\":\"]]",
+                "left": {
+                  "submission_id": "template-demo-0",
+                  "field": "code",
+                  "start_line": 1,
+                  "end_line": 1
+                },
+                "right": {
+                  "submission_id": "template-demo-1",
+                  "field": "code",
+                  "start_line": 1,
+                  "end_line": 1
+                }
+              },
+              {
+                "feature": "[[\"NAME\",\"value\"],[\"OP\",\"+\"],[\"NUMBER\",\"1\"]]",
+                "left": {
+                  "submission_id": "template-demo-0",
+                  "field": "code",
+                  "start_line": 2,
+                  "end_line": 2
+                },
+                "right": {
+                  "submission_id": "template-demo-1",
+                  "field": "code",
+                  "start_line": 2,
+                  "end_line": 2
+                }
+              }
+            ],
+            "excluded_left": [],
+            "excluded_right": [],
+            "review_required": true,
+            "threshold": 0.5,
+            "schema_version": 1
+          }
+        ],
+        "undefined_pairs": [],
+        "errors": []
+      },
+      "after": {
+        "schema_version": 1,
+        "config": {
+          "method": "token",
+          "n": 3,
+          "exclude_template": true,
+          "max_evidence": 5,
+          "config_version": "2"
+        },
+        "corpus_sha256": "09b3ed7baa94a476ff39039ce8d56be2b8d353712d2fb8209f27240c8b290766",
+        "threshold": 0.5,
+        "query": null,
+        "documents": 2,
+        "comparisons": 1,
+        "pairs": [
+          {
+            "left_id": "template-demo-0",
+            "right_id": "template-demo-1",
+            "left_hash": "151c781a623562293022fb38ce4adce12766ca02c802bcd9e042c912d57ef25e",
+            "right_hash": "c2071bd7419752fa768149ee2d36d325e5891de2400c4547897356d576e71ab8",
+            "method": "token",
+            "method_version": "token-ngram-v2",
+            "config_hash": "d22896b2100f36e744c3b06408bcaa1967150d760b9cf728d1fc46be0a730bef",
+            "score": null,
+            "status": "insufficient_data",
+            "reason": "После извлечения и исключения шаблона оба множества пусты",
+            "evidence": [],
+            "excluded_left": [
+              {
+                "submission_id": "template-demo-0",
+                "field": "code",
+                "start_line": 1,
+                "end_line": 3
+              }
+            ],
+            "excluded_right": [
+              {
+                "submission_id": "template-demo-1",
+                "field": "code",
+                "start_line": 1,
+                "end_line": 3
+              }
+            ],
+            "review_required": false,
+            "threshold": 0.5,
+            "schema_version": 1
+          }
+        ],
+        "undefined_pairs": [
+          {
+            "left_id": "template-demo-0",
+            "right_id": "template-demo-1",
+            "left_hash": "151c781a623562293022fb38ce4adce12766ca02c802bcd9e042c912d57ef25e",
+            "right_hash": "c2071bd7419752fa768149ee2d36d325e5891de2400c4547897356d576e71ab8",
+            "method": "token",
+            "method_version": "token-ngram-v2",
+            "config_hash": "d22896b2100f36e744c3b06408bcaa1967150d760b9cf728d1fc46be0a730bef",
+            "score": null,
+            "status": "insufficient_data",
+            "reason": "После извлечения и исключения шаблона оба множества пусты",
+            "evidence": [],
+            "excluded_left": [
+              {
+                "submission_id": "template-demo-0",
+                "field": "code",
+                "start_line": 1,
+                "end_line": 3
+              }
+            ],
+            "excluded_right": [
+              {
+                "submission_id": "template-demo-1",
+                "field": "code",
+                "start_line": 1,
+                "end_line": 3
+              }
+            ],
+            "review_required": false,
+            "threshold": 0.5,
+            "schema_version": 1
+          }
+        ],
+        "errors": []
+      }
+    },
+    "ast": {
+      "before": {
+        "schema_version": 1,
+        "config": {
+          "method": "ast",
+          "n": 3,
+          "exclude_template": true,
+          "max_evidence": 5,
+          "config_version": "1"
+        },
+        "corpus_sha256": "09b3ed7baa94a476ff39039ce8d56be2b8d353712d2fb8209f27240c8b290766",
+        "threshold": 0.5,
+        "query": null,
+        "documents": 2,
+        "comparisons": 1,
+        "pairs": [
+          {
+            "left_id": "template-demo-0",
+            "right_id": "template-demo-1",
+            "left_hash": "151c781a623562293022fb38ce4adce12766ca02c802bcd9e042c912d57ef25e",
+            "right_hash": "c2071bd7419752fa768149ee2d36d325e5891de2400c4547897356d576e71ab8",
+            "method": "ast",
+            "method_version": "ast-subtree-v2",
+            "config_hash": "3e46aee071d22ea6de63c55c27a00be58d6c561120db5faf6caff79ddf5d0c9f",
+            "score": 1.0,
+            "status": "ok",
+            "reason": null,
+            "evidence": [
+              {
+                "feature": "Assign(targets=[Name(id='v1', ctx=Store())], value=BinOp(left=Name(id='v0', ctx=Load()), op=Add(), right=Constant(value=1)))",
+                "left": {
+                  "submission_id": "template-demo-0",
+                  "field": "code",
+                  "start_line": 2,
+                  "end_line": 2
+                },
+                "right": {
+                  "submission_id": "template-demo-1",
+                  "field": "code",
+                  "start_line": 2,
+                  "end_line": 2
+                }
+              },
+              {
+                "feature": "BinOp(left=Name(id='v0', ctx=Load()), op=Add(), right=Constant(value=1))",
+                "left": {
+                  "submission_id": "template-demo-0",
+                  "field": "code",
+                  "start_line": 2,
+                  "end_line": 2
+                },
+                "right": {
+                  "submission_id": "template-demo-1",
+                  "field": "code",
+                  "start_line": 2,
+                  "end_line": 2
+                }
+              },
+              {
+                "feature": "Constant(value=1)",
+                "left": {
+                  "submission_id": "template-demo-0",
+                  "field": "code",
+                  "start_line": 2,
+                  "end_line": 2
+                },
+                "right": {
+                  "submission_id": "template-demo-1",
+                  "field": "code",
+                  "start_line": 2,
+                  "end_line": 2
+                }
+              },
+              {
+                "feature": "FunctionDef(name='function', args=arguments(args=[arg(arg='v0')]), body=[Assign(targets=[Name(id='v1', ctx=Store())], value=BinOp(left=Name(id='v0', ctx=Load()), op=Add(), right=Constant(value=1))), Return(value=Name(id='v1', ctx=Load()))])",
+                "left": {
+                  "submission_id": "template-demo-0",
+                  "field": "code",
+                  "start_line": 1,
+                  "end_line": 3
+                },
+                "right": {
+                  "submission_id": "template-demo-1",
+                  "field": "code",
+                  "start_line": 1,
+                  "end_line": 3
+                }
+              },
+              {
+                "feature": "Name(id='v0', ctx=Load())",
+                "left": {
+                  "submission_id": "template-demo-0",
+                  "field": "code",
+                  "start_line": 2,
+                  "end_line": 2
+                },
+                "right": {
+                  "submission_id": "template-demo-1",
+                  "field": "code",
+                  "start_line": 2,
+                  "end_line": 2
+                }
+              }
+            ],
+            "excluded_left": [],
+            "excluded_right": [],
+            "review_required": true,
+            "threshold": 0.5,
+            "schema_version": 1
+          }
+        ],
+        "undefined_pairs": [],
+        "errors": []
+      },
+      "after": {
+        "schema_version": 1,
+        "config": {
+          "method": "ast",
+          "n": 3,
+          "exclude_template": true,
+          "max_evidence": 5,
+          "config_version": "2"
+        },
+        "corpus_sha256": "09b3ed7baa94a476ff39039ce8d56be2b8d353712d2fb8209f27240c8b290766",
+        "threshold": 0.5,
+        "query": null,
+        "documents": 2,
+        "comparisons": 1,
+        "pairs": [
+          {
+            "left_id": "template-demo-0",
+            "right_id": "template-demo-1",
+            "left_hash": "151c781a623562293022fb38ce4adce12766ca02c802bcd9e042c912d57ef25e",
+            "right_hash": "c2071bd7419752fa768149ee2d36d325e5891de2400c4547897356d576e71ab8",
+            "method": "ast",
+            "method_version": "ast-subtree-v2",
+            "config_hash": "f642a00ddbbe6425dab6e341ce82c4ab711a37c60c5d9d9c0da40e337240f19b",
+            "score": null,
+            "status": "insufficient_data",
+            "reason": "После извлечения и исключения шаблона оба множества пусты",
+            "evidence": [],
+            "excluded_left": [
+              {
+                "submission_id": "template-demo-0",
+                "field": "code",
+                "start_line": 1,
+                "end_line": 3
+              }
+            ],
+            "excluded_right": [
+              {
+                "submission_id": "template-demo-1",
+                "field": "code",
+                "start_line": 1,
+                "end_line": 3
+              }
+            ],
+            "review_required": false,
+            "threshold": 0.5,
+            "schema_version": 1
+          }
+        ],
+        "undefined_pairs": [
+          {
+            "left_id": "template-demo-0",
+            "right_id": "template-demo-1",
+            "left_hash": "151c781a623562293022fb38ce4adce12766ca02c802bcd9e042c912d57ef25e",
+            "right_hash": "c2071bd7419752fa768149ee2d36d325e5891de2400c4547897356d576e71ab8",
+            "method": "ast",
+            "method_version": "ast-subtree-v2",
+            "config_hash": "f642a00ddbbe6425dab6e341ce82c4ab711a37c60c5d9d9c0da40e337240f19b",
+            "score": null,
+            "status": "insufficient_data",
+            "reason": "После извлечения и исключения шаблона оба множества пусты",
+            "evidence": [],
+            "excluded_left": [
+              {
+                "submission_id": "template-demo-0",
+                "field": "code",
+                "start_line": 1,
+                "end_line": 3
+              }
+            ],
+            "excluded_right": [
+              {
+                "submission_id": "template-demo-1",
+                "field": "code",
+                "start_line": 1,
+                "end_line": 3
+              }
+            ],
+            "review_required": false,
+            "threshold": 0.5,
+            "schema_version": 1
+          }
+        ],
+        "errors": []
+      }
+    }
+  }
+}

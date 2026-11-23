@@ -132,7 +132,8 @@ def test_evaluate_rejects_provenance_before_comparison(
     def unexpected_comparison(*args, **kwargs):
         pytest.fail("Сравнение не должно начинаться при неверном происхождении")
 
-    monkeypatch.setattr(experiments, "compare_submissions", unexpected_comparison)
+    monkeypatch.setattr(experiments, "compare_prepared", unexpected_comparison)
+    monkeypatch.setattr(experiments.features, "prepare_submission", unexpected_comparison)
     output = temp_dir / "results"
     assert main(["evaluate", "--data", str(evaluation_data), "--output", str(output)]) == 2
     captured = capsys.readouterr()

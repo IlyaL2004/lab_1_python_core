@@ -12,6 +12,8 @@ from school_lab.evaluation import choose_threshold
 from school_lab.features import configuration_payload
 from school_lab.hashing import stable_hash
 from school_lab.parsing import load_assignments
+from school_lab.pipeline import iter_submissions
+from school_lab.similarity import compare_submissions
 from school_lab.similarity_models import SimilarityConfig
 
 
@@ -100,17 +102,47 @@ def test_experiment_artifacts_metrics_and_hashes_are_reproducible(temp_dir):
     assert {path.name: path.read_bytes() for path in second.iterdir()} == artifacts
 
 
+def test_experiment_prepares_once_per_method_and_preserves_full_pair_results(temp_dir, monkeypatch):
+    """Оптимизация сохраняет score/evidence/отказы; индекс не переживает запуск."""
+    documents = {item.submission_id: item for item in iter_submissions(DATA / "submissions.jsonl")}
+    assignments = load_assignments(DATA / "assignments.json")
+    original = experiments.features.prepare_submission
+    calls = Counter()
+
+    def counted(submission, assignment, config):
+        calls[config.method, submission.submission_id] += 1
+        return original(submission, assignment, config)
+
+    monkeypatch.setattr(experiments.features, "prepare_submission", counted)
+    for number in (1, 2):
+        output = temp_dir / str(number)
+        run = experiments.run_experiment(*input_paths(), output)
+        assert calls == Counter({(method, identifier): number
+                                 for method in ("token", "ast") for identifier in documents})
+        if number == 1:
+            rows = [json.loads(line) for line in (output / "pair_results.jsonl").read_text(encoding="utf-8").splitlines()]
+            assert len(rows) == 264
+            for row in rows:
+                left, right = documents[row["left_id"]], documents[row["right_id"]]
+                expected = compare_submissions(
+                    left, right, assignments[left.assignment_id],
+                    SimilarityConfig(**run["configuration"][row["method"]]), threshold=row["threshold"],
+                )
+                assert row["result"] == expected.to_dict()
+
+
 def test_threshold_selection_finishes_before_any_test_comparison(temp_dir, monkeypatch):
     split = read_json(DATA / "split.json")
     membership = {identifier: part for part, identifiers in split.items() for identifier in identifiers}
     pairs = [json.loads(line) for line in (DATA / "pairs.jsonl").read_text(encoding="utf-8").splitlines()]
     labels = {(row["left_id"], row["right_id"]): row["derivation_relation"] for row in pairs}
-    original_compare, original_choose = experiments.compare_submissions, experiments.choose_threshold
+    original_compare, original_choose = experiments.compare_prepared, experiments.choose_threshold
     selected, observed_validation, seen_parts = {}, {"token": [], "ast": []}, set()
     active_method = None
 
-    def watched_compare(left, right, assignment, config, *, threshold=0.5):
+    def watched_compare(left, right, *, threshold=0.5):
         nonlocal active_method
+        config = left.config
         is_corpus_pair = left.submission_id in membership and right.submission_id in membership
         if is_corpus_pair:
             active_method = config.method
@@ -120,7 +152,7 @@ def test_threshold_selection_finishes_before_any_test_comparison(temp_dir, monke
             if part == "test":
                 assert config.method in selected, "test сравнивается до выбора порога"
                 assert threshold == selected[config.method]
-        result = original_compare(left, right, assignment, config, threshold=threshold)
+        result = original_compare(left, right, threshold=threshold)
         if is_corpus_pair and config.method not in selected:
             assert part == "validation"
             observed_validation[config.method].append((labels[left.submission_id, right.submission_id], result.score))
@@ -133,7 +165,7 @@ def test_threshold_selection_finishes_before_any_test_comparison(temp_dir, monke
         selected[active_method] = threshold
         return threshold, metrics
 
-    monkeypatch.setattr(experiments, "compare_submissions", watched_compare)
+    monkeypatch.setattr(experiments, "compare_prepared", watched_compare)
     monkeypatch.setattr(experiments, "choose_threshold", watched_choose)
     run = experiments.run_experiment(*input_paths(), temp_dir / "out")
     assert seen_parts == {(method, part) for method in ("token", "ast") for part in ("validation", "test")}
@@ -159,7 +191,8 @@ def test_invalid_partition_is_rejected_before_comparisons(copied_data, temp_dir,
     def forbidden(*args, **kwargs):
         pytest.fail("Некорректное разбиение должно отклоняться до сравнений")
 
-    monkeypatch.setattr(experiments, "compare_submissions", forbidden)
+    monkeypatch.setattr(experiments, "compare_prepared", forbidden)
+    monkeypatch.setattr(experiments.features, "prepare_submission", forbidden)
     output = temp_dir / "out"
     with pytest.raises(ValueError):
         experiments.run_experiment(*input_paths(copied_data), output)
@@ -176,7 +209,8 @@ def test_invalid_configuration_prevents_comparison(copied_data, temp_dir, monkey
     def forbidden(*args, **kwargs):
         pytest.fail("Некорректные настройки должны отклоняться до сравнений")
 
-    monkeypatch.setattr(experiments, "compare_submissions", forbidden)
+    monkeypatch.setattr(experiments, "compare_prepared", forbidden)
+    monkeypatch.setattr(experiments.features, "prepare_submission", forbidden)
     output = temp_dir / "out"
     with pytest.raises(ValueError):
         experiments.run_experiment(*input_paths(copied_data), output)

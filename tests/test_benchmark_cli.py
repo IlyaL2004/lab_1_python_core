@@ -49,8 +49,12 @@ def test_benchmark_stdout_matches_artifacts(benchmark_data, temp_dir, capsys, mo
         (3, "token"), (3, "ast"),
     }
     assert result["baseline"]["eligible_pairs"] == 3
-    assert set(result["artifacts"]) == {"benchmark.json", "baseline.json", "profile_before.txt"}
-    assert "optimization" not in result
+    assert set(result["artifacts"]) == {
+        "benchmark.json", "baseline.json", "optimization.json",
+        "profile_before.txt", "profile_after.txt",
+    }
+    assert result["optimization"]["eligible_pairs"] == 3
+    assert all(row["full_results_equal"] for row in result["optimization"]["methods"])
 
 
 @pytest.mark.parametrize("extra", [
@@ -124,4 +128,6 @@ def test_benchmark_subprocess(benchmark_data, temp_dir):
     assert result["seed"] == 73 and result["repeats"] == 3
     assert {row["records"] for row in result["scaling"]} == {3, 6}
     assert result["baseline"]["records"] == result["baseline"]["eligible_pairs"] == 3
+    assert result["optimization"] == json.loads((output / "optimization.json").read_text(encoding="utf-8"))
+    assert all(row["full_results_equal"] for row in result["optimization"]["methods"])
     assert result == json.loads((output / "benchmark.json").read_text(encoding="utf-8"))

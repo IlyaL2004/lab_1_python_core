@@ -1,6 +1,8 @@
 """Контракт token/AST-сравнения через CLI на малых независимых входах."""
 
 import ast
+from collections import Counter
+from itertools import combinations
 import json
 import subprocess
 import sys
@@ -8,9 +10,10 @@ import sys
 import pytest
 
 from school_lab.cli import main
+from school_lab import comparison_cli
 from school_lab.parsing import load_assignments
 from school_lab.pipeline import file_sha256, iter_submissions
-from school_lab.similarity import compare_submissions
+from school_lab.similarity import compare_submissions, eligible
 from school_lab.similarity_models import SimilarityConfig
 
 
@@ -79,6 +82,66 @@ def test_compare_all_pairs_follow_public_contract(temp_dir, raw_submission, caps
             threshold=result["threshold"],
         )
         assert row == expected.to_dict()
+
+
+@pytest.mark.parametrize("method", ["token", "ast"])
+@pytest.mark.parametrize("query", [None, "q"])
+def test_compare_prepares_once_and_keeps_baseline_results(
+    temp_dir, raw_submission, capsys, monkeypatch, method, query,
+):
+    """Индекс сохраняет весь отчёт, top-k и отказы; следующий запуск читает изменения."""
+    corpus, assignments_path = inputs(temp_dir, raw_submission)
+    rows = [json.loads(line) for line in corpus.read_text(encoding="utf-8").splitlines()]
+    template = "from typing import Iterable"
+    for row in rows:
+        row["code"] = template + "\n" + row["code"]
+    rows.extend(dict(raw_submission, submission_id=identifier, student_id=identifier, code=source)
+                for identifier, source in [("invalid", "def broken(:"), ("empty", ""),
+                                           ("template", template),
+                                           ("unsupported", "def solve(xs):\n    return [x for x in xs]\n")])
+    assignments = json.loads(assignments_path.read_text(encoding="utf-8"))
+    for assignment in assignments:
+        assignment["allowed_template"] = template
+    assignments_path.write_text(json.dumps(assignments), encoding="utf-8")
+    assignments = load_assignments(assignments_path)
+    calls = Counter()
+    original = comparison_cli.prepare_submission
+
+    def counted(submission, assignment, config):
+        calls[submission.submission_id] += 1
+        return original(submission, assignment, config)
+
+    monkeypatch.setattr(comparison_cli, "prepare_submission", counted)
+    args = ["compare", str(corpus), "--assignments", str(assignments_path), "--method", method,
+            "--top-k", "3"] + (["--query", query] if query is not None else [])
+    previous = None
+    for number in (1, 2):
+        write_rows(corpus, rows)
+        assert main(args) == 0
+        result = json.loads(capsys.readouterr().out)
+        assert calls == Counter({row["submission_id"]: number for row in rows})
+        documents = list(iter_submissions(corpus))
+        if query is None:
+            pairs = [(left, right) for left, right in combinations(documents, 2) if eligible(left, right)]
+        else:
+            left = next(item for item in documents if item.submission_id == query)
+            pairs = [(left, right) for right in documents if eligible(left, right)]
+        expected = [compare_submissions(left, right, assignments[left.assignment_id],
+                                        SimilarityConfig(method=method)).to_dict()
+                    for left, right in pairs]
+        undefined = [row for row in expected if row["score"] is None]
+        selected = expected if query is None else sorted(
+            (row for row in expected if row["score"] is not None),
+            key=lambda row: (-row["score"], row["right_id"]),
+        )[:3]
+        assert result["pairs"] == selected
+        assert result["undefined_pairs"] == undefined
+        assert result["comparisons"] == len(expected)
+        if previous is not None:
+            assert result["corpus_sha256"] != previous["corpus_sha256"]
+            assert result["pairs"] != previous["pairs"]
+        previous = result
+        rows[0]["code"] = template + "\ndef changed(value):\n    return value - 99\n"
 
 
 @pytest.mark.parametrize("method", ["token", "ast"])

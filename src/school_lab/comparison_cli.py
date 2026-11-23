@@ -10,11 +10,12 @@ from itertools import combinations
 from pathlib import Path
 
 from .benchmarking import run_benchmarks
+from .features import prepare_submission
 from .errors import AnalysisFailure, SubmissionError
 from .experiments import run_experiment
 from .parsing import load_assignments
 from .pipeline import file_sha256, iter_submissions
-from .similarity import compare_submissions, eligible
+from .similarity import compare_prepared, eligible
 from .similarity_models import SimilarityConfig
 
 
@@ -47,12 +48,12 @@ def add_commands(commands: argparse._SubParsersAction) -> None:
 
 
 def compare_corpus(args: argparse.Namespace) -> dict[str, object]:
-    """Прочитать проверенные сдачи и сравнить допустимые пары без общего индекса.
+    """Прочитать проверенные сдачи и сравнить допустимые пары по индексу признаков.
 
     Вход: args — разобранные аргументы compare.
     Выход: JSON-совместимый словарь с парами, отказами, конфигурацией и ошибками.
-    JSONL читается построчно; сдачи и отчёты накапливаются в памяти.
-    Признаки обеих сдач извлекаются заново для каждой допустимой пары.
+    JSONL читается построчно; сдачи, признаки и отчёты накапливаются в памяти.
+    Каждая сдача подготавливается один раз за вызов; evidence хранит исходные строки.
     """
     if args.top_k < 1:
         raise ValueError("top-k должен быть положительным")
@@ -76,10 +77,13 @@ def compare_corpus(args: argparse.Namespace) -> dict[str, object]:
         if query is None:
             raise ValueError("ID запроса отсутствует среди принятых сдач")
         candidates = ((query, item) for item in submissions if eligible(query, item))
+    prepared = {
+        item.submission_id: prepare_submission(item, assignments[item.assignment_id], config)
+        for item in submissions
+    }
     results = [
-        compare_submissions(
-            left, right, assignments[left.assignment_id], config, threshold=args.threshold,
-        )
+        compare_prepared(prepared[left.submission_id], prepared[right.submission_id],
+                         threshold=args.threshold)
         for left, right in candidates
     ]
     undefined = [item for item in results if item.score is None]
